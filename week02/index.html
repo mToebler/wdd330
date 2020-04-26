@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="author" content="Mark Tobler">
+   <meta name="description" content="Week 2 Notes for WDD330">
+   <link rel="stylesheet" href="styles/wdd_week02.css">
+   <title>Week 2</title>
+</head>
+<body>
+   <nav>
+      <div><a href="../index.html">Back</a></div>
+   </nav>
+   <header>
+   </header>
+   <main>
+      <section>
+         <div>
+            <h3>
+               Variables in CSS
+            </h3>
+            <div class="note">This topic is self directed exploration. Citations were appropriate.</div>
+         </div>
+         <div>
+            At the start of this week, I want to get down a decent color scheme; but if you're like me, you are constantly fiddling with the colors. Rather than "refactoring" the color codes through out the CSS as I have done in the past, I want to use CSS variables, that can be easily changed &mdash; in just 1 place.
+            Here we go.
+            <div class="note">(this next bit borrows from <a href="https://www.w3schools.com/css/css3_variables.asp" target="_blank" >w3schools.com</a>)</div>            
+            <div class="code">
+               :root {<br>
+                  &nbsp;&nbsp;&nbsp;--color_bg_1: #303030;<br>
+                  &nbsp;&nbsp;&nbsp;--color_bg_2: #707070;<br>
+                  &nbsp;&nbsp;&nbsp;--color_text: #ededed;<br>
+                  &nbsp;&nbsp;&nbsp;--color_accent_1: #1f6199;<br>
+                  &nbsp;&nbsp;&nbsp;--color_accent_2: #d3773a;<br>
+               }<br>
+               <br>
+               body {<br>
+                  &nbsp;&nbsp;&nbsp;background: var(--color_bg1);<br>
+                  &nbsp;&nbsp;&nbsp;font-family: sans-serif;<br>
+                  &nbsp;&nbsp;&nbsp;color: var(--color_text);<br>
+               }<br><br>
+            </div>
+            <div class="explanation">
+               <div class="note">What's going on</div>
+               Scope of the variable: <code>:root</code> is suggested, but it appears you can use any selector that makes sense. Within the chosen scope selector, 
+               declare your variable name begining with 2 dashes <code>--</code>. I'm sure the rules for CSS naming apply here. Give the variable a default
+               value. Not sure this is necessary, but it will prevent whatever the equivalent of a <code>nil</code> value is in CSS.<br> 
+               To access the value later anywhere within the scope in CSS, use the <code>var()</code> function as shown above. The syntax for <code>var</code> is:<br>
+               <code>var(--variable-name, value)</code><note>the value parameter is optional</note>
+               <br>
+            </div>
+         </div>
+      </section>
+   </main>
+   <footer>
+      &copy; | Mark Tobler Portfolio | WDD 330
+   </footer>
+</body>
+
+</html>
