@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="author" content="Mark Tobler">
+   <meta name="description" content="Week 1 Notes for WDD330">
+   <link rel="stylesheet" href="../styles/wwd_portfolio.css">
+   <title>Week 1 Notes</title>
+</head>
+
+<body>
+   <nav>
+      <div><a href="../index.html">Back</a></div>
+   </nav>
+   <header>
+      <h1>
+         Notes for Week 1
+      </h1>
+   </header>
+   <main>
+      <section>
+         <div>
+            <h3>
+               LOCAL STORAGE
+            </h3>
+            <div class="note">This example is from page 42 of Lee S. Barney's book: Doing Stuff with Web Things.</div>
+         </div>
+         <div>
+            How to store key-value pairs using JS. These three funtions illustrate how to use the viewer's local storage to save, load and display data.
+            <div class="note">(scroll back and forth if text is clipped)</div>
+            <div class="code">
+               
+               function saveStory() { <br>
+                  &nbsp;&nbsp;var storyName = document.getElementById(“name_input”).value <br>
+                  &nbsp;&nbsp;var storyHTML = document.getElementById(“story_editor”).value <br>
+                  &nbsp;&nbsp;localStorage.setItem(storyName, storyHTML)<br>
+               }<br><br>
+               function loadStory(){<br>
+                  &nbsp;&nbsp;var storyName = document.getElementById(“name_input”).value <br>
+                  &nbsp;&nbsp;var storyHTML = localStorage.getItem(storyName) <br>
+                  &nbsp;&nbsp;document.getElementById(“story_editor”).value = storyHTML<br>
+               }<br><br>
+               function displayStory() {<br>
+                  &nbsp;&nbsp;var storyHTML = document.getElementById(“story_editor”).value<br>
+                  &nbsp;&nbsp;document.getElementById(“story_display”).innerHTML = storyHTML<br>
+               }<br>
+            
+            </div>
+            <div class="explanation">
+               How this works: Using javascript variables, the content of the html element ID'd as "name_input" is 
+               associated with the content of another element with the ID of "story_editor". Together these
+               are passed to the localStorage object which is directed to save the text of from story_editor 
+               using the key of name_input. It's a simple key-value pair most likely stored using an associated array. 
+               <br>
+               Later, when the text is retreived, simply use the key, i.e., "storyName" to get whatever was stored. (Make sure to store it in a variable for clarity. [nesting can be hard to read])
+               <br>
+               To display the text, simply set the innerHTML of which ever textual element you'd like by first getting a context handler to it using getElementById and setting it's <code>value</code> to the contents of your variable id, storyHTML.
+               <br>
+               REMEMBER: when retrieving content, use it's <code>value</code>. When setting content use the <code>innerHTML</code> property.
+            </div>
+         </div>
+      </section>
+      <section>
+         <div>
+            <h3>
+               User Input
+            </h3>
+            <div class="note">This example is from page 56 of Lee S. Barney's book: Doing Stuff with Web Things.</div>
+         </div>
+         <div>
+            An example  of validating user input before working with it.
+            <div class="note">(scroll back and forth if text is clipped)</div>
+            <div class="user_validation">
+               
+               <img src="../images/input_validation.png">
+            
+            </div>
+            <div class="explanation">
+               How this works: the user input is retrieved using <code>value</code> and passed to the function <code>parseInt</code>. If the return value is valid, it's a number; if not, the user entered something that isn't understood within the context of javascript integers.
+            </div>
+         </div>
+      </section>
+   </main>
+   <footer>
+      &copy; | Portfolio | WDD 330
+   </footer>
+</body>
+
+</html>
