@@ -86,7 +86,7 @@ footer {
 
 .menu_btn {
    color: #F15D22;
-
+   font-size: 3rem;
 }
 
 @media screen and (max-height: 450px) {
