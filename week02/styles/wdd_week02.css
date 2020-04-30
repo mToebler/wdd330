@@ -14,12 +14,12 @@ body {
 }
 
 * {
-   transition: all 0.65s ease;
+   transition: all 0.1s ease;
    box-sizing: border-box;
    margin: 0px;
    padding: 0px;
 }
-header > h1 {
+section > h1 {
    color: var(--color_accent_2);
 }
 

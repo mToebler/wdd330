@@ -3,7 +3,8 @@ File: wdd_portfolio
 Author: Mark Tobler
 Description: Javascript for WDD330 portfolio and notebook
 */
-// These need to be defined before they can be referenced.
+// These function expressions need to be defined before they can be referenced.
+// i.e., no hoisting.
 const closeMenu = () => {
    document.getElementById("menu").style.width = "0%";
 };
