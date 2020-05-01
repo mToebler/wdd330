@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,47 +9,53 @@
    <link rel="stylesheet" href="styles/wdd_week02.css">
    <title>Week 2</title>
 </head>
+
 <body>
    <nav>
-      <div><a href="../index.html">Back</a></div>
+      <div><a href="../index.html">&laquo;</a></div>
    </nav>
    <header>
    </header>
    <main>
       <section>
          <h1>Week 2</h1>
-         <div>         
+         <div>
             <h3>
                Variables in CSS
             </h3>
             <div class="note">This topic is self directed exploration. Citations provided where appropriate.</div>
          </div>
          <div>
-            At the start of this week, I want to get down a decent color scheme; but if you're like me, you are constantly fiddling with the colors. Rather than "refactoring" the color codes through out the CSS as I have done in the past, I want to use CSS variables that can be easily changed &mdash; in just 1 place.
+            At the start of this week, I want to get down a decent color scheme; but if you're like me, you are constantly fiddling with the colors. Rather than
+            "refactoring" the color codes through out the CSS as I have done in the past, I want to use CSS variables that can be easily changed &mdash; in just
+            1 place.
             Here we go.
-            <div class="note">(this next bit borrows from <a href="https://www.w3schools.com/css/css3_variables.asp" target="_blank" >w3schools.com</a>)</div>            
+            <div class="note">(this next bit borrows from <a href="https://www.w3schools.com/css/css3_variables.asp" target="_blank">w3schools.com</a>)</div>
             <div class="code">
                :root {<br>
-                  &nbsp;&nbsp;&nbsp;--color_bg_1: #303030;<br>
-                  &nbsp;&nbsp;&nbsp;--color_bg_2: #707070;<br>
-                  &nbsp;&nbsp;&nbsp;--color_text: #ededed;<br>
-                  &nbsp;&nbsp;&nbsp;--color_accent_1: #1f6199;<br>
-                  &nbsp;&nbsp;&nbsp;--color_accent_2: #d3773a;<br>
+               &nbsp;&nbsp;&nbsp;--color_bg_1: #303030;<br>
+               &nbsp;&nbsp;&nbsp;--color_bg_2: #707070;<br>
+               &nbsp;&nbsp;&nbsp;--color_text: #ededed;<br>
+               &nbsp;&nbsp;&nbsp;--color_accent_1: #1f6199;<br>
+               &nbsp;&nbsp;&nbsp;--color_accent_2: #d3773a;<br>
                }<br>
                <br>
                body {<br>
-                  &nbsp;&nbsp;&nbsp;background: var(--color_bg1);<br>
-                  &nbsp;&nbsp;&nbsp;font-family: sans-serif;<br>
-                  &nbsp;&nbsp;&nbsp;color: var(--color_text);<br>
+               &nbsp;&nbsp;&nbsp;background: var(--color_bg1);<br>
+               &nbsp;&nbsp;&nbsp;font-family: sans-serif;<br>
+               &nbsp;&nbsp;&nbsp;color: var(--color_text);<br>
                }<br><br>
             </div>
             <div class="explanation">
                <div class="note">What's going on</div>
-               Scope of the variable: <code>:root</code> is suggested, but it appears you can use any selector that makes sense. Within the chosen scope selector, 
+               Scope of the variable: <code>:root</code> is suggested, but it appears you can use any selector that makes sense. Within the chosen scope
+               selector,
                declare your variable name begining with 2 dashes <code>--</code>. I'm sure the rules for CSS naming apply here. Give the variable a default
-               value. Not sure this is necessary, but it will prevent whatever the equivalent of a <code>nil</code> value is in CSS.<br> 
-               To access the value later anywhere within the scope in CSS, use the <code>var()</code> function as shown above. The syntax for <code>var</code> is:<br>
-               <code>var(--variable-name, value)</code><note> The <code>value</code> parameter is optional.</note>
+               value. Not sure this is necessary, but it will prevent whatever the equivalent of a <code>nil</code> value is in CSS.<br>
+               To access the value later anywhere within the scope in CSS, use the <code>var()</code> function as shown above. The syntax for <code>var</code>
+               is:<br>
+               <code>var(--variable-name, value)</code>
+               <note> The <code>value</code> parameter is optional.</note>
                <br>
             </div>
          </div>
@@ -57,10 +64,61 @@
          <h3>Team Activity</h3>
          <a href="team.html">simple calculations</a>
       </section>
+      <section>
+         <h3>Fun with Ajax</h3>
+         <div class="note">Independed study & exploration.</div>
+         <div>
+            Brother Thane teased in this week's lecture about fetch like behavior from within client-side es6. Since we won't be using outside libraries, I can
+            only imagine it's Ajax. Since it's been a minute from when I last go down with Ajax, I thought I'd brush up on it.
+         </div>
+         <div class="note">(scroll left <=> right  if text is clipped)</div>
+         <div class="code">
+            <code>
+               document.querySelector("#ajaxBtn").addEventListener("click", getAjax);<br>
+               <br>
+               function getAjax() {<br>
+                  <br>
+                  &nbsp;&nbsp;var Http = new XMLHttpRequest();<br>
+                  &nbsp;&nbsp;const url = `https://swapi.py4e.com/api/starships/9/`;<br>
+                  &nbsp;&nbsp;Http.open("GET", url);<br>
+                  &nbsp;&nbsp;Http.send();<br>
+                  &nbsp;&nbsp;Http.onreadystatechange = (res) => {<br>
+                     &nbsp;&nbsp;&nbsp;&nbsp;document.querySelector('#ajaxResponse').innerHTML = Http.responseText;<br>
+                     &nbsp;&nbsp;}<br>
+               };<br>
+            </code>  
+         </div>
+         Try it:
+         <button id="ajaxBtn" class="btn">Get Ajax</button>
+         <div class="padded" id="ajaxResponse"></div>         
+         <div class="explanation">
+            <div class="note">What's going on</div>
+            First, an event listener is added to the button "Get Ajax" to call a function on a click where I encapsulated all the Ajax business. 
+            The getAjax function establishes a new XMLHttpRequest object that sends a GET request to the defined URL. (This one follows the REST API spec.)
+            The XMLHttpRequest instance monitors the response from the remote server, and when it gets a 4 or higher (?) it fires the anonymous callback method
+            (lambda in js?) which simply puts the returned JSON string on the page. This isn't half bad. When I first worked with Ajax, the needed code was an avalanche of callbacks which later would become known as "callback hell." I wouldn't argue with that name.
+         </div>
+         I'll look into handling JSON next week.
+      </section>
    </main>
    <footer>
       &copy; | Mark Tobler Portfolio | WDD 330
    </footer>
 </body>
+<script>
+   document.querySelector("#ajaxBtn").addEventListener("click", getAjax);
+
+   function getAjax() {
+      // alert('clicked');
+      var Http = new XMLHttpRequest();
+      const url = `https://swapi.py4e.com/api/starships/9/`;
+      Http.open("GET", url);
+      Http.send();
+      Http.onreadystatechange = (res) => {
+         var jRes = JSON.stringify(Http.responseText);
+         document.querySelector('#ajaxResponse').innerHTML = JSON.parse(jRes);
+      }
+   };
+</script>
 
 </html>

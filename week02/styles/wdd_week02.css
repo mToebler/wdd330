@@ -81,6 +81,10 @@ a:hover {
    font-size: 10px;
 }
 
+.padded {
+   padding:1rem;
+}
+
 .accent_1 {
    background-color: var(--color_accent_1);
 }
