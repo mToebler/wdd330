@@ -59,7 +59,7 @@ a:hover {
    border-bottom: 5px solid var(--color_accent_2);
 }
 
-.note {
+.note, note {
    font-size: smaller;
    font-style: italic;
    color: var(--color_accent_1);
@@ -102,9 +102,12 @@ section > input {
    margin: .4rem;
    color: var(--color_accent_2);
    padding: .5rem .25rem;
-   border: .1rem solid var(--color_accent_1);
    width: 4rem;
    overflow: hidden;
+}
+
+.bordered {
+   border: .1rem solid var(--color_accent_1);
 }
 
 label {

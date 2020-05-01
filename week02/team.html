@@ -18,6 +18,7 @@
                }
             }
             document.getElementById("dvSum").innerHTML = sum;
+            checkBorder("#dvSum");
          }
 
       const calculateTotal = () => {
@@ -47,7 +48,24 @@
                         break;
                }
             }
-            document.getElementById("dvTotal").innerHTML = results;
+            document.getElementById("dvTotal").innerHTML = results;           
+            checkBorder("#dvTotal");
+      }
+
+      checkBorder = (someElement)=>{ 
+         cl = document.querySelector(someElement).classList;
+            if (cl.length > 0) {
+               let flag = false;
+               cl.forEach(element => {
+                  if (toString(element) == 'bordered')
+                     flag = true;                  
+               });
+               if(!flag) 
+                  cl.add('bordered');
+            } else {
+               cl.add('bordered');
+            }
+
       }
    </script>
    <style>
@@ -61,7 +79,7 @@
    <!--team-->
    <h2>W02 Team Activity</h2>
 <section>
-   <label>Sum of all numbers between 1 and n</label>
+   <label>Sum "Factorial" <note>(+'ing rather than *'ing)</note></label>
    <br>n: <input id="txtInput" type="number">
    <button class="btn" id="btnSum" type="button" onclick="calculateSum()">Sum</button>
    <div id="dvSum"></div>
