@@ -4,7 +4,9 @@
    --color_text: #ededed;
    /* --color_accent_1: #1f6199; */
    --color_accent_1: #66bae4;
+   --color_accent_1h: #87d2f8;
    --color_accent_2: #d3773a;
+   --color_accent_2h: #ff954f;
 }
 
 body {
@@ -35,6 +37,14 @@ footer {
    font-size: 0.8125em;
 }
 
+a {
+   color: var(--color_accent_2h);
+}
+
+a:hover {
+   background-color: var(--color_accent_1h);
+}
+
 
 .code {
    font-family: 'Courier New', Courier, monospace;
@@ -58,4 +68,46 @@ footer {
 .explanation {
    background-color: var(--color_bg_2);
    font-size: small;
+}
+
+.btn {
+   background-color: var(--color_accent_2);
+   border: .1rem solid var(--color_bg_2);
+   color: var(--color_text);
+   padding: 4px 15px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 10px;
+}
+
+.accent_1 {
+   background-color: var(--color_accent_1);
+}
+
+body > section {
+   margin: .5rem;
+   padding: .5rem;
+   border: .1rem solid var(--color_accent_1);
+   background-color: var(--color_bg_1);
+   color: var(--color_text);
+}
+
+section > input {
+   width: 2rem;
+   font-size: .75rem;
+}
+
+#dvTotal, #dvSum {
+   margin: .4rem;
+   color: var(--color_accent_2);
+   padding: .5rem .25rem;
+   border: .1rem solid var(--color_accent_1);
+   width: 4rem;
+   overflow: hidden;
+}
+
+label {
+   margin: .25rem 0rem ;
+
 }

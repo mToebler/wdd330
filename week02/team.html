@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="styles/wdd_week02.css">
+   <title>W02 Team Activity</title>
+      <script>
+         const calculateSum = function () {
+            let sum = 0;
+            let n = parseInt(document.getElementById("txtInput").value);
+            if (isNaN(n)) {
+               sum = "Input must be numeric.";
+            } else {
+               for (let num = 1;  num <= n;  num++) {
+               sum += num;
+               }
+            }
+            document.getElementById("dvSum").innerHTML = sum;
+         }
+
+      const calculateTotal = () => {
+            let results = .0;
+            let n1 = parseFloat(document.getElementById("txtNumber1").value);
+            // let operator = document.getElementById("txtOperator").value;
+            let sOperator = document.querySelector("#operator").value;
+            console.log(sOperator);
+            let n2 = parseFloat(document.getElementById("txtNumber2").value);
+            if (isNaN(n1) || isNaN(n2)) {
+               results = "Input must be numeric";
+            } else {
+               switch (sOperator) {
+                     case "+":
+                        results = n1 + n2;
+                        break;
+                     case "-":
+                        results = n1 - n2;
+                        break;
+                     case "*":
+                        results = n1 * n2;
+                        break;
+                     case "/":
+                        results = n1 / n2;
+                        break;
+                     default:
+                        break;
+               }
+            }
+            document.getElementById("dvTotal").innerHTML = results;
+      }
+   </script>
+   <style>
+      .hide {
+         display:none;
+      }
+   </style>
+</head>
+<body>
+   <a href="index.html">back</a>
+   <!--team-->
+   <h2>W02 Team Activity</h2>
+<section>
+   <label>Sum of all numbers between 1 and n</label>
+   <br>n: <input id="txtInput" type="number">
+   <button class="btn" id="btnSum" type="button" onclick="calculateSum()">Sum</button>
+   <div id="dvSum"></div>
+   <br>
+   <label>Calculate:</label>
+   <br>
+   <input id="txtNumber1" type="number">
+   <select class="btn accent_1" name='operator' id='operator'>
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+   </select>
+   <!-- <input id="txtOperator" type="text" value="+"> -->
+   <input id="txtNumber2" type="number">
+   <button id="btnAdd" class="btn" type="button" onclick="calculateTotal()">Calc</button>
+   <div id="dvTotal"></div>
+</section>
+<section name="alternative" class="hide">
+   
+</section>
+
+   <section id="instructor's solution" class="hide">
+      <!-- I've left all the code for all three requirements. If you replaced code as you wnet and only have the code from #3 that is fine -->
+      <!-- Requirement 1 -->
+      <h2>Requirement 1</h2>
+      <input id="req1Input" type="text" />
+      <button id="req1Button" onclick="reqOne()">Submit</button>
+      <div id="req1Output"></div>
+
+      <!-- Requirement 2 -->
+      <h2>Requirement 2</h2>
+      <input id="req2Input" type="text" />
+      <button id="req2Button" onclick="reqTwo()">Sum</button>
+      <div id="req2Output"></div>
+
+      <!-- Requirement 3 -->
+      <h2>Requirement 3</h2>
+      <input id="req3Number1" placeholder="enter a number" type="number" /><input id="req3Number2" placeholder="enter a number" type="number" />
+      <button id="req3Button" onclick="add()">+</button>
+      <div id="req3Output"></div>
+
+      <h2>Stretch</h2>
+      <input id="stretchNumber1" placeholder="enter a number" type="number" /><input id="stretchNumber2" placeholder="enter a number" type="number" />
+      <!-- Notice below that all of our buttons are calling the same function...but passing in the name of another function as the argument. Notice also what is missing...when you pass a function as a callback you DO NOT include the ()! If you add the () the function will get executed immediately instead of later like we would like. -->
+      <button id="stretchAdd" onclick="performOperation(add2)">+</button>
+      <button id="stretchSub" onclick="performOperation(sub2)">-</button>
+      <button id="stretchMult" onclick="performOperation(mult2)">*</button>
+      <div id="stretchOutput"></div>
+      <script>
+      // req1
+      function reqOne() {
+        // we can use getElementById to grab the correct input...but we are interested in the value of the input...not the input itself...so we tell it that.
+        const input = document.getElementById('req1Input').value;
+        // Here we want the actual element so no .value...not to mention that only input elements HAVE a .value
+        const outputElement = document.getElementById('req1Output');
+        //  The content for most elements (other than inputs) lives in innerHTML
+        outputElement.innerHTML = 'You entered: ' + input;
+      }
+      // req 2
+      function reqTwo() {
+        const input = document.getElementById('req2Input').value;
+        const outputElement = document.getElementById('req2Output');
+        // make sure input is a number...we can convert it from the string we get from the input value to a number with parseInt.  If this fails it's not a number
+        const inputInt = parseInt(input);
+        if (inputInt !== NaN) {
+            outputElement.innerHTML = 'total: ' + sum(inputInt);
+        }
+      }
+      function sum(number) {
+            let total = 0;
+        for (let i = 1; i <= number; i++) {
+            total += i;
+        }
+        return total;
+      }
+
+      // req 3
+      function add() {
+        const number1 = document.getElementById('req3Number1').value;
+        const number2 = document.getElementById('req3Number2').value;
+        const outputElement = document.getElementById('req3Output');
+        //  we need to check for valid input again...this time decimals would be ok...so lets use parseFloat instead of parseInt
+        const num1Float = parseFloat(number1);
+        const num2Float = parseFloat(number2);
+        if ((num1Float !== NaN) & (num2Float !== NaN)) {
+          const total = num1Float + num2Float;
+          outputElement.innerHTML = 'Total: ' + total;
+        }
+      }
+
+      // stretch solution
+      function getNum(numId) {
+        const number = document.getElementById(numId).value;
+        const numberFloat = parseFloat(number);
+        if (numberFloat !== NaN) {
+          return numberFloat;
+        } else return 0;
+      }
+      function updateTotal(value) {
+        const outputElement = document.getElementById('stretchOutput');
+        outputElement.innerHTML = 'Total: ' + value;
+      }
+      // function declaration
+      function add2(num1, num2) {
+        return num1 + num2;
+      }
+      // function expression
+      const sub2 = function(num1, num2) {
+        return num1 - num2;
+      };
+      // arrow function
+      const mult2 = (num1, num2) => num1 * num2;
+
+      // example of using a callback to pull it all together
+      function performOperation(operation) {
+        // the argument 'operation' is a function...so when we are ready we can call that function in our code below
+        const total = operation(
+          getNum('stretchNumber1'),
+          getNum('stretchNumber2')
+        );
+        updateTotal(total);
+      }
+      </script>
+   </section>
+</body>
+
+</html>
