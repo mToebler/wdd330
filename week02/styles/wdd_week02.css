@@ -98,13 +98,14 @@ a:hover {
 }
 
 .accent_1 {
-   background-color: var(--color_accent_1);
+   background-color: var(--color_accent_1h);
+   color: var(--color_bg_2);
 }
 
 body > section {
    margin: .5rem;
    padding: .5rem;
-   border: .1rem solid var(--color_accent_1);
+   border: .1rem solid var(--color_accent_1h);
    background-color: var(--color_bg_1);
    color: var(--color_text);
 }
