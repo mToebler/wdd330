@@ -26,8 +26,8 @@
             <div class="note">This topic is self directed exploration. Citations provided where appropriate.</div>
          </div>
          <div>
-            At the start of this week, I want to get down a decent color scheme; but if you're like me, you are constantly fiddling with the colors. Rather than
-            "refactoring" the color codes through out the CSS as I have done in the past, I want to use CSS variables that can be easily changed &mdash; in just
+            At the start of this week, I want to get down the foundation for a decent color scheme. If you're like me, you're constantly playing around with the colors. I've learned to add those last after I'm happy with the functionality. (I'm slow with aesthetics =). Rather than
+            "refactoring" the color codes throughout the CSS as I have in the past, I want to use CSS variables that can be easily changed &mdash; in just
             1 place.
             Here we go.
             <div class="note">(this next bit borrows from <a href="https://www.w3schools.com/css/css3_variables.asp" target="_blank">w3schools.com</a>)</div>
@@ -90,7 +90,7 @@
          </div>
          Try it:
          <button id="ajaxBtn" class="btn">Get Ajax</button>
-         <div class="padded" id="ajaxResponse"></div>         
+         <div class="padded sidescroller" id="ajaxResponse"></div>         
          <div class="explanation">
             <div class="note">What's going on</div>
             First, an event listener is added to the button "Get Ajax" to call a function on a click where I encapsulated all the Ajax business. 
@@ -98,11 +98,11 @@
             The XMLHttpRequest instance monitors the response from the remote server, and when it gets a 4 or higher (?) it fires the anonymous callback method
             (lambda in js?) which simply puts the returned JSON string on the page. This isn't half bad. When I first worked with Ajax, the needed code was an avalanche of callbacks which later would become known as "callback hell." I wouldn't argue with that name.
          </div>
-         I'll look into handling JSON next week.
+         Next week, I'll squeeze in JSON formatting.
       </section>
    </main>
    <footer>
-      &copy; | Mark Tobler Portfolio | WDD 330
+      &copy;2020 | Mark Tobler Portfolio | WDD 330
    </footer>
 </body>
 <script>

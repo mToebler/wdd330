@@ -2,8 +2,8 @@
    --color_bg_1: #303030;
    --color_bg_2: #707070;
    --color_text: #ededed;
-   /* --color_accent_1: #1f6199; */
-   --color_accent_1: #66bae4;
+   --color_accent_1: #1f6199;
+   /* --color_accent_1: #66bae4; */
    --color_accent_1h: #87d2f8;
    --color_accent_2: #d3773a;
    --color_accent_2h: #ff954f;
@@ -23,6 +23,10 @@ body {
 }
 section > h1 {
    color: var(--color_accent_2);
+}
+h3 {
+   padding: .6em 1em 0.25em 0em;
+   border-top: .2em solid var(--color_accent_2);
 }
 
 main {
@@ -48,21 +52,21 @@ a:hover {
 
 .code {
    font-family: 'Courier New', Courier, monospace;
-   font-size: smaller;
+   /* font-size: smaller; */
    white-space: nowrap;
    color: var(--color_bg_1);
    background: var(--color_text);
    overflow-x:auto;
    overflow-y:auto;
    width: 100%;
-   font-size: .9rem;
-   border-bottom: 5px solid var(--color_accent_2);
+   font-size: 1rem;
+   border-bottom: 5px solid var(--color_accent_1);
 }
 
 .note, note {
    font-size: smaller;
    font-style: italic;
-   color: var(--color_accent_1);
+   color: var(--color_accent_1h);
 }
 
 .explanation {
@@ -83,6 +87,14 @@ a:hover {
 
 .padded {
    padding:1rem;
+}
+
+.sidescroller {
+   overflow-x:auto;
+   overflow-y:auto;
+   width: 100%;
+   font-size: .9rem;
+   border-bottom: 5px solid var(--color_accent_1);
 }
 
 .accent_1 {
