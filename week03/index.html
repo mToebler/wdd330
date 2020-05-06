@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="author" content="Mark Tobler">
+   <meta name="description" content="Week 3 Notes for WDD330">
+   <link rel="stylesheet" href="../week02/styles/wdd_week02.css"
+   
+</head>
+
+<body>
+   <nav>
+      <div><a href="../index.html">&laquo;</a></div>
+   </nav>
+   <header>
+   </header>
+   <main>
+      <section>
+         <h1>Week 3</h1>
+         <div class="toc" id="toc">
+
+         </div>
+         <div>
+            <h3>
+               Falsey Values in JS
+            </h3>
+            <div class="note">This topic is self directed exploration. Citations provided where appropriate.</div>
+         </div>
+         <div>
+            Some notes to clear up any confusion on the rogue types, objects and primitives that are falsey.
+
+            <!-- <div class="note">(this next bit borrows from <a href="https://www.w3schools.com/css/css3_variables.asp" target="_blank">w3schools.com</a>)</div> -->
+            <br /><br/>
+            <div class="accent_1 big fullbar">First review:  == and ===</div>
+            <br />
+            == <note>loose equality opertor: (also ternary operator: ?)</note>
+            <br />
+            checks for the truthiness of an expression by value. Type may be coerced, i.e., may be evaluated as a different type:
+            <br />
+            <br />
+            === <note>strict equality:</note>
+            <br />
+            checks for equality by value and type.
+            <br />
+            <br />
+            <br />
+            <div class="accent_2 big fullbar">undefined <note>primitive, a type; falsey!</note>   </div>
+            
+            indicates an identifier is declared but not initialized, no value.
+            <br />
+            Non-existent object properties will be undefined.
+            <br />
+            Equality for undefined:
+            <br />
+            <div class="code">
+               typeof(undefined); //"undefined"
+               <br />
+               x = undefined; y = undefined;
+               <br />
+               (x == y) == true; (x === y) === true;
+               <br />
+               //!! Important. undeclared array elements == and === eachother:
+               <br />
+               arr = [];
+               <br />
+               arr[0] == arr[1] == true; arr[0] === arr[1] == true;
+            </div>
+            <br />
+            Boolean value:
+            <br />
+            <div class="code">
+               // undefined is neither true or false:
+               <br />
+               !undefined == true == true; undefined == true == false;
+            </div>
+            <br />
+            Compares to null:
+            <br />
+            <div class="code">
+               undefined == null == true;
+               <br />
+               undefined === null == false; null !== undefined == true;
+               <br />
+            </div>
+            Math:
+
+            <br />
+            <div class="code">
+               Number(undefined) == NaN
+            </div>
+            <br />
+            <div class="accent_2 big fullbar">null</div><note>object; ; falsey!</note>
+            <br />
+
+            in JS/ES6 null is an assignable object meaning 'no value'/'nothing.'
+            <br />
+            There is only one null. All null items resolve to the same null object.
+            <br />
+            Equality of null:
+            <br />
+            <div class="code">
+               typeof(null); // "object"
+               <br />
+               x = null; y = null;
+               <br />
+               (x == y) == true; (x === y) === true;
+            </div>
+            <br />
+            Boolean value:
+            <br />
+            <div class="code">
+               // null is neither true or false:
+               <br />
+               !null == true == true; null == true == false;
+               <br />
+            </div>
+            Compares to undefined:
+            <br />
+            <div class="code">
+               null == undefined == true;
+               <br />
+               null === undefined == false;
+               <br />
+               !null === !undefined == true; (falsey!! consider order of operations:
+               <br />
+               (!null) === (!undefined) == true; (same expressions)
+            </div>
+            <br />
+            Math:
+            <div class="code">
+               <br />
+               Number(null) == 0; // null converts to 0 in math operations.
+            </div>
+            <br />
+            <div class="accent_2 big fullbar">NaN </div><code> number; falsey!</code>
+            <br />
+            acronym for "Not a Number".
+            <br />
+            consider:
+            <br />
+            <div class="code">'running' - 3 // where running is the idea of running.
+               <br />
+               // NaN: can't consistently|logically derive number from expression.
+            </div>
+            <br />
+            <note>Caution with Strings, NaN's and addition. JS will convert to strings</note>:
+            <br />
+            <div class="code">
+               'running' + 3 == 'running3';
+               <br />
+               true + 'false' == 'truefalse';
+               <br />
+            </div>
+            Boolean expressions will evaluate to false:
+            <br />
+            <div class="code">
+               !NaN == true; (falsey!!!)
+               <br />
+               NaN == NaN == false; NaN === NaN == false;
+               <br />
+               //SO USE isNaN():
+               <br />
+               isNaN(NaN) == true;
+               <br />
+            </div>
+            Number and boolean operations convert bool to 1 (true) or 0 (false):
+            <br />
+            <div class="code">
+               true + 1 == 2;
+               <br />
+               false - 2 == -2;
+               <br />
+               true / false == Infinity;
+               <br />
+            </div>
+            <br />
+            <div class="accent_2 big fullbar">' ' <span class="color_bg_2">(empty string)</span></div>
+            <br />
+            falsey!
+            <br />
+            <div class="code">
+               '' == false ? console.log('truthy') : console.log('falsey');
+               <br />
+               '' ? console.log('truthy'): console.log('falsey');
+            </div>
+            <br />
+            <br />
+            <note>Others not covered in depth: 0, 0n, false; but basically:
+               <br />
+               these falsey values loosely equal each other using ==, at least:
+            </note>
+            <br />
+            <div class="code">
+               0==0n==false==""; // note the empty string.
+               <br />
+               null==undefined;
+               <br />
+               // remember NaN does not equal anything, not even itself: use isNaN()
+            </div>
+            <br />
+         <div class="fullbar big accent_1"> Infinity</div><note> number</note> <div class="code">Infinity<br/>Number.POSITIVE_INFINITY<br/> Number.NEGATIVE_INFINITY</div>
+            <br />
+            But is it falsey?<note>Run this ternary expression to see:</note>
+            <div class="code">Infinity ? 'truthy':'falsey'; </div>
+            <div id="isTruthy_result"></div><button class='btn' id="exe_infinity">run</button> 
+            
+            
+            <br /><br />
+            <div class="explanation">Any math operation that would cause a buffer overrun is assigned the global property: infinity. Anything larger than Number.MAX_SAFE_INTEGER: (2^53
+            - 1) or 9007199254740991 or 1.79e+308</div>
+            <br />
+            <note>Watch out for:</note>   
+            <br />
+            When dividing by 0, sigFault will not occur, Infinity will be used instead. Any further boolean expressions will likely fail to produce intended
+            results:
+            <br />
+            <div class="code">
+               x = 1/0;
+               <br />
+               x + 1
+               < x + 2; // false <br />
+               x + 1 === x + 2; // true
+               <br />
+               2 * Infinity == 2 + Infinity
+            </div>
+            <div class="accent_2">
+               <code>Use Number.isFinite()</code> to get around this.
+               </div>
+               <div class="explanation"></div>
+               Remember, <code>isFinite()</code> is different from <code>Number.isFinite()</code>. First function is part of the global object and uses coercion.
+               <br />
+            </div>
+            <div class="explanation">
+               <div class="note">What's going on</div>
+               Scope of the variable: <code>:root</code> is suggested, but it appears you can use any selector that makes sense. Within the chosen scope
+               selector,
+               declare your variable name begining with 2 dashes <code>--</code>. I'm sure the rules for CSS naming apply here. Give the variable a default
+               value. Not sure this is necessary, but it will prevent whatever the equivalent of a <code>nil</code> value is in CSS.<br>
+               To access the value later anywhere within the scope in CSS, use the <code>var()</code> function as shown above. The syntax for <code>var</code>
+               is:<br>
+               <code>var(--variable-name, value)</code>
+               <note> The <code>value</code> parameter is optional.</note>
+               <br>
+            </div>
+         </div>
+      </section>
+      <section>
+         <h3>Team Activity</h3>
+
+      </section>
+      <section>
+         <h3>Fun with Objects</h3>
+         
+         
+      </section>
+      <section>
+         <h3>
+            As promise last week, JSON formatting.
+         </h3>
+      </section>
+      <section>
+         <h3>
+            If I've time, changing CSS variables through JS.
+         </h3>
+      </section>
+   </main>
+   <footer>
+      &copy;2020 | Mark Tobler Portfolio | WDD 330
+   </footer>
+</body>
+<script>
+   document.querySelector("#exe_infinity").addEventListener("click", isTruthy);
+
+   function isTruthy() {
+      // alert('clicked');
+      truthDisplay = document.querySelector('#isTruthy_result');
+      truthDisplay.innerHTML = Infinity ? 'truthy':'falsey'; 
+      truthDisplay.style.color = 'var(--color_accent_2h)';
+      document.querySelector('#exe_infinity').style.display = 'none';      
+   };
+
+   window.onload = ()=> {      
+
+      let js_toc = document.querySelector('#toc');
+      let hs_list = document.querySelectorAll('h3');
+      if(hs_list.length > 0) {
+         let _ul = document.createElement("select");
+         _ul.setAttribute("onchange", `document.getElementById(options[selectedIndex].value).scrollIntoView(true);`);
+         _ul.innerText = `Topics: (dynamic list)`;
+         js_toc.appendChild(_ul)  
+         let h_li = document.createElement("option");
+         h_li.innerText = "Select from this week's topics:";
+         _ul.appendChild(h_li);
+         hs_list.forEach( (e) => {
+            h_li = document.createElement("option");            
+            h_li.innerText = e.innerText;
+            let h_value = e.innerText.replace(/\s+/g, '_');
+            e.setAttribute("id", h_value);
+            // h_value = '#' + h_value;
+            h_li.setAttribute("value", h_value);
+            let h_a = document.createElement("a");
+            h_a.setAttribute("href", h_value);
+            _ul.appendChild(h_li);
+            e.appendChild(h_a);
+         });
+      }
+   };
+
+</script>
+
+</html>

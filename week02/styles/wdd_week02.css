@@ -9,6 +9,10 @@
    --color_accent_2h: #ff954f;
 }
 
+html, body {
+   overflow-x: hidden;
+}
+
 body {
    background: var(--color_bg_1);
    font-family: sans-serif;
@@ -21,9 +25,11 @@ body {
    margin: 0px;
    padding: 0px;
 }
-section > h1 {
+
+section>h1 {
    color: var(--color_accent_2);
 }
+
 h3 {
    padding: .6em 1em 0.25em 0em;
    border-top: .2em solid var(--color_accent_2);
@@ -49,15 +55,14 @@ a:hover {
    background-color: var(--color_accent_1h);
 }
 
-
 .code {
    font-family: 'Courier New', Courier, monospace;
    /* font-size: smaller; */
    white-space: nowrap;
    color: var(--color_bg_1);
    background: var(--color_text);
-   overflow-x:auto;
-   overflow-y:auto;
+   overflow-x: auto;
+   overflow-y: auto;
    width: 100%;
    font-size: 1rem;
    border-bottom: 5px solid var(--color_accent_1);
@@ -68,6 +73,33 @@ a:hover {
    font-style: italic;
    color: var(--color_accent_1h);
 }
+
+.big {
+   font-size: large;
+}
+
+.wide {
+   width: max-content;
+}
+
+.wide:before {
+   content: "";
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: -9999px;
+   right: 0;
+   border-left: 9999px solid var(--color_accent_2);
+   box-shadow: 9999px 0 0 var(--color_accent_2);
+}
+
+.fullbar {
+   margin: 0 -9999rem;
+   /* add back negative margin value */
+   padding: 0.25rem 9999rem;
+   /* background: rgba(0, 0, 0, 0.5); */
+}
+
 
 .explanation {
    background-color: var(--color_bg_2);
@@ -86,12 +118,12 @@ a:hover {
 }
 
 .padded {
-   padding:1rem;
+   padding: 1rem;
 }
 
 .sidescroller {
-   overflow-x:auto;
-   overflow-y:auto;
+   overflow-x: auto;
+   overflow-y: auto;
    width: 100%;
    font-size: .9rem;
    border-bottom: 5px solid var(--color_accent_1);
@@ -102,7 +134,19 @@ a:hover {
    color: var(--color_bg_2);
 }
 
-body > section {
+.accent_2 {
+   background-color: var(--color_accent_2h);
+   color: var(--color_bg_1);
+}
+
+.color_bg2 {
+   color: var(--color_bg_2);
+}
+
+select {
+   color: var(--color_accent_2h);
+}
+body>section {
    margin: .5rem;
    padding: .5rem;
    border: .1rem solid var(--color_accent_1h);
@@ -110,7 +154,7 @@ body > section {
    color: var(--color_text);
 }
 
-section > input {
+section>input {
    width: 2rem;
    font-size: .75rem;
 }
@@ -128,6 +172,5 @@ section > input {
 }
 
 label {
-   margin: .25rem 0rem ;
-
+   margin: .25rem 0rem;
 }
