@@ -74,6 +74,10 @@ a:hover {
    color: var(--color_accent_1h);
 }
 
+.x-small {
+   font-size: x-small;
+}
+
 .big {
    font-size: large;
 }
