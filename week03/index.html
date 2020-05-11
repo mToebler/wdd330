@@ -17,7 +17,14 @@
    <main>
       <h1>Week 3</h1>
       <div class="toc" id="toc"></div>
-      <div class='note x-small'>(new subtopic jump to menu - built dynamically out of JS.)<br>(also, subtopics are now collapsible.)</div>
+      <!--the toc will contain all h3's in a file. The collapsible portion of 
+         sections will be the contained article. Both (menu and collapsible 
+         functionality) need an h3 somewhere in the section to be included. 
+         There is no restriction on the order or whether the article is a 
+         sibling or child of the h3 or vice-versa, just a h3 and an article. 
+         Clicking or tapping the h3 is the triggering event -->
+      <div class='note x-small'>(new subtopic jump to menu - built dynamically out of JS.)
+         <br>(also, subtopics are now collapsible.)</div>
       <section>                  
          <!-- <div> -->
             <h3>
@@ -256,7 +263,152 @@
       <section>
          <h3>Fun with Objects</h3>
       <article>
+         <div class="explanation">
+            <ul>
+            <li>JS is prototypal, not classical (prototyped, not class-based)</li>
+            <li>JS has no real concept of classes, only objects.
+               <br>(<code>class</code> keyword is &quot;syntactical sugar&quot; in ES6)</li>
+               <li>MUTABLE at any time even if const'd.</li>
+         </ul>            
+         </div>
+         <!-- <pre>             -->
+            <div class="fullbar big accent_1">OBJECT LITERALS</div>
+            <pre>
+         <div class='explanation'>
+defined using { };
+contain:
+   key:value pairs (properties)
+   functions (methods)
+   accessible using:
+         . notation
+         [] notation      
+Ex:
+</div><div class="code-pre">
+const superman = {
+   name: 'Superman',
+   'real name': 'Clark Kent',
+   height: 75,
+   weight: 235,
+   hero: true,
+   villain: false,
+   allies: ['Batman','Supergirl','Superboy'],
+   fly() {
+      return 'Up, up and away!';
+   }
+};
+// note the 'real name' key. Keys quoted only if non-conforming.
+// note the fly() method invocation:
+superman.fly();
+superman['fly']();
+superman['real' + ' ' + 'name'];
+// or just
+superman['real name']
+// note non-existent properties are
+superman.lie();   // undefined
+// add a computed property
+superman.BMI = superman.weight / superman.height;
+// keys can be computed too:
+superman['home' + 'Planet'] = 'Krypton';
+log(superman.homePlanet); // Krypton
+</div>      
+      </pre>
+<div class="fullbar big accent_1">Finding an object's UNIQUE PROPERTIES:</div>
+<notes>
+- rather than iterate over through properties using 'in' operator,
+   the follow methods are part of the Object superclass:</notes>      
+<div class="code-pre" >Object.keys(obj) // returns [keys...]
+Object.values(obj) // returns [values...]
+Object.entries(obj) // returns [key:values...]</div> 
+      <notes>
+-deleting properties, methods:
+   - simply use delete:
+   </notes>
+<div class="code-pre" >delete someObj.propToBeDeleted;</div> 
+<notes>- can be done for methods:
+</notes>
+<div class="code-pre" >delete someObj.methodToBeDeleted; // leave off the ()
+</div> <notes>
+-Nested Objects:
+   - simply add them using the key:value syntax, Ex.:
+</notes><div class="code-pre" >const obj = {
+   name: 'object',
+   nestObj: { name: 'nested object'},
+   anthrNestedObj: { name: 'another nested object' }
+}; // note the absence of a ';' inside the object.
+   // a final ',' is accepted, although I don't know if it
+   // has any effect.
+</div> <notes>
+   - access them the same way through .notation:</notes>
+<div class="code-pre" >obj.nestObj.name
+// or
+obj['nestObj']['name']
+// or mix
+obj.nestObj['name']
+</div> <notes>
+-Object vars are POINTERS
+   - assignment operator only assigns the address not the actual obj.
+   - called &quot;by reference&quot; in JS.
+-Objects make great function parameters/arguments:
+   - kinda similar to tupples or dicts in python
+      Ex.:</notes>
+<div class="code-pre" >func = ({propertyName, anotherPropName, stillAnother})=&gt; {
+   str = `Value of propertyName: ${propertyName}\n
+            Value for anotherPropName: ${anotherPropName}\n
+            Value for stillAnother: ${stillAnother}`;
+   return str;
+}; // note that the property names must match
+         </div> <notes>
+      - works with optional and default value arguments as well.
+      - many restful APIs take an object sent via PUT
+      </notes> 
+<div class="fullbar big accent_2">OBJECT LITERAL PATTERN</div>
+<notes>-Using objects as namespaces to get the same
+effect as a module or library. Ex.:</notes>
+<div class="code-pre" >const marksMethods = {
+   log(str) {
+      console.log(str);
+   },
+   repeat(str, times) {
+      returnStr = '';
+      for(i = 0; i &lt; times; i++)
+         returnStr += (str + ' ');
+      return returnStr;
+   }
+};
+marksMethods.log('simple');
+marksMethods.repeat('aloha' 3);</div> 
+      
+<div class="fullbar big accent_2">BUILT IN OBJs</div><notes>
+JSON
+   -Can be likened to the object literal with some differences:
+      - Property names must be double-quoted
+      - Permitted values are double-quoted strings, numbers,
+            true, false, null, arrays and objects
+      - Functions are not permitted values (they are simply ignored)
+   -methods:
+      parse(JsonStr) : Object
+         - JsonStr must be in JSON format
+      stringify(obj) : JSON formatted String
+         - add a \n between key:value pairs like so:
+            stringify(obj, null, ' ');
+Math
+   already familiar with the abs, ceil, floor, round, trunc methods
+   pow, sqrt, max, min, sin, cos, tan, acos, atan (and sinh...)
+   cbrt(n) is cuberoot
+   random() as you like it. 0 to 1 (noninclusive) * by upper range
+   hypot(n1, n2) : sqrt(pow(n1,2) + pow(n2,2)); pythagorean theorem
 
+RegEx
+   already decent with these: used /\s+/g in this weeks portfolio
+
+IMPORTING &amp; EXPORTING:
+type=&quot;module&quot; ambulate
+
+NOTE: LOOK INTO the new Symbol primitive data type!
+(Used as an identifier for object properties)?
+</notes>
+            ==============
+</pre>
       </article>
       </section>
       <section>
@@ -264,15 +416,47 @@
             As promise last week, JSON formatting.
          </h3>
          <article>
+            <notes>
+Fetch is now part of standard JS/ES6.
+Using it with spread operator:
+Ex.:
+const endPointURL = `https://jsonplaceholder.typicode.com/todos`;
+const someArray = [];
 
+fetch(endPointURL)
+   .then(res =&gt; res.json())
+   .then(data =&gt; someArray.push(...data))
+   .catch(error =&gt; console.log(`learn errorhandling: ${error}`));
+
+============
+Next week spread vs destructuring
+            </notes>
          </article>   
       </section>
       <section>
          <h3>
-            If I've time, changing CSS variables through JS.
+            MANIPULATING CSS VARIABLES WITH JS
          </h3>
          <article>
-
+            <notes>            
+Several things come together for this:
+   1. Have the CSS variables somewhere accessible through the DOM.
+   2. Some input method for user to indicate desired changes.
+      - inputs' name match CSS variables' name
+      - inputs store attributes prefixed with 'data-'
+      - 'data-' attributes contain unit info, e.g., 'px', 'rem', etc...
+         Ex.: <code>data-unit='px'</code>
+   3. Adding 1+ events to listener on each input,
+   4. listener fires a function.
+   5. Function accesses #1,style.setProperty()
+      - function uses `this` to access the input property dataset which contains all the 'data-' attributes from the input element in #2.
+      Ex.:</notes>
+<div class="code-pre">updateCSSVariable = () =&gt; {
+   const unit = this.dataset.unit || '';
+   document.documentElement
+      .style.setProperty(--${this.name}`, 
+                     this.value + unit);
+}</div>
          </article>         
       </section>
    </main>

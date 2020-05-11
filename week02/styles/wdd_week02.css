@@ -7,6 +7,8 @@
    --color_accent_1h: #87d2f8;
    --color_accent_2: #d3773a;
    --color_accent_2h: #ff954f;
+   /* fonts */
+   --regular-font: sans-serif;
 }
 
 html, body {
@@ -15,7 +17,7 @@ html, body {
 
 body {
    background: var(--color_bg_1);
-   font-family: sans-serif;
+   font-family: var(--regular-font);
    color: var(--color_text);
 }
 
@@ -68,10 +70,27 @@ a:hover {
    border-bottom: 5px solid var(--color_accent_1);
 }
 
+.code-pre {
+   font-family: 'Courier New', Courier, monospace;
+   /* font-size: smaller; */
+   white-space: pre;
+   color: var(--color_bg_1);
+   background: var(--color_text);
+   overflow-x: auto;
+   overflow-y: auto;
+   width: 100%;
+   font-size: 1rem;
+   border-bottom: 5px solid var(--color_accent_1);
+}
+
 .note, note {
    font-size: smaller;
    font-style: italic;
    color: var(--color_accent_1h);
+}
+.notes, notes {
+   font-family: var(--regular-font);
+   white-space: pre-wrap;
 }
 
 .x-small {
@@ -108,8 +127,25 @@ a:hover {
 .explanation {
    background-color: var(--color_bg_2);
    font-size: small;
+   font-family: var(--regular-font);
 }
-
+.explanation>ul{
+   list-style-type: none;
+   list-style-position: inside; 
+   margin-left: .3rem;
+}
+/* from w3schools */
+.explanation>ul li::before {
+   content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+   color: var(--color_accent_1h); /* Change the color */
+   font-weight: bold; /* If you want it to be bold */
+   display: inline-block; /* Needed to add space between the bullet and the text */
+   width: 1em; /* Also needed for space (tweak if needed) */
+   margin-left: -1em; /* Also needed for space (tweak if needed) */
+ }
+pre {
+   margin-top: -.9rem;
+}
 .btn {
    background-color: var(--color_accent_2);
    border: .1rem solid var(--color_bg_2);
