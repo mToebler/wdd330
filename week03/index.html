@@ -6,7 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="author" content="Mark Tobler">
    <meta name="description" content="Week 3 Notes for WDD330">
-   <link rel="stylesheet" href="../week02/styles/wdd_week02.css" </head>
+   <link rel="stylesheet" href="styles/wdd_week03.css" </head>
 
 <body>
    <nav>
@@ -254,14 +254,14 @@
          <!-- </div> -->
       </section>
       <section>
-         <h3>Team Activity</h3>
+         <h3>+ Team Activity</h3>
          <article>
          <note>View using &quot;View Page Source&quot; and the browser console.</note><br />
          <a href="team03.html">Fun with array methods</a>
          </article>
       </section>
       <section>
-         <h3>Fun with Objects</h3>
+         <h3>+ Fun with Objects</h3>
       <article>
          <div class="explanation">
             <ul>
@@ -296,74 +296,86 @@ const superman = {
       return 'Up, up and away!';
    }
 };
-// note the 'real name' key. Keys quoted only if non-conforming.
-// note the fly() method invocation:
+<note class='accent_2'>// note the 'real name' key. Keys quoted only if non-conforming.</note>
+<note class='accent_1'>// note the fly() method invocation:</note>
 superman.fly();
 superman['fly']();
 superman['real' + ' ' + 'name'];
 // or just
 superman['real name']
-// note non-existent properties are
-superman.lie();   // undefined
-// add a computed property
+<note class='accent_1'>// note non-existent properties are</note>
+superman.lie();   <note class='accent_1'>// undefined</note>
+<note class='accent_2'>// add a computed property</note>
 superman.BMI = superman.weight / superman.height;
-// keys can be computed too:
+<note class='accent_2'>// keys can be computed too:</note>
 superman['home' + 'Planet'] = 'Krypton';
 log(superman.homePlanet); // Krypton
-</div>      
-      </pre>
+</div></pre>
 <div class="fullbar big accent_1">Finding an object's UNIQUE PROPERTIES:</div>
 <notes>
-- rather than iterate over through properties using 'in' operator,
-   the follow methods are part of the Object superclass:</notes>      
+Rather than iterate through properties with 'in' operator, the follow methods are part of the Object superclass:
+
+</notes>      
 <div class="code-pre" >Object.keys(obj) // returns [keys...]
 Object.values(obj) // returns [values...]
 Object.entries(obj) // returns [key:values...]</div> 
-      <notes>
--deleting properties, methods:
-   - simply use delete:
+      
+         <div class="fullbar big accent_1">DELETING properties, methods:</div>
+   <notes>
+simply use <code>delete:</code>
    </notes>
 <div class="code-pre" >delete someObj.propToBeDeleted;</div> 
-<notes>- can be done for methods:
+<notes>
+for methods also:
+
 </notes>
 <div class="code-pre" >delete someObj.methodToBeDeleted; // leave off the ()
-</div> <notes>
--Nested Objects:
-   - simply add them using the key:value syntax, Ex.:
+</div> 
+   <div class="fullbar big accent_1">Nesting objects:</div>
+   <notes>
+simply add them using the key:value syntax:       
+
 </notes><div class="code-pre" >const obj = {
    name: 'object',
    nestObj: { name: 'nested object'},
    anthrNestedObj: { name: 'another nested object' }
-}; // note the absence of a ';' inside the object.
+}; <note class='accent_1'>// note the absence of a ';' inside the object.</note>
    // a final ',' is accepted, although I don't know if it
    // has any effect.
 </div> <notes>
-   - access them the same way through .notation:</notes>
+Then, access them the same way through .notation:
+
+</notes>
 <div class="code-pre" >obj.nestObj.name
 // or
 obj['nestObj']['name']
 // or mix
 obj.nestObj['name']
-</div> <notes>
--Object vars are POINTERS
-   - assignment operator only assigns the address not the actual obj.
-   - called &quot;by reference&quot; in JS.
--Objects make great function parameters/arguments:
-   - kinda similar to tupples or dicts in python
-      Ex.:</notes>
+</div> 
+<div class="fullbar big accent_1">Object assignment, function parameters</div><notes>
+Object variables are POINTERS:
+&mdash; assignment operator connects to memory address of actual object <note>&quot;by reference&quot;</note>
+
+Objects make great function parameters/arguments:
+<note>kind of similar to tupples or dicts in python</note>
+
+</notes>
 <div class="code-pre" >func = ({propertyName, anotherPropName, stillAnother})=&gt; {
    str = `Value of propertyName: ${propertyName}\n
-            Value for anotherPropName: ${anotherPropName}\n
-            Value for stillAnother: ${stillAnother}`;
+          Value for anotherPropName: ${anotherPropName}\n
+          Value for stillAnother: ${stillAnother}`;
    return str;
-}; // note that the property names must match
+}; <note class="accent_1">// note that the property names must match</note>
          </div> <notes>
-      - works with optional and default value arguments as well.
-      - many restful APIs take an object sent via PUT
+Works with optional and default value arguments. 
+<note class="accent_1">RESTful APIs can take an object in the REQUEST</note>
       </notes> 
 <div class="fullbar big accent_2">OBJECT LITERAL PATTERN</div>
-<notes>-Using objects as namespaces to get the same
-effect as a module or library. Ex.:</notes>
+<notes>
+Using objects as namespaces to get the same
+effect as a module or library:
+
+</notes>
 <div class="code-pre" >const marksMethods = {
    log(str) {
       console.log(str);
@@ -376,9 +388,9 @@ effect as a module or library. Ex.:</notes>
    }
 };
 marksMethods.log('simple');
-marksMethods.repeat('aloha' 3);</div> 
+marksMethods.repeat('aloha', 3);</div> 
       
-<div class="fullbar big accent_2">BUILT IN OBJs</div><notes>
+<div class="fullbar big accent_2">BUILT IN OBJECTS</div><notes>
 JSON
    -Can be likened to the object literal with some differences:
       - Property names must be double-quoted
@@ -404,57 +416,73 @@ RegEx
 IMPORTING &amp; EXPORTING:
 type=&quot;module&quot; ambulate
 
-NOTE: LOOK INTO the new Symbol primitive data type!
-(Used as an identifier for object properties)?
+NOTE: LOOK INTO the new Symbol primitive data type! (Used as an identifier for object properties)?
 </notes>
-            ==============
 </pre>
       </article>
       </section>
       <section>
          <h3>
-            As promise last week, JSON formatting.
+            + More FETCH with JSON formatting.
          </h3>
          <article>
-            <notes>
-Fetch is now part of standard JS/ES6.
-Using it with spread operator:
-Ex.:
+            <note>(Inspired by <a href='https://javascript30.com/' target='_blank'>Wes Bos</a> 💪)</note>
+            <div class='explanation'>               
+               With <code>fetch()</code> now a part of standard JS/ES6, Promise and Response objects are important tools to have on your JS-utility belt. This is not a deep-dive into either; rather, a solid example with a little spreading... going on...
+            </div>
+            Ex.:
+            <div class='code-pre'>
 const endPointURL = `https://jsonplaceholder.typicode.com/todos`;
 const someArray = [];
 
-fetch(endPointURL)
-   .then(res =&gt; res.json())
-   .then(data =&gt; someArray.push(...data))
-   .catch(error =&gt; console.log(`learn errorhandling: ${error}`));
-
-============
-Next week spread vs destructuring
-            </notes>
+fetch(endPointURL)  <note class="accent_2">// returns Promise ? fulfilled=>then() : error=>catch()</note>
+   .then(res =&gt; res.json()) <note>// json() deserializes a JSON object, but returns a Promise (same ternary path shown above).</note>
+   .then(data =&gt; someArray.push(...data)) <note class="accent_1">// Promise fulfilled, the spread operator breaks out each JSON element as a parameter pushed on someArray. </note>
+   .catch(error =&gt; console.log(`learn errorhandling: ${error}`)); <note>// placing this catch at the end will handle any of the 3 Promise rejections.</note> 
+         </div>
          </article>   
       </section>
       <section>
          <h3>
-            MANIPULATING CSS VARIABLES WITH JS
+            + Manipulating CSS Variables with JS
          </h3>
          <article>
-            <notes>            
-Several things come together for this:
-   1. Have the CSS variables somewhere accessible through the DOM.
-   2. Some input method for user to indicate desired changes.
-      - inputs' name match CSS variables' name
-      - inputs store attributes prefixed with 'data-'
-      - 'data-' attributes contain unit info, e.g., 'px', 'rem', etc...
-         Ex.: <code>data-unit='px'</code>
-   3. Adding 1+ events to listener on each input,
-   4. listener fires a function.
-   5. Function accesses #1,style.setProperty()
-      - function uses `this` to access the input property dataset which contains all the 'data-' attributes from the input element in #2.
-      Ex.:</notes>
+<div class='fullbar accent_1'>Accessing values defined in CSS</div>
+<notes>
+The standard getter/setter for CSS3 variables:
+   <code class='big'>.getPropertyValue()</code> 
+   <code class='big'>.setProperty()</code>
+
+<note class='accent_2'>HOWEVER </note>, the getter will only return a value if it has been set using <code>.setProperty()</code>!
+
+<note class='accent_1'>SOLUTION </note>: Use the getComputerStyle() method:
+
+<div class='code'>
+   getComputedStyle(document.documentElement,null).getPropertyValue('--varNameHere');
+</div><button class='btn_swap'>swap background and text colors</button>
+
+</notes>
+<div class='fullbar accent_1'> Manipulating with Inputs</div>
+<notes><note>(Inspired by <a href='https://javascript30.com/' target='_blank'>Wes Bos</a> 💪)</note>
+
+Several things need to come together for this:
+1. Have the CSS variables somewhere accessible in the DOM. (root)
+2. Some input method for user to indicate desired changes.
+   &mdash; inputs' name match CSS variables' name
+   &mdash; inputs store attributes prefixed with 'data-'
+   &mdash; 'data-' attributes contain unit info, e.g., 'px', 'em',
+      Ex.: <code>data-unit='px'</code>
+3. Adding 1+ events to listener on each input,
+4. listener fires a function.
+5. Function accesses #1,style.setProperty()
+   &mdash; function uses `this` to access the input property dataset which contains all the 'data-' attributes from the input element in #2.
+
+Ex.:   
+   </notes>
 <div class="code-pre">updateCSSVariable = () =&gt; {
    const unit = this.dataset.unit || '';
    document.documentElement
-      .style.setProperty(--${this.name}`, 
+      .style.setProperty(`--${this.name}`, 
                      this.value + unit);
 }</div>
          </article>         
@@ -466,8 +494,16 @@ Several things come together for this:
 </body>
 <script>
    // document.querySelector("#exe_infinity").addEventListener("click", isTruthy);
-   document.querySelectorAll("button").forEach(butt => { butt.addEventListener("click", isTruthy); });
+   document.querySelectorAll(".btn").forEach(butt => { butt.addEventListener("click", isTruthy); });
    document.querySelectorAll("section h3").forEach(sh3 => sh3.addEventListener("click", collapse));
+   document.querySelector(".btn_swap").addEventListener("click", swapCSSVars);
+
+   function swapCSSVars() {
+      let col_bg = getComputedStyle(document.documentElement,null).getPropertyValue('--color_bg_1');
+      let col_text = getComputedStyle(document.documentElement,null).getPropertyValue('--color_text');
+      document.documentElement.style.setProperty(`--color_bg_1`, col_text);
+      document.documentElement.style.setProperty(`--color_text`, col_bg);
+   }
 
    function collapse() {
       const _article = this.parentElement.querySelector('article');
