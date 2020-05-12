@@ -13,8 +13,8 @@ const openMenu = () => {
    document.getElementById("menu").style.width = "100%";
 };
 
-document.getElementById('close').addEventListener('click', closeMenu);
-document.getElementById('menu_open').addEventListener('click', openMenu);
+// document.getElementById('close').addEventListener('click', closeMenu);
+// document.getElementById('menu_open').addEventListener('click', openMenu);
    
 // Needed for collapse   
 document.querySelectorAll("section h3").forEach(sh3 => sh3.addEventListener("click", collapse));

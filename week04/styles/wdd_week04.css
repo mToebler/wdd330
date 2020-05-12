@@ -32,7 +32,7 @@ section>h1 {
    color: var(--color_accent_2);
 }
 
-h3 {
+section h3 {
    padding: .6em 1em 0.25em 0em;
    border-top: .2em solid var(--color_accent_2);
 }
