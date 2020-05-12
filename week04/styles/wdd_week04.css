@@ -40,8 +40,17 @@ section h3 {
 }
 
 main {
-   margin: 8px;
+   margin: 4.7em 8px 8px;
    padding: 4px;
+}
+
+nav {
+   position: fixed;
+   overflow: hidden;
+   top: 0em;
+   width: 100%;
+   background-color: var(--color_bg_1);
+   padding-bottom: .4em;
 }
 
 footer {

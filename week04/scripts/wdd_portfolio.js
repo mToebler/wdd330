@@ -39,11 +39,17 @@ window.onload = () => {
    if (h3_list.length > 0) {
       let _ul = document.createElement("select");
       // the JS fired on select dropdown change
-      _ul.setAttribute("onchange", `document.getElementById(options[selectedIndex].value).scrollIntoView(true);`);
+      _ul.setAttribute("onchange", `document.getElementById(options[selectedIndex].value).scrollIntoView(true);jumpTo();`);
       _ul.innerText = `Topics: (dynamic list)`;
       js_toc.appendChild(_ul)
       let h_li = document.createElement("option");
       h_li.innerText = "Select from this week's topics:";
+      // add an option value to come back to the top
+      _ul.setAttribute("id", "top");
+      h_li.setAttribute("value", "top");
+      let h_a = document.createElement("a");
+      h_a.setAttribute("href", "top");
+      js_toc.appendChild(h_a);
       _ul.appendChild(h_li);
       h3_list.forEach((e) => {
          h_li = document.createElement("option");
@@ -52,7 +58,7 @@ window.onload = () => {
          e.setAttribute("id", h_value);
          // This value will be the anchor; its created swapping out spaces for _. 
          h_li.setAttribute("value", h_value);
-         let h_a = document.createElement("a");
+         h_a = document.createElement("a");
          h_a.setAttribute("href", h_value);
          _ul.appendChild(h_li);
          e.appendChild(h_a);
@@ -60,3 +66,11 @@ window.onload = () => {
    }
 };
 
+function jumpTo() {
+   // console.log(document.querySelector('select'));
+   if (document.querySelector('select').selectedIndex != 0) {
+      // document.getElementById(options[selectedIndex].value).scrollIntoView(true);
+      //document.getElementById(options[selectedIndex].value).scrollIntoView(true);
+      window.scrollBy(0, -73);
+   }
+}
