@@ -33,7 +33,9 @@ section>h1 {
 }
 
 section h3 {
-   padding: .6em 1em 0.25em 0em;
+   margin: 0 -9999rem;
+   padding: 0.25rem 9999rem;
+   /* padding: .6em 1em 0.25em 0em; */
    border-top: .2em solid var(--color_accent_2);
 }
 
@@ -114,6 +116,11 @@ a:hover {
    right: 0;
    border-left: 9999px solid var(--color_accent_2);
    box-shadow: 9999px 0 0 var(--color_accent_2);
+}
+
+.article_bar {
+   font-size: medium;
+   font-variant: small-caps;
 }
 
 .fullbar {

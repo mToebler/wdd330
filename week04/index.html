@@ -11,7 +11,7 @@
 </head>
 <body>
    <nav>
-      <div><a href="../index.html">&laquo;Back</a></div>
+      <div><a href="../index.html" class="x-small">&laquo;Back</a></div>
    </nav>
    <header>
    </header>
@@ -26,10 +26,61 @@
          Clicking or tapping the h3 is the triggering event -->
          <section>
             <h3>
-               + Topic here. (the + isn't needed but whatevs)
+               + SPREAD vs DECONSTRUCTION
             </h3>
             <article>
-   <div class='fullbar accent_1'>Gray on blue for less pressing sub-topic header</div>
+   <div class='article_bar accent_1'>Spread...</div>
+   <!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+   <notes>
+   Body:
+      <code class='big'>Try to follow the spacing</code> 
+      <code class='big'>Looks better()</code>
+   
+   <note class='accent_2'>HOWEVER </note>, nothing in stone!
+   
+   <note class='accent_1'>EXPLORE </note>: that's what this is about.
+   
+   <div class='code'>
+      code samples go here
+   </div><button class='btn_swap'>fun function here?</button>
+   
+   </notes>
+   <div class='article_bar accent_2'> Deconstruction...</div>
+   <notes><note>(Inspired by <a href='https://javascript30.com/' target='_blank'>Wes Bos</a> 💪)</note>
+   
+   
+   Ex.:   
+   </notes>
+            </article>         
+         </section>
+         <section>
+            <h3>
+               + Functional Programming
+            </h3>
+            <article>
+               <div class='article_bar accent_2'>Where functions beget functions</div>
+               </div>
+               <notes>
+
+               </notes>
+            </article>         
+         </section>
+         <section>
+            <h3>
+               + Fun with Forms
+            </h3>
+            <article>
+               <div class='article_bar accent_1'>Gray on blue for less pressing sub-topic header</div>
+               </div>
+
+            </article>         
+         </section>         
+         <section>
+            <h3>
+               + Example Template
+            </h3>
+            <article>
+   <div class='article_bar accent_1'>Gray on blue for less pressing sub-topic header</div>
    <!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
    <notes>
    Body:
@@ -45,28 +96,24 @@
    </div><button class='btn_swap'>swap background and text colors</button>
    
    </notes>
-   <div class='fullbar accent_1'> Manipulating with Inputs</div>
-   <notes><note>(Inspired by <a href='https://javascript30.com/' target='_blank'>Wes Bos</a> 💪)</note>
+   <div class='article_bar accent_2'> Pressing and relevant subtopics</div>
+   <notes><note>(Any attributions here)</note>
    
-   Several things need to come together for this:
-   1. Have the CSS variables somewhere accessible in the DOM. (root)
-   2. Some input method for user to indicate desired changes.
-      &mdash; inputs' name match CSS variables' name
-      &mdash; inputs store attributes prefixed with 'data-'
-      &mdash; 'data-' attributes contain unit info, e.g., 'px', 'em',
-         Ex.: <code>data-unit='px'</code>
-   3. Adding 1+ events to listener on each input,
+   Keep it to the basics. List are great.
+   1. step or 
+   2. meaty point
+      &mdash; sub meaty point 
+      &mdash; sub meaty point 
+         Ex.: <code>keep in code short</code>
+   3. and more...
    4. listener fires a function.
-   5. Function accesses #1,style.setProperty()
-      &mdash; function uses `this` to access the input property dataset which contains all the 'data-' attributes from the input element in #2.
    
    Ex.:   
       </notes>
-   <div class="code-pre">updateCSSVariable = () =&gt; {
-      const unit = this.dataset.unit || '';
-      document.documentElement
-         .style.setProperty(`--${this.name}`, 
-                        this.value + unit);
+   <div class="code-pre">try {
+      //to finish with a code sample
+      // keep the closing div tight after cuz
+      // of the pre white-space
    }</div>
             </article>         
          </section>
