@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="author" content="Mark Tobler">
+   <meta name="description" content="Week 4 Notes for WDD330">
+   <link rel="stylesheet" href="styles/wdd_week04.css">
+   <script defer type="text/javascript" src="scripts/wdd_portfolio.js" charset="UTF-8"></script>
+</head>
+<body>
+   <nav>
+      <div><a href="../index.html">&laquo;</a></div>
+   </nav>
+   <header>
+   </header>
+   <main>
+      <h1>Week 4</h1>
+      <div class="toc" id="toc"></div>
+      <!--the toc will contain all h3's in a file. The collapsible portion of 
+         sections will be the contained article. Both (menu and collapsible 
+         functionality) need an h3 somewhere in the section to be included. 
+         There is no restriction on the order or whether the article is a 
+         sibling or child of the h3 or vice-versa, just a h3 and an article. 
+         Clicking or tapping the h3 is the triggering event -->
+         <section>
+            <h3>
+               + Topic here. (the + isn't needed but whatevs)
+            </h3>
+            <article>
+   <div class='fullbar accent_1'>Gray on blue for less pressing sub-topic header</div>
+   <!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+   <notes>
+   Body:
+      <code class='big'>Try to follow the spacing</code> 
+      <code class='big'>Looks better()</code>
+   
+   <note class='accent_2'>HOWEVER </note>, nothing in stone!
+   
+   <note class='accent_1'>EXPLORE </note>: that's what this is about.
+   
+   <div class='code'>
+      code samples go here
+   </div><button class='btn_swap'>swap background and text colors</button>
+   
+   </notes>
+   <div class='fullbar accent_1'> Manipulating with Inputs</div>
+   <notes><note>(Inspired by <a href='https://javascript30.com/' target='_blank'>Wes Bos</a> 💪)</note>
+   
+   Several things need to come together for this:
+   1. Have the CSS variables somewhere accessible in the DOM. (root)
+   2. Some input method for user to indicate desired changes.
+      &mdash; inputs' name match CSS variables' name
+      &mdash; inputs store attributes prefixed with 'data-'
+      &mdash; 'data-' attributes contain unit info, e.g., 'px', 'em',
+         Ex.: <code>data-unit='px'</code>
+   3. Adding 1+ events to listener on each input,
+   4. listener fires a function.
+   5. Function accesses #1,style.setProperty()
+      &mdash; function uses `this` to access the input property dataset which contains all the 'data-' attributes from the input element in #2.
+   
+   Ex.:   
+      </notes>
+   <div class="code-pre">updateCSSVariable = () =&gt; {
+      const unit = this.dataset.unit || '';
+      document.documentElement
+         .style.setProperty(`--${this.name}`, 
+                        this.value + unit);
+   }</div>
+            </article>         
+         </section>
+   </main>
+   <footer>
+      &copy;2020 | Mark Tobler Portfolio | WDD 330
+   </footer>
+</body>
+
+
+</html>
