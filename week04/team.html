@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="WDD330 Week 4 Team Activity">
+   <meta name="authors" content="Mark Tobler, Chris Linquist, Craig Kehl">
+   <link rel="stylesheet" href="styles/team.css">
+   <title>Tic Tac Toe(bler)</title>
+</head>
+
+<body>
+   <nav>
+      <div><a href="index.html" class="x-small">&laquo;Back</a></div>      
+   </nav>
+   <header>
+      <h1>Team 1 Tic-Tac-Toe</h1>
+   </header>
+   <main>
+      <!-- Build a 3X3 board in HTML and CSS.-->
+      <table>
+         <tr>
+            <td></td>
+            <td class="ver"></td>
+            <td></td>
+         </tr>
+         <tr>
+            <td class="hor"></td>
+            <td class="ver hor"></td>
+            <td class="hor"></td>
+         </tr>
+         <tr>
+            <td></td>
+            <td class="ver"></td>
+            <td></td>
+         </tr>
+      </table>
+      <div id="divPlayer">Player 1</div>
+      <button id="butReset">Reset</button>
+   </main>
+</body>
+<script>
+   var player = 1;
+   document.querySelectorAll('td').forEach(box => {
+      box.addEventListener('click', (box) => clicked(box));
+   });
+   document.querySelector('#butReset').addEventListener('click', () => reset());
+
+   function clicked(box) {
+      //console.log('clicked', box)
+      if (player % 2 > 0) {
+         //player 1
+         box.target.textContent = 'X';
+      } else {
+         box.target.textContent = 'O';
+      }
+      player++;
+      checkWins();
+      document.querySelector('#divPlayer').textContent = 'Player ' + (player % 2 ? '1' : '2');
+   }
+
+   function reset() {
+      console.log('resetting...')
+      document.querySelectorAll('td').forEach(box => {
+         box.textContent = '';
+      });
+      // player = 1;  erySelector('#divPlayer').textContent='Player 1';
+   }
+
+   let checkWins = () => {
+      let power = 0;
+      let sBoardX = '';
+      let sBoardO = '';
+      let nBoard = 0;
+      document.querySelectorAll('td').forEach(box => {
+         // if ()
+         sBoardX += box.textContent == 'X' ? '1' : '0';
+         sBoardO += box.textContent == 'O' ? '1' : '0';
+         nBoard += box.textContent == 'X' ? Math.pow(2, power) : box.textContent == 'O' ? Math.pow(2, power + 9) : 0;
+         power++;
+      });
+      console.log('dec:', nBoard);
+      console.log('String:', sBoardX + ' ' + sBoardO);
+      console.log('bin:', nBoard.toString(2));
+      let board = sBoardX + sBoardO;
+      let sum = 0;
+      let winRx = /(^111)|(^\d\d\d111)|(111$)|(^1\d\d1\d\d1\d\d)|(^\d1\d\d1\d\d1\d)|(^\d\d1\d\d1\d\d1)|(^1\d\d\d1\d\d\d1)|(^\d\d1\d1\d1\d\d)/;
+      if (sBoardX.search(winRx) > -1) {
+         alert('Player 1 Wins!!!');
+         reset();
+      } else if (sBoardO.search(winRx) > -1) {
+         alert('Player 2 Wins!!!');
+         reset();
+      } else {
+
+         for (i = 0; i < board.length; i++) {
+            sum += parseInt(board[i]);
+         }
+         console.log('rounds:', sum);
+         if (sum > 8) {
+            alert('Tied!');
+            reset();
+         }
+      }
+
+   }
+
+</script>
+
+</html>

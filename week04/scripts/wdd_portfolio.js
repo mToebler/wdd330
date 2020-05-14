@@ -41,7 +41,7 @@ window.onload = () => {
       // the JS fired on select dropdown change
       _ul.setAttribute("onchange", `document.getElementById(options[selectedIndex].value).scrollIntoView(true);jumpTo();`);
       _ul.innerText = `Topics: (dynamic list)`;
-      js_toc.appendChild(_ul)
+      js_toc.appendChild(_ul);
       let h_li = document.createElement("option");
       h_li.innerText = "Select from this week's topics:";
       // add an option value to come back to the top
