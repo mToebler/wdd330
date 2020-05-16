@@ -1,5 +1,9 @@
 /* WDD330 week4 team.css */
 
+:root {
+   --border-color: #efefef;
+
+}
 
 h1 {
    text-align: center;
@@ -10,18 +14,21 @@ h1 {
  }
  table {
    margin: 5px auto;
-   font-size: xx-large ;
+   font-size: 5rem;
  }
  .ver {
-   border-left: 2px solid black;
-   border-right: 2px solid black;
+   border-left: 2px solid var(--border-color);
+   border-right: 2px solid var(--border-color);
  }
  .hor {
-   border-top: 2px solid black;
-   border-bottom: 2px solid black;
+   border-top: 2px solid var(--border-color);
+   border-bottom: 2px solid var(--border-color);
  }
 
 body {
    text-align: center;
+}
 
+nav {
+   text-align: left;
 }
