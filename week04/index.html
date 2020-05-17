@@ -13,21 +13,22 @@
    <nav>
       <div><a href="../index.html" class="x-small">&laquo;Back</a></div>
       <h1>Week 4</h1>
-      <div class="toc" id="toc"></div>
+      <div class="wrapper"><div class="toc" id="toc"></div>
             <!--the toc will contain all h3's in a file. The collapsible portion of 
          sections will be the contained article. Both (menu and collapsible 
          functionality) need an h3 somewhere in the section to be included. 
          There is no restriction on the order or whether the article is a 
          sibling or child of the h3 or vice-versa, just a h3 and an article. 
          Clicking or tapping the h3 is the triggering event -->
-
+         <button class='btn_swap'>Toggle Dark/Light Modes</button>
+      </div>
    </nav>
    <header>
    </header>
    <main>
-        <section>
+        <section style="display:none">
             <h3>
-               + SPREAD vs DECONSTRUCTION
+               - SPREAD vs DECONSTRUCTION
             </h3>
             <article>
    <div class='article_bar accent_1'>Spread...</div>
@@ -43,7 +44,7 @@
    
    <div class='code'>
       code samples go here
-   </div><button class='btn_swap'>fun function here?</button>
+   </div>
    
    </notes>
    <div class='article_bar accent_2'> Deconstruction...</div>
@@ -56,7 +57,232 @@
          </section>
          <section>
             <h3>
-               + Functional Programming
+               + DOM STUFF
+            </h3>
+            <article>
+   <div class='article_bar accent_1'>Query Selectors</div>
+   <!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+   <div class="explanation">This section is a bit messy in terms of formatting. I'm working on a function that formats the sections, but it isn't ready this week. However, I did dynamically move this section to the end using the getElementsByTagName(), appendChild() and [].forEach.call() methods - all very relavant to this sections material. </div>
+   <notes>
+Note: convention: use '$' at the beginning of a DOM variable identifier.
+
+document.createElement('article').addChild('div');
+Query Selectors
+   document.querySelector('div');
+   // !live (not live) like .getElementById() and it's getElement friends
+   document.querySelectorALL('div');
+   // returns div[] all divs, in order
+ - the query selector methods use CSS selector syntax:
+   Ex.:
+    .querySelector('.className')
+    .querySelector('#someID')
+    .querySelector('h3')
+    .querySelector('section>h3')
+    .querySelector('div p')
+    .querySelector('p:last-child')
+   </notes>
+   <div class='article_bar accent_1'>Nodes</div>
+   <notes>
+   - DOM object.
+   - Accessing a DOM element will return a node or a node list.
+      - not arrays. array-like. support indexing[] and forEach
+         - just use [].call if you want to use an array method (see entry)
+   - check what type using:
+       node.nodeType;
+       // Return codes and meanings:
+         Code   Type
+         1      element
+         2      attribute
+         3      text
+         8      comment
+         9      document
+      </notes>
+      <note class='accent_2'>Handy DOM methods that return lists of a Node type</note>
+   <notes>
+ - Handy DOM methods that return lists of a type:
+    document.body
+            .images
+            .links
+            .anchors
+            .forms
+      - return empty lists if !found.
+      - to access actual elements from lists:
+         linksList[0]
+   </notes>
+   <note class='accent_1'>node.children</note> & <note class='accent_2'>node.childNodes</note>
+   <notes>
+      - node.children returns only element nodes
+         - node.childNodes returns all nodes, including whitespace n crap.
+         - Similarly:
+         <note class='accent_1'>.firstChild</note><note class='accent_2'>.firstElementChild</note> 
+         <note class='accent_1'>.lastChild</note><note class='accent_2'>.lastElementChild</note>
+         <note class='accent_1'>.next|previousSibling</note><note class='accent_2'>.next|previousElementSibling</note>
+   </notes>
+         <div class='article_bar accent_1'>Accessing Text & Classes</div>
+         <notes>
+<note class="accent_1">Text:</note>
+   .textContent (best way)
+   .innerHTML
+   .innerText
+<note class="accent_1">Classes</note>
+   <note class="accent_2">(Can't use 'class')</note>
+   .className // but don't use this with set/getAttribute()
+   .classList
+      .classList.add()
+                .remove()
+                .toggle() // adds if not there, removes if it is.
+<note class="accent_1">Node CSS</note>
+   - Every node has a style attribute property
+   - CSS property names containing dashes '-' are written in camelCase:
+      Ex.: padding-bottom
+            node.style.paddingBottom = '1rem';
+   - To access external css file properties (not inline):
+      styles = getComputedStyle(NodeReference)
+      // Returns everything as a READONLY CSSStyleDeclaration obj
+      styles.getPropertyCSSValue('paddingBottom');
+      // OR JUST ACCESS THEM LIKE SO (These seem RW):
+      Node.style.propertyName
+
+<note class="accent_2">MANIPULATING NODES</note>
+INSERT BEFORE (no insertAfter)
+- element.insertBefore(newChild, existingChildToBePreempted)
+   // this can be used to move existing elements around
+   // the html "markup."
+   // this is also true with <note class="accent_2">.appendChild()</note>
+   // You need to copy elements with .clone the append & insert
+   // methods won't copy, that's why they move.
+REMOVING
+- parentNode.RemoveChild('name') returns ref to removed node.
+   // using reference node can be inserted or appended
+REPLACING
+- parentNode.replaceChild(newNode, oldNode);
+CREATE
+- document.createElement('typeofelement');
+INNERHTML(!caution don't use with user input!)
+- innerHTML not part of official DOM; supported by all browsers.
+- can replace all existing childnodes with n+ new nodes :
+<div class="code-pre">
+parentNode.innerHTML = `&lt;article&gt;
+                        &lt;div&gt;will replace&lt;/div&gt;
+                        &lt;div&gt;and create all&lt;/div&gt;
+                        &lt;div&gt;nodes implied by&lt;/div&gt;
+                        &lt;div&gt;supplied HTML. &lt;/div&gt;
+                        &lt;/article&gt;`;
+   </div>
+<note class="accent_2">LIVE COLLECTIONS</note>
+<div class="explanation">
+   getElementBy friends:
+   document.getElementsByClassName('wrapper')
+   document.getElementsByTagName('div')
+</div>
+   - these do not take selector arguments
+   - updates will be reflected live or instantly
+   - handy BUT will tax performance!
+
+<note class="accent_1 big">Try It: Manipulate the DOM </note>
+
+      Add a &lt;note &gt; tag around main:<button class='btn' id='format'>Add note tag</button>
+
+</notes>
+</article>         
+</section>
+<section>
+   <h3>
+      + OOP IN JS
+   </h3>
+   <article>
+<div class='article_bar accent_2'>Object Oriented Programming in JS/ES6</div>
+<notes>
+Starting with ES6, JS embraced OOP a bit more with classes:
+   <note>(example inspired by<a href='https://www.sitepoint.com/object-oriented-javascript-deep-dive-es6-classes/'>Jeff Mott @ Sitepoint</a>)</note>
+   <div class="code-pre">
+<note>//note the keyword "class"</note>
+class SimpleDate {
+<note>// actual constructor</note>
+   constructor(year, month, day) {
+      <note>// simple validation.</note>
+      <note>// Notice the use of "this" and "_" for private (not enforceable)</note>
+      if(this.checkYear(year))
+         this._year = year;
+      else
+         this._year = new Date().getFullYear();
+      if(this.checkMonth(month))
+         this._month = month;
+      else
+         this._month = new Date().getMonth() + 1;
+      if(this.checkDay(day))
+         this._day = day;
+      else
+         this._day = new Date().getDate();
+   }
+
+   addDays(nDays) {
+      <note>// Increase "this" date by n days</note>
+      <note>// ...</note>
+   }
+
+   getDay() {
+      return this._day;
+   }
+
+   checkYear(year) {
+      return (parseInt(year) > 0);
+   }
+
+   checkMonth(month) {
+      return (0 < parseInt(month) < 13);
+   }
+   checkDay(day) {
+      <note>// going easy here. Allowing 1-31 for now</note>
+      return (0 < parseInt(day) < 32);
+   }
+}
+
+<note>// "today" is guaranteed to be valid and fully initialized</note>
+const today = new SimpleDate(2020, 5, 15);
+</div><div class="explanation">
+A few notes about encapsulation and abstraction here:
+   - As shown above, the class doesn't provide for 
+     real encapsulation.
+   + There are some workarounds:
+      - [all these workarounds makes one pine for Python]
+      - Privileged Methods:
+         define class method INSIDE the constructor
+      - Symbols:
+         using new Symbol() datatype to declare private propteries.
+         - Problem is Object.getOwnPropertySymbols() provides 
+           access to Symbols =(
+      - and one more...</div></notes><div class='article_bar big accent_2'>WeakMaps:</div>
+<notes>are a new ES6 datatype key value pairs, like a dictionary or map...
+Use new WeakMap() to declare the properties, using the instance as a key, all within a "closure" :
+<div class="code-pre">
+const SimpleClass = (function() {
+   const _property = new WeakMap();
+   class SimpleClass {
+      constructor(property) {
+         _property.set(this, property);
+      }
+      simpleAdd(addToProperty) {
+         _property.set(this, (_property.get(this) + addToProperty));
+      }
+      getProperty() {
+         return _property.get(this);
+      }
+   }
+   return SimpleClass;
+}());
+</div><note>Though convoluted, this works nicely. Try to get at the property except through the class methods. It seems roped off appropriately.</note>
+
+<note class="accent_2 big">Try it: </note> A SimpleDate and a SimpleClass are available to poke around with in the console:
+   <note class="accent_1 big">SimpleDate instance:   </note>     <code class="accent_2 big"> today  </code>
+   <note class="accent_1 big">SimpleClass instance:  </note>     <code class="accent_2 big"> simple </code>
+
+<div class='explanation'>We'll continue to explore the JS/ES6 OOP implementation next week.</div>
+</notes>
+   </article>
+         <section style="display:none">
+            <h3>
+               - Functional Programming
             </h3>
             <article>
                <div class='article_bar accent_2'>Where functions beget functions</div>
@@ -81,9 +307,9 @@
 </notes>
             </article>         
          </section>         
-         <section>
+         <section style="display:none">
             <h3>
-               + Example Template
+               - Example Template
             </h3>
             <article>
    <div class='article_bar accent_1'>Gray on blue for less pressing sub-topic header</div>

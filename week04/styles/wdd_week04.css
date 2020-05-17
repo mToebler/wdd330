@@ -242,3 +242,7 @@ section>input {
 label {
    margin: .25rem 0rem;
 }
+
+.wrapper {
+   display: inline-flex;
+}
