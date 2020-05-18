@@ -102,6 +102,29 @@ class SimpleDate {
    addDays(nDays) {
       // Increase "this" date by n days
       // ...
+      let newDay = 0;
+      newDay = nDays + this._day;
+      if (newDay % 31 !== newDay) {
+         this.addMonths(parseInt(newDay/31));
+         this._day = newDay % 31;
+      } else {
+         this._day = newDay;
+      }
+   }
+
+   addMonths(nMonths) {
+      let newMonth = 0;
+      newMonth = nMonths + this._month;
+      if (newMonth % 12 != newMonth) {
+         this.addYears(parseInt(newMonth/12));
+         this._month = newMonth % 12;
+      } else {
+         this._month = newMonth;
+      }
+   }
+
+   addYears(nYears) {
+      this._year += nYears;
    }
 
    getDay() {
@@ -114,17 +137,18 @@ class SimpleDate {
    }
    
    checkMonth(month) {
-      return (0 < parseInt(month) < 13);
+      return (0 < parseInt(month) && parseInt(month) < 13);
       // return true;
       // else 
    }
    checkDay(day) {
       // going easy here. Allowing 1-31 for now
-      return (0 < parseInt(day) < 32);
+      return (0 < parseInt(day) && parseInt(day)< 32);
    }
 }
 // "today" is guaranteed to be valid and fully initialized
-const today = new SimpleDate(2020, 5, 15);
+const today = new SimpleDate();
+const tomorrow = new SimpleDate(today._year, today._month, today._day+1);
 
 // Manipulating data only through a fixed set of functions ensures we maintain valid state
 today.addDays(1);

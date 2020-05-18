@@ -196,12 +196,12 @@ parentNode.innerHTML = `&lt;article&gt;
 Starting with ES6, JS embraced OOP a bit more with classes:
    <note>(example inspired by<a href='https://www.sitepoint.com/object-oriented-javascript-deep-dive-es6-classes/'>Jeff Mott @ Sitepoint</a>)</note>
    <div class="code-pre">
-<note>//note the keyword "class"</note>
+<note class="accent_1">//note the keyword "class"</note>
 class SimpleDate {
-<note>// actual constructor</note>
+<note class="accent_1">// actual constructor</note>
    constructor(year, month, day) {
-      <note>// simple validation.</note>
-      <note>// Notice the use of "this" and "_" for private (not enforceable)</note>
+      <note class="accent_1">// simple validation.</note>
+      <note class="accent_1">// Notice the use of "this" and "_" for private (not enforceable)</note>
       if(this.checkYear(year))
          this._year = year;
       else
@@ -217,8 +217,32 @@ class SimpleDate {
    }
 
    addDays(nDays) {
-      <note>// Increase "this" date by n days</note>
+      <note class="accent_1">// quick and dirty =/</note>
       <note>// ...</note>
+      let newDay = 0;
+      newDay = nDays + this._day;
+      if (newDay % 31 !== newDay) {
+         this.addMonths(parseInt(newDay/31));
+         this._day = newDay % 31;
+      } else {
+         this._day = newDay;
+      }
+   }
+
+   addMonths(nMonths) {
+      <note class="accent_1">// quick and dirty =/</note>
+      let newMonth = 0;
+      newMonth = nMonths + this._month;
+      if (newMonth % 12 != newMonth) {
+         this.addYears(parseInt(newMonth/12));
+         this._month = newMonth % 12;
+      } else {
+         this._month = newMonth;
+      }
+   }
+
+   addYears(nYears) {
+      this._year += nYears;
    }
 
    getDay() {
@@ -230,16 +254,17 @@ class SimpleDate {
    }
 
    checkMonth(month) {
-      return (0 < parseInt(month) < 13);
+      return (0 < parseInt(month) && parseInt(month) < 13);
    }
    checkDay(day) {
-      <note>// going easy here. Allowing 1-31 for now</note>
-      return (0 < parseInt(day) < 32);
+      <note class="accent_1">// going easy here. Allowing 1-31 for now</note>
+      return (0 < parseInt(day) && parseInt(day) < 32);
    }
 }
 
-<note>// "today" is guaranteed to be valid and fully initialized</note>
-const today = new SimpleDate(2020, 5, 15);
+<note class="accent_1">// "today" is guaranteed to be valid and fully initialized</note>
+const today = new SimpleDate();
+const tomorrow = new SimpleDate(today._year, today._month, today._day+1);
 </div><div class="explanation">
 A few notes about encapsulation and abstraction here:
    - As shown above, the class doesn't provide for 
