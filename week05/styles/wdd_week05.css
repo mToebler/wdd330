@@ -39,6 +39,11 @@ section h3 {
    border-top: .2em solid var(--color_accent_2);
 }
 
+h3{
+   font-size: 1.4em;
+   font-variant-caps: petite-caps;
+}
+
 main {
    margin: 4.7em 8px 8px;
    padding: 4px;
@@ -250,3 +255,10 @@ label {
 .hidden {
    display: none;
 }
+
+.top_bottom {
+   margin: 0 0rem;
+   border-bottom: 5px solid var(--color_accent_1);
+   border-top: 5px solid var(--color_accent_1);
+}
+

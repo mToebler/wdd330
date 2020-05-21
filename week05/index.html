@@ -27,38 +27,94 @@
    <header>
    </header>
    <main>
-        <section>
+      <section>
+         <h3>
+            -SPREAD vs DECONSTRUCTION
+         </h3>
+         <article>
+<div class='article_bar accent_1'>Spread...</div>
+<!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+<notes>
+Body:
+   <code class='big'>Try to follow the spacing</code> 
+   <code class='big'>Looks better()</code>
+
+<note class='accent_2'>HOWEVER </note>, nothing in stone!
+
+<note class='accent_1'>EXPLORE </note>: that's what this is about.
+
+<div class='code'>
+   code samples go here
+</div>
+
+</notes>
+<div class='article_bar accent_2'> Deconstruction...</div>
+<notes><note>(Inspired by <a href='https://javascript30.com/' target='_blank'>Wes Bos</a> 💪)</note>
+
+
+Ex.:   
+</notes>
+         </article>         
+      </section>       
+      <section>
+         <h3>
+            Closures
+         </h3>
+         <article>
+<div class='article_bar accent_1'>Controlling Scope</div>
+<!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+<notes>
+Closers control what is and isn't in function scope. Last week, I used a closer in the WeakMap <a href="../week04/index.html">example</a> of OOP encapsulation.
+   
+With closures, inner function can gain access to the additional, supplied scope of the en-<code class="big">closing</code> function.
+This allows for:
+
+      <code class='big'>- Encapsulation</code> 
+      <code class='big'>- Data privacy</code>
+
+<note class='accent_1 big'>Classic example: </note>
+<div class='code-pre big'>const getSecret = (secret) => {
+   return {
+      get: () => secret
+   };
+};
+
+const key = getSecret('private');
+key.get(); <note class="accent_1">// returns private</note>
+</div><div class="explanation big">
+The privleged method <code>get()</code> will grant access to <code>secret</code> set via with the returned object.
+
+Next, we'll explore <code class='accent_1'>partial application</code> and <code class='accent_2'>currying</code> with closures.
+</div>
+</notes>
+<div class='article_bar accent_1'> Partial Application</div>
+<notes><note>  (Coming soon...)</note>
+
+</notes>
+<div class='article_bar accent_2'> Currying</div>
+<notes>  <note>(Coming soon...)</note>
+
+</notes>
+         </article>         
+      </section>       
+      <section>
+         <h3>
+            Testing and Debugging
+         </h3>
+         <article>
+            <div class='article_bar accent_1'>Testing</div>
+            <notes>  <note>(Coming soon...)</note>
+
+            </notes>            
+            <div class='article_bar accent_1'>Debugging</div>
+            <notes>  <note>(Coming soon...)</note>
+
+            </notes>
+                     </article>         
+      </section>
+<section>
             <h3>
-               SPREAD vs DECONSTRUCTION
-            </h3>
-            <article>
-   <div class='article_bar accent_1'>Spread...</div>
-   <!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
-   <notes>
-   Body:
-      <code class='big'>Try to follow the spacing</code> 
-      <code class='big'>Looks better()</code>
-   
-   <note class='accent_2'>HOWEVER </note>, nothing in stone!
-   
-   <note class='accent_1'>EXPLORE </note>: that's what this is about.
-   
-   <div class='code'>
-      code samples go here
-   </div>
-   
-   </notes>
-   <div class='article_bar accent_2'> Deconstruction...</div>
-   <notes><note>(Inspired by <a href='https://javascript30.com/' target='_blank'>Wes Bos</a> 💪)</note>
-   
-   
-   Ex.:   
-   </notes>
-            </article>         
-         </section>       
-         <section>
-            <h3>
-               Functional Programming
+               -Functional Programming
             </h3>
             <article>
                <div class='article_bar accent_2'>Where functions beget functions</div>
@@ -73,12 +129,13 @@
             Team Activity
             </h3>
             <article>
-               <div class='article_bar accent_1'>TIC-TAC-TOE(bler)</div>
+               <div class='article_bar accent_1'>Awesome Hikes!</div>
                </div>
-               <notes>
-<note class='accent_2'>Task: </note> 1 Hour to build a working tic-tac-toe game. We each came to the table with some ideas. After talking it out as a group, here's what I came up with:
+               <notes><note>Well, a kind of awesome perhaps...</note>
 
-<a href="team.html">Team Activity Week 4</a>
+<note class='accent_2'>Task: </note> 1 Hour to refactor a working, but scatter coded Hiking 'App.' We talked it through, here is what came of it:
+
+<a href="team/team.html">Team Activity Week 5</a>
 
 </notes>
             </article>         
