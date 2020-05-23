@@ -117,6 +117,10 @@ a:hover {
    font-size: large;
 }
 
+.bigger {
+   font-size: x-large;
+}
+
 .wide {
    width: max-content;
 }

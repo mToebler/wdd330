@@ -35,6 +35,32 @@ const Hike = (function () {
          return outStr;
       }
 
+      renderDetail() {
+         let outStr = '';
+         const imgBasePath = Hike.imgBasePath();
+         outStr += `<h3 id="${this.id}" data-id="${this.id}">${this.name}</h3>
+       <div class="grid_text">
+               <div>
+                   <h4>Distance</h4>
+                   <p>${this.distance}</p>
+               </div>
+               <div>
+                   <h4>Difficulty</h4>
+                   <p>${this.difficulty}</p>
+               </div>
+               <div>
+               <h4>Description</h4>
+               <p>${this.description}</p>
+           </div>
+           <div>
+               <h4>Directions</h4>
+               <p>${this.directions}</p>
+           </div>
+       </div>`;
+         //<div class="image"><img src="${imgBasePath}${this.imgSrc}" alt="${this.imgAlt}"></div>
+         return outStr;
+      }
+
       static renderAll() {
          let divs = document.createElement('div');
          let i = 0;

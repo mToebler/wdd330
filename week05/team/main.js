@@ -6,11 +6,35 @@ console.log(Hike.renderAll());
 
 document.querySelector('#hikeSection').appendChild(Hike.renderAll());
 
+// to close hike detail
+const closeDetail = () => {
+   document.getElementById("detail").style.width = "0%";
+};
+document.getElementById('close').addEventListener('click', closeDetail);
+
 
 let displayDetail = function (id) {
    console.log(`dD: id is ${id.target.dataset.id}`);
-   document.getElementById("menu").style.width = "100%";
+   let detail = document.getElementById("detail");
+   populateDetail(detail, id.target.dataset.id);
+   detail.style.width = "100%";
+   detail.style.display = "block";
+   //detail.classList.add('reveal');
+
 };
+
+function populateDetail(divDetail, hikeId) {
+   let hike = new Hike(hikeId);
+   divDetail.innerHTML = hike.renderDetail();
+   let span = document.createElement('span');
+   span.setAttribute('id', 'close');
+   span.innerHTML = ' &times; ';
+   span.classList.add('reveal_close');
+   span.classList.add('accent_2');
+   span.addEventListener('click', closeDetail);
+   divDetail.appendChild(span);
+   // document.getElementById('close').addEventListener('click', closeDetail);
+}
 
 
 let divs = document.querySelectorAll('section>div>div');

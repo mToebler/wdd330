@@ -102,14 +102,83 @@ Next, we'll explore <code class='accent_1'>partial application</code> and <code 
             Testing and Debugging
          </h3>
          <article>
-            <div class='article_bar accent_1'>Testing</div>
-            <notes>  <note>(Coming soon...)</note>
+            <div class='article_bar accent_1'>Use strict</div>
+            <notes>               
+Simple enough:
+<div class='code-pre'>"use strict"; <note class="accent_1">// first line in file</note></div>
+Use function scope:
+<div class='code-pre'>function showStrict() {
+   "use strict";  
+   <note class="accent_1">// first line in function body</note>
+}</div>
+Recommended for self-invoking functions:
+<div class='code-pre'>(function() {
+   "use strict"; <note class="accent_1">// 1st line in body</note>
+   <note>...</note>
+}());
+</div>
+</notes>
+<div class='article_bar accent_1'>feature detection:</div>
+<notes>
+Place possibly unsupported feature in boolean expression:
 
-            </notes>            
-            <div class='article_bar accent_1'>Debugging</div>
-            <notes>  <note>(Coming soon...)</note>
+<div class='code-pre'>if(window.DNSSEC) {
+   //supported
+}</div>
+<div class='article_bar accent_2'>Debugger</div>
+On Chrome, simply add function:
+                     <div class='code-pre'>debugger;</div>
+where you'd like to invoke the browser debugger. 
 
-            </notes>
+<div class="explanation">
+Chrome's seems feature rich with step, step over, continue and more. Very friendly (and resource consuming). The debugger can also be accessed through the application tab in Chrome's dev tools.
+
+</div>
+<div class='article_bar accent_1'>Exceptions & Errors</div>
+The language suports exception handling with Error objects. Use with try {} catch () {} blocks just like any other language. Nesting encouraged 
+<note>(Lifted from JSN2Ninja, p. 270-1):</note>
+<div class='explanation big'>
+<note class="accent_1 big">EvalError: </note>  is not used in the current ECMAScript specification and only retained for backwards compatibility. It was used to identify errors when using the global eval() function.
+
+<note class="accent_1 big">RangeError: </note> is thrown when a number is outside an allowable range of values.
+
+<note class="accent_1 big">ReferenceError: </note> is thrown when a reference is made to an item that doesn’t exist. For example, try calling the function unicorn().
+
+<note class="accent_1 big">SyntaxError: </note> is thrown when there’s an error in the code’s syntax.
+
+<note class="accent_1 big">TypeError: </note> is thrown when there’s an error in the typeof value used; for example, a string is used when a number is expected.
+
+<note class="accent_1 big">URIError: </note> is thrown when there’s a problem encoding or decoding the URI.
+</div>                     
+Make them, Throw them, try them, catch them. Almost like normal languages:
+<div class="code-pre big" >
+try {
+   window["I like rice"].property = "nice";
+   console.log(`won't print`);
+} catch (e) {
+   if (e instanceof SyntaxError)
+      console.error(`Won't fire`, e);
+   else if (e instanceof TypeError)
+      console.error(`Will fire.`, e);
+   else <note class="accent_1">// re throw if needed </note>
+      throw new Error(`Error message`, e);
+} finally {
+   console.log(`finally always fires.`);
+   <note class="accent_1">// clean up code could go here, but GC?</note>
+}
+</div><div class='explanation big'>
+<code class="big accent_2">finally</code> always fires. <code class="big accent_1">catch</code> as far as I know now, does not catch specific error types, hence the conditionals.
+
+</div>
+</notes>            
+            <div class='article_bar accent_2 big'> Jest </div>
+            <notes>
+   <note>Notes from lecture:</note>
+   <code class="accent_2 big">jest</code> from <note>npm</note>
+   <code>jest::test jest::expect().toBe</code>
+   <note>toBe</note> is like assert               
+
+</notes>
                      </article>         
       </section>
 <section>
