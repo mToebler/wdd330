@@ -142,6 +142,36 @@ Next, we'll explore <code class='accent_1'>partial application</code> and <code 
          </section>         
          <section >
             <h3>
+               Prototypal Inheritance
+            </h3>
+            <article>
+               <div class='article_bar accent_1'>Duner PROTO</div>
+   <!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+   <notes>
+All instances of a "class" share its dunder proto:
+         <code>object.__proto__;</code>
+which is the same as:
+         <code>object.constructor.prototype;</code>
+   <div class='article_bar accent_2'>__proto__ is live!</div> 
+Changing one will change all.
+
+Example:<note>(<= scroll =>)</note><div class='code-pre big'>
+simple = {};
+simple_1 = new simple.__proto__.constructor();
+<code class='accent_1'>// new isn't necessary?</code>
+simple_2 = simple_1.__proto__.constructor();
+simple_2.__proto__.property = '6';
+simple.property === '6';
+<code class='accent_2'>// true</code>
+<code class='accent_1'>// these inherited properties can be overridden without affecting any of the others.</code>
+simple.property = 1;
+<code class='accent_1'>// overriding will them claim it as its own:</code>
+simple.hasOwnProperty(1);
+<code class='accent_2'>// true</code></div></notes>
+            </article>         
+         </section>
+         <section >
+            <h3>
                - Example Template
             </h3>
             <article>
