@@ -157,7 +157,7 @@ try {
    console.log(`won't print`);
 } catch (e) {
    if (e instanceof SyntaxError)
-      console.error(`Won't fire`, e);
+      console.error(`Won't fire.`, e);
    else if (e instanceof TypeError)
       console.error(`Will fire.`, e);
    else <note class="accent_1">// re throw if needed </note>
@@ -202,7 +202,7 @@ try {
                </div>
                <notes><note>Well, a kind of awesome perhaps...</note>
 
-<note class='accent_2'>Task: </note> 1 Hour to refactor a working, but scatter coded Hiking 'App.' We talked it through, here is what came of it (Note the use of static class methods):
+<note class='accent_2'>Task: </note> 1 Hour to refactor a working, but scatter coded Hiking 'App.' We talked it through, here is what came of it (<note>note the use of a class, a static class method, and enclosers... </note>):
 
 <a href="team/team.html">Team Activity Week 5</a>
 
