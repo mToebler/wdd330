@@ -44,10 +44,12 @@ const Todo = (function () {
          localStorage.setItem(this.getId(), JSON.stringify(this));
       }
 
+      // Class method for returning an todo by its ID
       static get(id) {
          return this.fromJSON(localStorage.getItem(id));
       }
-      // needed to serialize since of the closure
+      
+      // needed to serialize since of the closure  
       toJSON() {
          console.log('in toJson');
          return {
