@@ -40,18 +40,28 @@ const Todo = (function () {
             _isComplete.set(this, (bComplete ? true : false));
       }
 
+      toggleIsComplete() {
+         this.setIsComplete(!this.getIsComplete());
+         return this.getIsComplete();
+      }
+
       save() {
          localStorage.setItem(this.getId(), JSON.stringify(this));
       }
 
+      delete() {
+         localStorage.removeItem(this.getId());
+      }
+
       // Class method for returning an todo by its ID
       static get(id) {
-         return this.fromJSON(localStorage.getItem(id));
+         //return this.fromJSON(localStorage.getItem(id));
+         return Todo.fromJSON(localStorage.getItem(id));
       }
       
       // needed to serialize since of the closure  
       toJSON() {
-         console.log('in toJson');
+         // console.log('in toJson');
          return {
            //$type: 'com.wdd330.todo',
             id: this.getId(),
@@ -61,11 +71,33 @@ const Todo = (function () {
       }
 
       static fromJSON(data) {
-         console.log('in fromJson');
-         return new Todo(data.content, data.isComplete, data.id);
+         // console.log('in fromJson', data);
+         if(data) {
+            data = JSON.parse(data);
+            return new Todo(data.content, data.isComplete, data.id);
+         } else {
+            console.error('Todo.fromJSON: returned data is falsey:', data);
+            return data;
+         }
       }
-   }
 
+      static getAll() {
+         // setup return value
+         let taskArray = [];
+         let keys = Object.keys(localStorage);
+         let i = keys.length;
+         console.log('Todo.getAll: getting', i, 'tasks.');
+         while(i--) {
+            // a lot nested here. using the key, get the ToDo, push on array
+            // console.log('Todo.getAll: getting key', keys[i]);
+            let obj = localStorage.getItem(keys[i]);
+            // console.log('\t', obj);            
+            taskArray.push(Todo.get(keys[i]));
+            //taskArray.push(new Todo(obj.content, obj.isComplete, obj.id));
+         }
+         return taskArray;
+      } 
+   }
 
    return Todo;
    

@@ -1,26 +1,37 @@
 import Todo from "./todo.js";
+import TodoController from "./todocontroller.js";
 
-let todo = new Todo('take a shower');
-log(todo.getIsComplete());
-log(todo.getContent());
-log(todo.getId());
-todo.save();
-const todo_1 = Todo.get(todo.getId());
-log(todo_1);
-log(todo);
-console.log('todo === todo_1:', (todo === todo_1));
-// todo.call.getContent(todo_1);
-//todo.call(getContent(), todo_1);
+window.onload = () => {
+   const pId = document.querySelector('#todos');
+   const controller = new TodoController(pId);
+   controller.showTasks();
+};
 
-// log(todo_1.getIsComplete());
-// log(todo_1.getContent());
-// log(todo_1.getId());
+function testModel() {
+   let activities = ['nap', 'shower', 'bath', 'stroll', 'break', 'nickel'];
+   let index = Date.now() % 6;
+   let todo = new Todo(`take a ${activities[index]}.`);
+   log(todo.getIsComplete());
+   log(todo.getContent());
+   log(todo.getId());
+   todo.save();
+   const todo_1 = Todo.get(todo.getId());
+   log(todo_1);
+   log(todo);
+   console.log('todo === todo_1:', (todo === todo_1));
+   log('toggle complete, before:', todo.getIsComplete());
+   log(todo.toggleIsComplete());
+   console.log('toggle complete, after:', todo.getIsComplete(), '\n');
+   log('testing Todo.getAll()');
+   var todos = Todo.getAll();
+   console.log(' ------ length :', todos.length);
+   log(' ------ content follows :');
+   todos.forEach(task => {
+      console.log(task.getId(), task.getContent(), task.getIsComplete());
+   });
+}
 
-
-
-
-
-
+//testModel();
 
 function log(str) {
    console.log(str);
@@ -29,7 +40,7 @@ function log(str) {
 
 /*
 DESIGN NOTES:
-I want to approach this from an oop perspective; possibly MVC, or MVVC 
+I want to approach this from an OOP perspective; possibly MVC, or MVVC 
 (model-view-view controller—the model class has some extra object awareness)
 I've written the model. it can represent its core properties through JSON.
 Using the Great Hikes JS MVC as a template of sorts, I need:
