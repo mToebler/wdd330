@@ -24,6 +24,7 @@ class TodoView {
       // world is the controller sets up or sends.
       let renderedTasks = [];
       let taskUl = document.createElement('ul');
+      taskUl.classList.add('todo-list');
       if(filterObj)
          console.error('TodoView::renderTasks: Need to implement filters!!');
       
