@@ -51,6 +51,31 @@ class TodoView {
                ${todoObj.getContent()} </li>
                `);
    }
+
+   toggleTask(target, isChecked) {
+      // get the id, call toggle fn, if returns 
+      // true:
+      //    - add class to parent node, description  crossing it out. 
+      //    - make sure checkbox is checked
+      // false:
+      //    - remove class from parent node
+      //    - remove check if there.
+      if (isChecked) {
+         target.parentElement.classlist.add('checked');
+         target.checked = true;
+      } else {
+         try {
+            target.parentElement.classlist.remove('checked');            
+         } catch(e) {
+            // checked may not be there.
+            console.error('TodoView::toggleTask: checked css classlist issue handled or swallowed:', e);            
+         } finally {
+            target.checked = false;
+         }            
+      }
+   }
+
+
 }
 
 export default TodoView;

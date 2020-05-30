@@ -5,12 +5,13 @@ window.onload = () => {
    const pId = document.querySelector('#todos');
    const controller = new TodoController(pId);
    controller.showTasks();
+   pId.addEventListener("click", controller.checkChecked.bind(this));
 };
 
 function testModel() {
    let activities = ['nap', 'shower', 'bath', 'stroll', 'break', 'nickel'];
    let index = Date.now() % 6;
-   let todo = new Todo(`take a ${activities[index]}.`);
+   let todo = new Todo(`take a ${activities[index]}.`, (Date.now()%2 === 0 ? true:false));
    log(todo.getIsComplete());
    log(todo.getContent());
    log(todo.getId());
@@ -31,7 +32,7 @@ function testModel() {
    });
 }
 
-//testModel();
+// testModel();
 
 function log(str) {
    console.log(str);

@@ -42,6 +42,7 @@ const Todo = (function () {
 
       toggleIsComplete() {
          this.setIsComplete(!this.getIsComplete());
+         this.save();
          return this.getIsComplete();
       }
 
