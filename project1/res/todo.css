@@ -32,7 +32,9 @@ input[type="checkbox"] {
    width: 85%;
    color: var(--color-2);
    text-overflow: ellipsis;
-   /* display: inline; */
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden;
    
 }
 
@@ -43,15 +45,26 @@ input[type="checkbox"] {
 
 .todo-logic {
    display: flex;
-   flex-wrap: row nowrap ;
+   font-size: 1.2em;
+   font-variant-caps: petite-caps;
+   font-weight: bolder;
+   flex-wrap: nowrap;
+   -webkit-font-smoothing: antialiased;
 }
 
 .todo-logic div {
    margin-left: 0rem;
    margin-right: 1rem;
    text-overflow: ellipsis;
-   margin-inline-end: auto;
-   
+   margin-inline-end: auto;   
+}
+
+.todo-display-div {
+   font-variant-caps: normal;
+   font-size: 0.8rem;
+   align-self: center;
+   color: var(--color-3);
+   font-family: monospace;
 }
 /* #filter_all, #filter_done, #filter_active  */
 .active-filter{
