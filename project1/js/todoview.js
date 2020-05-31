@@ -40,11 +40,11 @@ class TodoView {
 
       // add the filter <li>
       let filterLogic =  `<li class="todo-item todo-logic ">
-                           <div>${renderedTasks.length} tasks left</div>
+                           <div>${renderedTasks.length} tasks shown</div>
                            <div>display:</div>
-                           <div id="filter_all">all</div>
-                           <div id="filter_active">active</div>
-                           <div id="filter_done">completed</div>
+                           <div id="filter_all" data-action="show_all">all</div>
+                           <div id="filter_active" data-action="show_active">active</div>
+                           <div id="filter_done" data-action="show_done">completed</div>
                         </li>`;
       renderedTasks.push(filterLogic);
       // concat them all together
@@ -58,7 +58,7 @@ class TodoView {
                <li class="todo-item ${task.getIsComplete() ? "checked" : ""}" data-id="${task.getId()}">               
                <input type="checkbox" data-id="${task.getId()}" ${task.getIsComplete() ? "checked" : ""} />                
                ${task.getContent()} 
-               <button class="remove-button" data-id="${task.getId()}">&times;</button>
+               <button class="remove-button" data-id="${task.getId()}" data-action="delete">&times;</button>
                </li>
                `);
    }

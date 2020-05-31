@@ -49,10 +49,20 @@ input[type="checkbox"] {
 .todo-logic div {
    margin-left: 0rem;
    margin-right: 1rem;
+   text-overflow: ellipsis;
+   margin-inline-end: auto;
    
 }
-#filter_all, #filter_done, #filter_active {
-   text-decoration: line-through;
+/* #filter_all, #filter_done, #filter_active  */
+.active-filter{
+   text-decoration: underline;
+   text-decoration-color: var(--color-hi2);
+   color: var(--color-2);
+}
+
+.inactive-filter {
+   text-decoration: none;
+   color: var(--color-3);   
 }
 
 .add-todo {

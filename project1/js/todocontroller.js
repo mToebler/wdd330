@@ -16,7 +16,7 @@ import TodoView from "./todoview.js";
 //                   deleteTask(todo.id):  bool
 //                   filterTasks(filter): filteredTodoArray
 // Just going to do a normal class for controller here.
-
+setupFilter();
 class TodoController {
    // this is based on the MVC HikeController from week 5
    constructor(parentId) {
@@ -25,8 +25,17 @@ class TodoController {
       // of course the todo instances will need to be generated one by one.
       this.todoModel = Todo;
       this.htmlView = new TodoView(parentId);
+      this._filterState = setupFilter();
       // this.todoView = new TodoView(); // ?? maybe?
    }
+   get filterState() {
+      return this._filterState;
+   }
+
+   set filterState(newState) {
+      this._filterState = newState >= 0 ? newState <= 2 ? newState : NONE : NONE;
+   }
+    
    // simple get all from model, render with view and connect it with the html
    showTasks(filterComplete = undefined) {
       let tasks = null;
@@ -125,6 +134,13 @@ class TodoController {
       //return null;
    }
 
+   deleteTask(todoId) {
+      let todo = this.todoModel.get(todoId);
+      console.log("todocontroller::deleteTask: removing todo:", todoId);
+      todo.delete();
+      this.showTasks();
+   }
+
    toggleModelTaskComplete(todoId) {
       let id = 0;
       if(todoId.nodename) {
@@ -139,21 +155,23 @@ class TodoController {
       // do we need to re-render?      
    }
 
-   deleteTask(todoId) {
-      let todo = this.todoModel.get(todoId);
-      console.log("todocontroller::deleteTask: removing todo:", todoId);
-      todo.delete();
-      this.showTasks();
-   }
-
+   
    filterTasks(filter) {
       // filter criteria? need more info
       console.error('todocontroller::deleteTask: need to implement filter!');
       this.showTasks();
    }
 
-
-
+   // static getFilter() {
+   //    switch
+   // }
+   //   static let filter = 'none';
 }
 
 export default TodoController;
+
+function setupFilter() {
+   const ACTIVE = 1;
+   const COMPLETE = 2;
+   const NONE = 0;
+}

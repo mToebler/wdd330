@@ -111,7 +111,7 @@ const Todo = (function () {
             // console.log('\t', obj);            
             let tempTodo = Todo.get(keys[i]);
             console.log('Todo.getSubset: tempTodo:', tempTodo);
-            if (tempTodo._isComplete === isComplete)
+            if (tempTodo.getIsComplete() === isComplete)
                taskArray.push(tempTodo);
             //taskArray.push(new Todo(obj.content, obj.isComplete, obj.id));
          }
