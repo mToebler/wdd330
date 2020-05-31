@@ -28,8 +28,14 @@ class TodoController {
       // this.todoView = new TodoView(); // ?? maybe?
    }
    // simple get all from model, render with view and connect it with the html
-   showTasks() {
-      let tasks = this.htmlView.renderTasks(this.todoModel.getAll());
+   showTasks(filterComplete = undefined) {
+      let tasks = null;
+      console.log('filterComplete', filterComplete);
+      if(filterComplete===undefined)  
+         tasks = this.htmlView.renderTasks(this.todoModel.getAll());
+      else 
+         tasks = this.htmlView.renderTasks(this.todoModel.getSubset(filterComplete));
+      console.log('showTasks. tasks are:', tasks);
       // console.log(`TodoController::showTasks: parentId is ${typeof (this.parentElement)};`, this.parentElement);
       // console.log(`TodoController::showTasks: tasks is ${typeof(tasks)};`, tasks);
       if(this.parentElement.childElementCount === 0)
@@ -45,6 +51,7 @@ class TodoController {
       let id = null;
       let etarget = null;
       let isComplete = null;
+      console.log('checkChecked: event target:', event.target, event);
       // this has been frustrating to work it this way. 
       // It's all in this method rather than smaller cohesive chunks
       // as problems with 'this' and reporting elements were undefined 

@@ -98,6 +98,25 @@ const Todo = (function () {
          }
          return taskArray;
       } 
+
+      static getSubset(isComplete) {
+         let taskArray = [];
+         let keys = Object.keys(localStorage);
+         let i = keys.length;
+         console.log('Todo.getSubset: getting', i, 'tasks.');
+         while(i--) {
+            // a lot nested here. using the key, get the ToDo, push on array
+            // console.log('Todo.getAll: getting key', keys[i]);
+            let obj = localStorage.getItem(keys[i]);
+            // console.log('\t', obj);            
+            let tempTodo = Todo.get(keys[i]);
+            console.log('Todo.getSubset: tempTodo:', tempTodo);
+            if (tempTodo._isComplete === isComplete)
+               taskArray.push(tempTodo);
+            //taskArray.push(new Todo(obj.content, obj.isComplete, obj.id));
+         }
+         return taskArray;
+      }
    }
 
    return Todo;

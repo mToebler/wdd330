@@ -7,9 +7,43 @@ window.onload = () => {
    controller = new TodoController(pId);
    const addBtn = document.querySelector('.add-button');
    controller.showTasks();
-   pId.addEventListener("click", controller.checkChecked.bind(this));
+   // pId.addEventListener("click", controller.checkChecked.bind(this));
+   pId.addEventListener("click", fcheck.bind(this));
    addBtn.addEventListener("click", addTask);   
+   /*
+   document.querySelector('#filter_all').addEventListener("click", showAll);
+   document.querySelector('#filter_active').addEventListener("click", showActive);
+   document.querySelector('#filter_done').addEventListener("click", showDone);
+   */
 };
+
+function fcheck(event) {
+   if(event.target) {
+      if(event.target.nodeName == 'BUTTON') {
+         console.log('fcheck: deleting:', event.target.dataset.id);
+         Todo.get(event.target.dataset.id).delete();
+         controller.showTasks();
+      } else {
+         controller.checkChecked(event);
+      }
+   }
+}
+function showAll() {
+   console.log('All!');
+   controller.showTasks(undefined);
+   document.querySelector('#filter_all').addEventListener("click", showAll);
+}
+
+function showActive() {
+   console.log('Active!');
+   controller.showTasks(false);
+   document.querySelector('#filter_active').addEventListener("click", showActive);
+}
+function showDone() {
+   console.log('Done!');
+   controller.showTasks(true);
+   document.querySelector('#filter_done').addEventListener("click", showDone);
+}
 
 function testModel() {
    let activities = ['nap', 'shower', 'bath', 'stroll', 'break', 'nickel'];
@@ -48,6 +82,10 @@ function addTask(event) {
    event.target.previousElementSibling.value = '';
    controller.showTasks();
 }
+
+const removeMe = function (event) {
+   console.log('removeMe');
+};
 
 
 /*

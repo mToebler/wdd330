@@ -29,7 +29,7 @@ class TodoView {
          console.error('TodoView::renderTasks: Need to implement filters!!');
       }
       let isInstance = taskArray instanceof Array;
-      console.log('is Array:',isInstance , taskArray);
+      console.log('is Array:', isInstance, taskArray);
 
       // [].forEach.call(taskArray, obj =>
       //    renderedTasks.push(this.renderTask(obj)));
@@ -38,30 +38,28 @@ class TodoView {
          obj =>
             renderedTasks.push(this.renderTask(obj)));
 
+      // add the filter <li>
+      let filterLogic =  `<li class="todo-item todo-logic ">
+                           <div>${renderedTasks.length} tasks left</div>
+                           <div>display:</div>
+                           <div id="filter_all">all</div>
+                           <div id="filter_active">active</div>
+                           <div id="filter_done">completed</div>
+                        </li>`;
+      renderedTasks.push(filterLogic);
+      // concat them all together
+      taskUl.innerHTML = renderedTasks.join("");
+      // return renderedTasks;
+      return taskUl;
+   }
 
-         /* complaining about taskArray not being an array
-         taskArray.forEach(obj => {         
-            renderedTasks.push(this.renderTask(obj));
-            
-            
-            not working for me
-            let task = document.createElement('li');
-            task.appendChild('checkbox');
-            task.appendChild('text').textContent(obj.getContent());
-            task.setAttribute('data-id', obj.getId().toString());
-            task.setAttribute('data-complete', obj.getIsComplete().toString());
-            
-         });*/
-         taskUl.innerHTML = renderedTasks.join("");
-         // return renderedTasks;
-         return taskUl;
-      }
-
-   renderTask(todoObj) {
-         return(`
-               <li class="todo-item ${todoObj.getIsComplete() ? "checked" : ""}" data-id="${todoObj.getId()}">
-               <input type="checkbox" data-id="${todoObj.getId()}" ${todoObj.getIsComplete() ? "checked" : ""} /> 
-               ${todoObj.getContent()} </li>
+   renderTask(task) {
+      return (`
+               <li class="todo-item ${task.getIsComplete() ? "checked" : ""}" data-id="${task.getId()}">               
+               <input type="checkbox" data-id="${task.getId()}" ${task.getIsComplete() ? "checked" : ""} />                
+               ${task.getContent()} 
+               <button class="remove-button" data-id="${task.getId()}">&times;</button>
+               </li>
                `);
    }
 
