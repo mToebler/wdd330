@@ -34,9 +34,9 @@ class TodoController {
       // console.log(`TodoController::showTasks: tasks is ${typeof(tasks)};`, tasks);
       if(this.parentElement.childElementCount === 0)
          this.parentElement.appendChild(tasks);
-      else
-         this.parentElement.children[0] = this.htmlView.renderTasks(tasks);
-
+      else      
+         this.parentElement.replaceChild(tasks, this.parentElement.children[0]);
+      //   this.parentElement.children[0] = tasks;
       // now add an event listener on the parent
       // this.parentElement.addEventListener("click", this.checkChecked);
    }
@@ -46,6 +46,9 @@ class TodoController {
       let etarget = null;
       let isComplete = null;
       // this has been frustrating to work it this way. 
+      // It's all in this method rather than smaller cohesive chunks
+      // as problems with 'this' and reporting elements were undefined 
+      // when not the case; this is a quality issue if not fixed/cleaned up.
       if(event.target) {
          if(event.target instanceof HTMLLIElement) {
             // want to instanceof
@@ -83,6 +86,8 @@ class TodoController {
                }
             }
          }
+         // this is debug from here on out.
+         /*
          if(false && (event.target.type == 'checkbox' || event.target.nodename === "LI")) {
             //since this deals with the UI, kicking it over to view
             //passing the return value of controller's model isComplete toggle
@@ -94,18 +99,23 @@ class TodoController {
             console.log('etarget.parentElement:', etarget.parentElement);
             console.log('etarget.parentElement.classList:', etarget.parentElement.classList);
          }
+         */
       } else {
          console.log(event);
       }
    }
 
-   addTask(taskInputElement) {
+   addTask(content) {
       // this is triggered by a create task event
       // get the elements from the interface (view?)
       // create a new Todo
       // refresh
-      this.showTasks();
-      return null;
+      console.log('addTask controller');
+      let newTask = new Todo(content);
+      newTask.save();
+      console.log(newTask);
+      //this.showTasks();
+      //return null;
    }
 
    toggleModelTaskComplete(todoId) {
@@ -135,7 +145,7 @@ class TodoController {
       this.showTasks();
    }
 
-   
+
 
 }
 

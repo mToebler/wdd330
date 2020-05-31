@@ -2,6 +2,7 @@
    --color-1: #d7d7d7;
    --color-2: #7d7d7d;
 }
+
 .todo-list {
    list-style: none;
 }
@@ -16,3 +17,19 @@
    text-decoration: line-through;
 }
 
+.add-todo {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   padding: 1rem;
+   width: 80%;
+   border: 0;
+   border-top: 1px solid var(--color-1);
+}
+.add-button {
+   position: absolute;
+   bottom: .1em;
+   right: 0;
+   color: var(--color-2);
+   font-size: 3em;
+}

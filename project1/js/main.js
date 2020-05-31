@@ -1,11 +1,14 @@
 import Todo from "./todo.js";
 import TodoController from "./todocontroller.js";
+var controller;
 
 window.onload = () => {
    const pId = document.querySelector('#todos');
-   const controller = new TodoController(pId);
+   controller = new TodoController(pId);
+   const addBtn = document.querySelector('.add-button');
    controller.showTasks();
    pId.addEventListener("click", controller.checkChecked.bind(this));
+   addBtn.addEventListener("click", addTask);   
 };
 
 function testModel() {
@@ -36,6 +39,14 @@ function testModel() {
 
 function log(str) {
    console.log(str);
+}
+
+function addTask(event) {
+   console.log('addTast Main', event);
+   console.log(event.target.previousElementSibling.value);
+   controller.addTask(event.target.previousElementSibling.value);
+   event.target.previousElementSibling.value = '';
+   controller.showTasks();
 }
 
 
