@@ -46,7 +46,14 @@ function fcheck(event) {
             }            
          }
       } else {
-         controller.checkChecked(event);
+         try {
+            controller.checkChecked(event);
+         } catch(err) {
+            if(err instanceof TypeError)
+               console.log('Clicking on the lower horizontal lines causes an error. No worries.', err);
+            else
+               console.error(err);
+         }
       }
    }
 }
@@ -59,33 +66,15 @@ function deleteTask(id) {
 function showAll() {
    console.log('All!');
    controller.showTasks(undefined);
-   document.querySelector('#filter_all').classList.add('active-filter');
-   document.querySelector('#filter_all').classList.remove('inactive-filter');
-   document.querySelector('#filter_active').classList.add('inactive-filter');
-   document.querySelector('#filter_active').classList.remove('active-filter');
-   document.querySelector('#filter_done').classList.remove('active-filter');
-   document.querySelector('#filter_done').classList.add('inactive-filter');
 }
 
 function showActive() {
    console.log('Active!');
-   controller.showTasks(false);
-   document.querySelector('#filter_all').classList.remove('active-filter');
-   document.querySelector('#filter_all').classList.add('inactive-filter');
-   document.querySelector('#filter_active').classList.add('active-filter');
-   document.querySelector('#filter_active').classList.remove('inactive-filter');
-   document.querySelector('#filter_done').classList.remove('active-filter');
-   document.querySelector('#filter_done').classList.add('inactive-filter');
+   controller.showTasks(false);   
 }
 function showDone() {
    console.log('Done!');
-   controller.showTasks(true);
-   document.querySelector('#filter_all').classList.remove('active-filter');
-   document.querySelector('#filter_all').classList.add('inactive-filter');
-   document.querySelector('#filter_active').classList.add('inactive-filter');
-   document.querySelector('#filter_active').classList.remove('active-filter');
-   document.querySelector('#filter_done').classList.remove('inactive-filter');
-   document.querySelector('#filter_done').classList.add('active-filter');
+   controller.showTasks(true);   
 }
 
 function testModel() {

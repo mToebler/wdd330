@@ -25,9 +25,6 @@ class TodoView {
       let renderedTasks = [];
       let taskUl = document.createElement('ul');
       taskUl.classList.add('todo-list');
-      if(filterObj) {
-         console.error('TodoView::renderTasks: Need to implement filters!!');
-      }
       let isInstance = taskArray instanceof Array;
       console.log('is Array:', isInstance, taskArray);
 
@@ -42,9 +39,9 @@ class TodoView {
       let filterLogic =  `<li class="todo-item todo-logic ">
                            <div>${renderedTasks.length} tasks shown</div>
                            <div>display:</div>
-                           <div id="filter_all" data-action="show_all">all</div>
-                           <div id="filter_active" data-action="show_active">active</div>
-                           <div id="filter_done" data-action="show_done">completed</div>
+                           <div id="filter_all" data-action="show_all" class="${filterObj===null ? 'active-filter' : 'inactive-filter'}">all</div>
+                           <div id="filter_active" data-action="show_active" class="${filterObj===false ? 'active-filter' : 'inactive-filter'}">active</div>
+                           <div id="filter_done" data-action="show_done" class="${filterObj===true ? 'active-filter' : 'inactive-filter'}">completed</div>
                         </li>`;
       renderedTasks.push(filterLogic);
       // concat them all together

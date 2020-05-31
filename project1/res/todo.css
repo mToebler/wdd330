@@ -84,13 +84,13 @@ input[type="checkbox"] {
 
 .remove-button {
    /* margin-left: -2.3rem; */
-
+   float: right;
    padding-left: 0rem;
    padding-right: 0rem;
    text-align: right;
    text-align: end;
    font-size: 1.6rem;
-   font-weight: lighter;
+   font-weight: lighter;   
 
 }
 

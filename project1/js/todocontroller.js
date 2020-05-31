@@ -43,7 +43,7 @@ class TodoController {
       if(filterComplete===undefined)  
          tasks = this.htmlView.renderTasks(this.todoModel.getAll());
       else 
-         tasks = this.htmlView.renderTasks(this.todoModel.getSubset(filterComplete));
+         tasks = this.htmlView.renderTasks(this.todoModel.getSubset(filterComplete), filterComplete);
       console.log('showTasks. tasks are:', tasks);
       // console.log(`TodoController::showTasks: parentId is ${typeof (this.parentElement)};`, this.parentElement);
       // console.log(`TodoController::showTasks: tasks is ${typeof(tasks)};`, tasks);
