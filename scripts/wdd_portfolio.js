@@ -12,7 +12,8 @@ const closeMenu = () => {
 const openMenu = () => {
    document.getElementById("menu").style.width = "100%";
 };
-
+const cssvar_color_accent_1h = '#87d2f8';
 document.getElementById('close').addEventListener('click', closeMenu);
 document.getElementById('menu_open').addEventListener('click', openMenu);
 
+document.getElementById('project1').style.color = cssvar_color_accent_1h;

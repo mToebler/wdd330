@@ -104,8 +104,15 @@ header a {
    padding: 1rem;
    width: 80%;
    border: 0;
+   font-size: x-large;
    border-top: 1px solid var(--color-1);
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+   color: var(--color-hi2);
+   opacity: .7;
+}
+
 .add-button {
    position: absolute;
    bottom: .1em;
