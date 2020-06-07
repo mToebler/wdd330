@@ -91,13 +91,13 @@ sayBi.apply(obj, ['Mr.']);
 <notes>
 Body:
 <code class='big'>.cache</code> 
-
-<note class='accent_1'>CUSTOM! </note> Not supported in language without implementation!
+<note class='accent_1'>CUSTOM! </note> 
+Not supported in language. Must be implemented! 
 
 <note class='accent_2'>Use for storing the results of resource intensive functions</note>
-<note>(taken from JS NovtoNinja p.390)
-<— scrollable —></note>
-<div class='code-pre'>function square(x){
+<note> <— scrollable —> </note>
+<div class='code-pre'><note>//(taken from JS NovtoNinja p.390)</note>
+function square(x){
    square.cache = square.cache || {}; 
    <note class="accent_2">// (note the above assignment statement making use of a boolean expression!)</note>
    if (!square.cache[x]) {
