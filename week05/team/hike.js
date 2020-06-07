@@ -1,7 +1,7 @@
 const Hike = (function () {
    class Hike {
 
-      constructor(indexId=0) {
+      constructor(indexId = 0) {
          // cuz why just couple, when you can tightly couple?         
          this.name = (hikeList[indexId].name);
          this.imgSrc = (hikeList[indexId].imgSrc);
@@ -11,6 +11,7 @@ const Hike = (function () {
          this.description = (hikeList[indexId].description);
          this.directions = (hikeList[indexId].directions);
          this.id = indexId;
+         this.comments = [];
       }
 
       static imgBasePath() {
@@ -66,7 +67,7 @@ const Hike = (function () {
          let i = 0;
          while(i < hikeList.length) {
             let hike = new Hike(i);
-            let divHike = document.createElement('div');         
+            let divHike = document.createElement('div');
             divHike.innerHTML = hike.render();
             divHike.classList.add('grid_box');
             divs.appendChild(divHike);
@@ -79,6 +80,7 @@ const Hike = (function () {
    //create an array of hikes
    const hikeList = [
       {
+         id: 1,
          name: "Bechler Falls",
          imgSrc: "falls.jpg",
          imgAlt: "Image of Bechler Falls",
@@ -90,6 +92,7 @@ const Hike = (function () {
             "Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead."
       },
       {
+         id: 2,
          name: "Teton Canyon",
          imgSrc: "falls.jpg",
          imgAlt: "Image of Bechler Falls",
@@ -100,6 +103,7 @@ const Hike = (function () {
             "Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles then turn right onto Stateline Road for a short distance, then left onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead."
       },
       {
+         id: 3,
          name: "Denanda Falls",
          imgSrc: "falls.jpg",
          imgAlt: "Image of Bechler Falls",

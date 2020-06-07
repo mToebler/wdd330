@@ -116,9 +116,11 @@ header a {
 .add-button {
    position: absolute;
    bottom: .1em;
-   right: 0;
+   right: 0.1em;
    color: var(--color-2);
    font-size: 3em;
+   border-style: none;
+   background: none;
 }
 
 .remove-button {
@@ -131,6 +133,8 @@ header a {
    font-size: 1.6rem;
    /* font-weight: lighter;    */
    font-weight: 900;
+   border-style: none;
+   background: none;
 
 }
 

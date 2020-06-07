@@ -12,7 +12,7 @@
 <body>
    <nav>
       <div><a href="../index.html" class="x-small">&laquo;Back</a></div>
-      <h1>Week 5</h1>
+      <h1>Week 7</h1>
       <div class="wrapper"><div class="toc" id="toc"></div>
             <!--the toc will contain all h3's in a file. The collapsible portion of 
          sections will be the contained article. Both (menu and collapsible 
@@ -27,7 +27,137 @@
    <header>
    </header>
    <main>
+      <section >
+         <h3>
+            Functions: 1st Class Objects
+         </h3>
+         <article>
+<div class='article_bar accent_1'>with properties and methods that can be customized</div>
+<!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+<notes>
+As discussed previously, functions are 1st class objects in JS. More indepth discussion on:
+   
+   <code class='big'>Function Methods</code> 
+   <code class='big'>Function Properties</code>
+
+<note class='accent_2 big'> .call() </note>: used to specify what 'this' points to in the function. Any functional arguments come after 'this'.
+
+It is very similar to:
+
+<note class='accent_1 big'> .apply() </note>: also 'this' specifier, but takes an array of arguments to be passed in.
+
+call() Example:
+<div class='code-pre'>function sayHi(){
+      return `Hi, I'm ${this.name}`;
+   }   
+   let obj = {name: 'Crackers'};
+   sayHi.call(obj); 
+   <note class='accent_2'>// note the syntax-no () on f </note>
+   <note class='accent_1'>// also this does not work with arrow functions</note>
+   <note class='accent_1'>// evidently. ?? </note>   
+</div>
+</notes>
+<div class='article_bar accent_2'> If method has arguments:</div>
+<notes>
+   they come after 'this' arg in .call()
+   <div class='code-pre'>function sayHi(honorific){
+   return `Hi, ${honorific}. ${this.name}`;
+}
+   
+let obj = {name: 'Crackers'};
+sayHi.call(obj, 'Mr.');
+<note class='accent_1'>"Goodbye, Mr. Crackers"</note>
+</div>
+Now with .apply()
+   </notes>
+<div class="code-pre">function sayBi(honorific) {
+   return `Goodbye, ${honorific} ${this.name}`;
+}
+let obj = {name: 'Crackers'};
+sayBi.apply(obj, ['Mr.']); 
+<note class='accent_2'>// Even if just one element, must be in array</note>
+<note class='accent_1'>// Goodbye, Mr. Crackers</note>
+</div>
+         </article>         
+      </section>   
       <section>
+      <h3>
+         Functions with Custom Properties
+      </h3>
+      <article>
+<div class='article_bar accent_1'>Custom function properties for utitility:</div>
+<!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+<notes>
+Body:
+<code class='big'>.cache</code> 
+
+<note class='accent_1'>CUSTOM! </note> Not supported in language without implementation!
+
+<note class='accent_2'>Use for storing the results of resource intensive functions</note>
+<note>(taken from JS NovtoNinja p.390)
+<— scrollable —></note>
+<div class='code-pre'>function square(x){
+   square.cache = square.cache || {}; 
+   <note class="accent_2">// (note the above assignment statement making use of a boolean expression!)</note>
+   if (!square.cache[x]) {
+      square.cache[x] = x*x;
+   }
+   return square.cache[x]
+}
+</div>
+
+</notes>
+      </article>         
+   </section>
+   <section>   
+   <h3>
+      IIFE
+   </h3>
+   <article>
+<div class='article_bar accent_1'>Immediately Invoked Function Expressions:</div>
+<!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+<notes>
+
+<code class='big'>Used these in the <a href="../project1/todo.html">Todo project</a> for the Object Model to generate a Todo class with protected properties.</code> 
+
+An anonymous function enclosed within () and invoked as it's defined with a trailing '()'
+
+<note class='accent_1'>Variables kept within the scope of the function</note>
+<div class='code-pre'>
+// simple example:
+(      
+   function (){       
+   var loud = `boom`;
+   console.log(loud);
+})()
+
+try {
+   console.log(loud.length);
+} catch (refErr) {
+   console.error('Is loud defined?', refErr); 
+   <note class='accent_1'>// loud is not defined</note>
+}
+</div>
+But wait! Can't this just be done by placing a variable within a block?
+<note class='accent_2'>In ES6 Yes: </note>
+<div class='code-pre'>
+// ES6 Block:
+{ 
+   let loud = `boom`;
+   console.log(loud);
+}
+
+try {
+   loud.length;
+} catch (refErr) {
+   console.error('Is loud defined?', refErr); 
+   <note class='accent_1'>// loud is not defined</note>
+}
+</div>
+</notes>
+   </article>         
+</section>
+<section>
          <h3>
             -SPREAD vs DECONSTRUCTION
          </h3>
@@ -58,35 +188,9 @@ Ex.:
       </section>       
       <section>
          <h3>
-            Closures
+            -Closures: Partial Application & Currying
          </h3>
          <article>
-<div class='article_bar accent_1'>Controlling Scope</div>
-<!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
-<notes>
-Closers control what is and isn't in function scope. Last week, I used a closer in the WeakMap <a href="../week04/index.html">example</a> of OOP encapsulation.
-   
-With closures, inner function can gain access to the additional, supplied scope of the en-<code class="big">closing</code> function.
-This allows for:
-
-      <code class='big'>- Encapsulation</code> 
-      <code class='big'>- Data privacy</code>
-
-<note class='accent_1 big'>Classic example: </note>
-<div class='code-pre big'>const getSecret = (secret) => {
-   return {
-      get: () => secret
-   };
-};
-
-const key = getSecret('private');
-key.get(); <note class="accent_1">// returns private</note>
-</div><div class="explanation big">
-The privleged method <code>get()</code> will grant access to <code>secret</code> set via with the returned object.
-
-Next, we'll explore <code class='accent_1'>partial application</code> and <code class='accent_2'>currying</code> with closures.
-</div>
-</notes>
 <div class='article_bar accent_1'> Partial Application</div>
 <notes><note>  (Coming soon...)</note>
 
@@ -97,90 +201,6 @@ Next, we'll explore <code class='accent_1'>partial application</code> and <code 
 </notes>
          </article>         
       </section>       
-      <section>
-         <h3>
-            Testing and Debugging
-         </h3>
-         <article>
-            <div class='article_bar accent_1'>Use strict</div>
-            <notes>               
-Simple enough:
-<div class='code-pre'>"use strict"; <note class="accent_1">// first line in file</note></div>
-Use function scope:
-<div class='code-pre'>function showStrict() {
-   "use strict";  
-   <note class="accent_1">// first line in function body</note>
-}</div>
-Recommended for self-invoking functions:
-<div class='code-pre'>(function() {
-   "use strict"; <note class="accent_1">// 1st line in body</note>
-   <note>...</note>
-}());
-</div>
-</notes>
-<div class='article_bar accent_1'>feature detection:</div>
-<notes>
-Place possibly unsupported feature in boolean expression:
-
-<div class='code-pre'>if(window.DNSSEC) {
-   //supported
-}</div>
-<div class='article_bar accent_2'>Debugger</div>
-On Chrome, simply add function:
-                     <div class='code-pre'>debugger;</div>
-where you'd like to invoke the browser debugger. 
-
-<div class="explanation">
-Chrome's seems feature rich with step, step over, continue and more. Very friendly (and resource consuming). The debugger can also be accessed through the application tab in Chrome's dev tools.
-
-</div>
-<div class='article_bar accent_1'>Exceptions & Errors</div>
-The language suports exception handling with Error objects. Use with try {} catch () {} blocks just like any other language. Nesting encouraged 
-<note>(Lifted from JSN2Ninja, p. 270-1):</note>
-<div class='explanation big'>
-<note class="accent_1 big">EvalError: </note>  is not used in the current ECMAScript specification and only retained for backwards compatibility. It was used to identify errors when using the global eval() function.
-
-<note class="accent_1 big">RangeError: </note> is thrown when a number is outside an allowable range of values.
-
-<note class="accent_1 big">ReferenceError: </note> is thrown when a reference is made to an item that doesn’t exist. For example, try calling the function unicorn().
-
-<note class="accent_1 big">SyntaxError: </note> is thrown when there’s an error in the code’s syntax.
-
-<note class="accent_1 big">TypeError: </note> is thrown when there’s an error in the typeof value used; for example, a string is used when a number is expected.
-
-<note class="accent_1 big">URIError: </note> is thrown when there’s a problem encoding or decoding the URI.
-</div>                     
-Make them, Throw them, try them, catch them. Almost like normal languages:
-<div class="code-pre big" >
-try {
-   window["I like rice"].property = "nice";
-   console.log(`won't print`);
-} catch (e) {
-   if (e instanceof SyntaxError)
-      console.error(`Won't fire.`, e);
-   else if (e instanceof TypeError)
-      console.error(`Will fire.`, e);
-   else <note class="accent_1">// re throw if needed </note>
-      throw new Error(`Error message`, e);
-} finally {
-   console.log(`finally always fires.`);
-   <note class="accent_1">// clean up code could go here, but GC?</note>
-}
-</div><div class='explanation big'>
-<code class="big accent_2">finally</code> always fires. <code class="big accent_1">catch</code> as far as I know now, does not catch specific error types, hence the conditionals.
-
-</div>
-</notes>            
-            <div class='article_bar accent_2 big'> Jest </div>
-            <notes>
-   <note>Notes from lecture:</note>
-   <code class="accent_2 big">jest</code> from <note>npm</note>
-   <code>jest::test jest::expect().toBe</code>
-   <note>toBe</note> is like assert               
-
-</notes>
-                     </article>         
-      </section>
 <section>
             <h3>
                -Functional Programming
@@ -198,47 +218,17 @@ try {
             Team Activity
             </h3>
             <article>
-               <div class='article_bar accent_1'>Awesome Hikes!</div>
+               <div class='article_bar accent_1'>Awesome Hikes! Revisted</div>
                </div>
-               <notes><note>Well, a kind of awesome perhaps...</note>
+               <notes><note>Now open for comments...</note>
 
-<note class='accent_2'>Task: </note> 1 Hour to refactor a working, but scatter coded Hiking 'App.' We talked it through, here is what came of it (<note>note the use of a class, a static class method, and enclosers... </note>):
+<note class='accent_2'>Task: </note> 1 Hour to incorporate a modular commenting capability into the Great Hikes SPA. We talked it through, here is what came of it:
 
-<a href="team/team.html">Team Activity Week 5</a>
+<a href="team/team.html">Team Activity Week 7</a>
 
 </notes>
             </article>         
          </section>         
-         <section >
-            <h3>
-               Prototypal Inheritance
-            </h3>
-            <article>
-               <div class='article_bar accent_1'>Duner PROTO</div>
-   <!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
-   <notes>
-All instances of a "class" share its dunder proto:
-         <code>object.__proto__;</code>
-which is the same as:
-         <code>object.constructor.prototype;</code>
-   <div class='article_bar accent_2'>__proto__ is live!</div> 
-Changing one will change all.
-
-Example:<note>(<= scroll =>)</note><div class='code-pre big'>
-simple = {};
-simple_1 = new simple.__proto__.constructor();
-<code class='accent_1'>// new isn't necessary?</code>
-simple_2 = simple_1.__proto__.constructor();
-simple_2.__proto__.property = '6';
-simple.property === '6';
-<code class='accent_2'>// true</code>
-<code class='accent_1'>// these inherited properties can be overridden without affecting any of the others.</code>
-simple.property = 1;
-<code class='accent_1'>// overriding will them claim it as its own:</code>
-simple.hasOwnProperty(1);
-<code class='accent_2'>// true</code></div></notes>
-            </article>         
-         </section>
          <section >
             <h3>
                - Example Template

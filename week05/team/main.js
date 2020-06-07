@@ -1,6 +1,8 @@
 import Hike from './hike.js';
+import Comment from './comment.js';
 
 let hike = new Hike();
+let commentModel = new Comment();
 console.log(hike.render());
 console.log(Hike.renderAll());
 
@@ -44,3 +46,14 @@ divs.forEach(div => {
 });
 
 
+// testing
+function testComment() {
+   let comment = new Comment(1, 'test comment', 'hike');
+   console.log('main:testComment: comment:', comment);
+   comment.content = 'Test Comment only. I love this hike!';
+   comment.save();
+   let comments = Comment.getAllComments();// getAllComments();
+   console.log('main:testComments: comments:', comments);
+}
+
+testComment();
