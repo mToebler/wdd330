@@ -84,7 +84,7 @@ const Hike = (function () {
                <h4>Comments</h4>
                <p>${commentOutStr}</p>
                <div>
-               <textarea id="addCommentTxt" rows=2 cols=20 data-id="${this.id}"></textarea><br>
+               <textarea id="addCommentTxt" rows=2 cols=20 maxlength="255" data-id="${this.id}"></textarea><br>
                <button id="addCommentBtn">Add Comment</button>
                </div>
            </div>

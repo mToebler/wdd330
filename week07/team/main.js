@@ -100,12 +100,22 @@ function packageCommentsByHikeId(commentMap) {
 function addComment() {
    let textArea = document.getElementById("addCommentTxt");
    let id = parseInt(textArea.dataset.id);
-   let content = document.getElementById("addCommentTxt").value;
+   let content = '';
+   try {
+      content = textArea.value;
+      content = content.trim();
+   } catch(e) {
+      console.warn('main::addComment: swallowing error:', e);
+      content = '';
+   }
    console.info(`Adding ${content} comment for hikeId: ${id}`);
-   let newComment = new Comment(id, content);
-   newComment.save();
-   closeDetail();
-   reload();
+   if(content) 
+      if (content.length > 1) {
+         let newComment = new Comment(id, content);
+         newComment.save();
+         closeDetail();
+         reload();
+      } 
 }
 
 // testComments();
