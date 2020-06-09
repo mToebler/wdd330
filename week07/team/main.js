@@ -3,14 +3,29 @@ import Comment from './comment.js';
 ///////////////////////////// THIS IS WEEK 7 //////////////////////////////////
 let hike = new Hike();
 let commentModel = Comment;
-let allCommentsMap = commentModel.getAllComments();
-let commentsByHikeMap = packageCommentsByHikeId(allCommentsMap);
+//let allCommentsMap = commentModel.getAllComments();
+//let commentsByHikeMap = packageCommentsByHikeId(allCommentsMap);
 console.log(hike.render());
 console.log(Hike.renderAll());
+window.onload = () => {
+   reload();
+}
 
+//document.querySelector('#hikeSection').appendChild(Hike.renderAll(commentsByHikeMap));
+function reload() {
+   let allCommentsMap = commentModel.getAllComments();
+   let commentsByHikeMap = packageCommentsByHikeId(allCommentsMap);   
+   document.querySelector('#hikeSection').innerHTML = '';
+   document.querySelector('#hikeSection').appendChild(Hike.renderAll(commentsByHikeMap));
+   
 
-document.querySelector('#hikeSection').appendChild(Hike.renderAll(commentsByHikeMap));
+   let divs = document.querySelectorAll('section>div>div');
+   divs.forEach(div => {
+      let id = div.querySelector('h3').dataset.id;
+      div.addEventListener('click', displayDetail.bind(id));
+   });
 
+}
 // to close hike detail
 const closeDetail = () => {
    document.getElementById("detail").style.width = "0%";
@@ -25,6 +40,7 @@ let displayDetail = function (id) {
    detail.style.width = "100%";
    detail.style.display = "block";
    //detail.classList.add('reveal');
+   document.getElementById('addCommentBtn').addEventListener('click', addComment);
 
 };
 
@@ -44,14 +60,6 @@ function populateDetail(divDetail, hikeId) {
    divDetail.appendChild(span);
    // document.getElementById('close').addEventListener('click', closeDetail);
 }
-
-
-let divs = document.querySelectorAll('section>div>div');
-divs.forEach(div => {
-   let id = div.querySelector('h3').dataset.id;
-   div.addEventListener('click', displayDetail.bind(id));
-});
-
 
 // testing
 function testComments() {
@@ -87,6 +95,17 @@ function packageCommentsByHikeId(commentMap) {
    console.log('main::packageCommentsByHikeId: returning ', returnMap);
    return returnMap;
 
+}
+
+function addComment() {
+   let textArea = document.getElementById("addCommentTxt");
+   let id = parseInt(textArea.dataset.id);
+   let content = document.getElementById("addCommentTxt").value;
+   console.info(`Adding ${content} comment for hikeId: ${id}`);
+   let newComment = new Comment(id, content);
+   newComment.save();
+   closeDetail();
+   reload();
 }
 
 // testComments();

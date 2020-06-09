@@ -25,9 +25,15 @@ const Hike = (function () {
          let commentsCount = 0;
          if(commentsMap) {            
             console.log('hike.render: this:', this, commentsMap.get(this.id));
-            if(this.id !== undefined || this.id !== null)               
-               commentsCount = commentsMap.get(this.id).length;
-            this.comments = commentsMap.get(this.id);
+            if(this.id !== undefined || this.id !== null)
+               try {
+                  commentsCount = commentsMap.get(this.id).length;
+                  this.comments = commentsMap.get(this.id);
+               } catch(e) {
+                  console.info('hike::render: error swallowed', e);
+                  commentsCount = 0;
+                  this.comments = [];
+               }
          }
             
          outStr += `<h3 id="${this.id}" data-id="${this.id}">${this.name}</h3>
@@ -54,6 +60,7 @@ const Hike = (function () {
          let commentOutStr = '';
          if(this.comments)
             commentOutStr = this.renderComments();
+            commentOutStr = commentOutStr === '' ? 'None' : commentOutStr;
          const imgBasePath = Hike.imgBasePath();
          outStr += `<h3 id="${this.id}" data-id="${this.id}">${this.name}</h3>
        <div class="grid_text">
@@ -76,11 +83,23 @@ const Hike = (function () {
            <div>
                <h4>Comments</h4>
                <p>${commentOutStr}</p>
+               <div>
+               <textarea id="addCommentTxt" rows=2 cols=20 data-id="${this.id}"></textarea><br>
+               <button id="addCommentBtn">Add Comment</button>
+               </div>
            </div>
 
        </div>`;
          //<div class="image"><img src="${imgBasePath}${this.imgSrc}" alt="${this.imgAlt}"></div>
          return outStr;
+      }
+
+      renderComments() {
+         //this should ofcourse be in it's own comment class. Although hike may render comments differently.
+         let str = '';
+         this.comments.forEach(comment => { str += `<div>${comment.content}</div>`; })
+         console.log('hike::renderComments: returning:', str);
+         return str;
       }
 
       static renderAll(commentsMap = null) {
@@ -95,14 +114,6 @@ const Hike = (function () {
             i++;
          }
          return divs;
-      }
-
-      renderComments() {
-         //this should ofcourse be in it's own comment class. Although hike may render comments differently.
-         let str = '';
-         this.comments.forEach(comment => { str += `<div>${comment.content}</div>`; })
-         console.log('hike::renderComments: returning:', str);
-         return str;
       }
 
    }

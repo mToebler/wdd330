@@ -19,6 +19,7 @@ class Comment {
    save() {
       localStorage.setItem(this.commentId, JSON.stringify(this));
    }
+   
    static getAllComments(hikeId = null) {
       // I'm guessing these are coming from LocalStorage, but they could come from any source.
       let comments = new Map();
