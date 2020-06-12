@@ -2,9 +2,17 @@
 
 :root {
    --border-color: #efefef;
+   --text-color: #cdcdcd;
 
 }
 
+*::-webkit-scrollbar {
+    display: none;
+
+}
+div {
+  color: var(--color-text);
+}
 h1 {
    text-align: center;
  }
@@ -91,6 +99,9 @@ color: var(--color_accent_1h);
   /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
 
+div>h1 {
+  color: var(--color_accent_2);
+}
 /* Position the content inside the overlay */
 
 .menu_content {
@@ -128,4 +139,8 @@ color: var(--color_accent_1h);
   top: 20px;
   right: 45px;
   font-size: 60px;
+}
+.bold {
+  font-weight: bold;  
+  color:var(--color_accent_1h);
 }
