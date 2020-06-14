@@ -141,6 +141,39 @@ a:hover {
    font-variant: small-caps;
 }
 
+.both_bar_1 {
+   font-size: large;
+   border-top: 5px solid var(--color_accent_1);
+   border-bottom: 5px solid var(--color_accent_1);
+}
+
+.both_bar_2 {
+   font-size: large;
+   border-top: 5px solid var(--color_accent_2);
+   border-bottom: 5px solid var(--color_accent_2);
+}
+
+.under_bar_1 {
+   font-size: large;
+   /* border-top: 5px solid var(--color_accent_1); */
+   border-bottom: 5px solid var(--color_accent_1);
+}
+.under_bar_1h {
+   font-size: large;
+   /* border-top: 5px solid var(--color_accent_1); */
+   border-bottom: 5px solid var(--color_accent_1h);
+}
+
+.under_bar_2 {
+   font-size: large;
+   /* border-top: 5px solid var(--color_accent_2); */
+   border-bottom: 5px solid var(--color_accent_2);
+}
+.under_bar_2h {
+   font-size: large;
+   /* border-top: 5px solid var(--color_accent_2); */
+   border-bottom: 5px solid var(--color_accent_2h);
+}
 .fullbar {
    margin: 0 -9999rem;
    /* add back negative margin value */
@@ -206,18 +239,22 @@ pre {
    border-bottom: 5px solid var(--color_accent_1);
 }
 
-.accent_1 {
+accent_1 , .accent_1 {
    background-color: var(--color_accent_1h);
    color: var(--color_bg_2);
 }
 
-.accent_2 {
+accent_2, .accent_2 {
    background-color: var(--color_accent_2h);
    color: var(--color_bg_1);
 }
 
-.color_bg2 {
+.color_bg2, .light {
    color: var(--color_bg_2);
+}
+
+.dark {
+   color: var(--color_bg_1);
 }
 
 select {
@@ -266,3 +303,36 @@ label {
    border-top: 5px solid var(--color_accent_1);
 }
 
+.transform_translate {
+   transform: translate(1rem, 1rem);
+   transition: .5s transform;
+}
+
+.transform_translate_off {
+   transform: translate(-20rem, 3rem);
+   transition: .5s transform;
+}
+
+.transform_scale {
+   transform: scale(2);
+   transition: .5s transform;
+}
+
+.transform_rotate {
+   transform: rotate(45deg);
+   transition: .5s transform;
+}
+
+.transform_skew {
+   transform: skew(5deg, 5deg);
+   transition: .5s transform;
+}
+
+.transform_translate_rotate {
+   transform: rotate(.8rad) translate(15px, 15px);
+   transition: .5s transform;
+}
+.transform_skew_90 {
+   transform: skew(90deg);
+   transition: .5s transform;
+}

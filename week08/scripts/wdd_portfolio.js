@@ -69,6 +69,7 @@ window.onload = () => {
          }
       });
    }
+   week08Load();
 };
 
 function jumpTo() {
