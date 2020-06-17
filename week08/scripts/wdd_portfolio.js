@@ -72,6 +72,8 @@ window.onload = () => {
    week08Load();
 };
 
+function isMobile() { return ('ontouchstart' in document.documentElement); }
+
 function jumpTo() {
    // console.log(document.querySelector('select'));
    if (document.querySelector('select').selectedIndex != 0) {

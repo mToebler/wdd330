@@ -151,14 +151,39 @@ Canvas is a bit of a let down as I can handle it now. But check out this extreme
 
 </div>         
 </notes>
-<div class='article_bar accent_1'>Drag and Drop</div>
+<div class='article_bar accent_1 dark'>Drag and Drop</div><note class='x-small'>Thanks to <a href='https://medium.com/@deepakkadarivel/drag-and-drop-dnd-for-mobile-browsers-fc9bcd1ad3c5'>Deepak Kadarivel</a> for inspiration</note>
 <notes>
-   <accent_2>NOT COMPATIBLE WITH SMARTPHONES</accent_2>
-         <code class='big'>- Not covering</code> 
-         <code class='big'>- Not yet</code>
-   Such a drag... dropping this now...
-</notes>
-                     </article>         
+   <accent_1 class='dark'>Not compatible with MOBILE Browsers </accent_1>
+   <note class='accent_2_text big'>But by using the TOUCH api and JS
+   this can be simulated.
+   </note>Using:
+         <code class='big'>- </code>element<code class='big'> position: absolute;</code> 
+         <code class='big'>- touchLocation.pageX</code>
+         <code class='big'>- touchLocation.pageY</code>
+         <code class='big'>- </code>and 2 event listeners&hellip;
+
+<note>first:    <span class='x-small'>(< - scrollable - >)</span></note>
+<div class='code-pre'>element.addEventListener('touchmove', (e)=>{
+   <note class='accent_1 dark'>// grab the location of touch</note>
+   let loc8ion = e.targetTouches[0];
+   
+   <note class='accent_1 dark'>// assign element new coordinates based on the touch.</note>
+   element.style.left = loc8ion.pageX + 'px';
+   element.style.top = loc8ion.pageY + 'px';
+});
+</div>         
+<note>second:</note>
+<div class='code-pre'>element.addEventListener('touchend', (e)=>{
+   <note class='accent_1 dark'>// grab coordinates when released</note>
+   let x = parseInt(element.style.left);
+   let y = parseInt(element.style.top);
+});
+</div>         
+Let's give it a whirl:
+<div id="drag_container">
+   <p id="drag_warning">To drag and drop, use the "toggle device toolbar" for any mobile or tablet profile within browser's "Inspect" and reload (try right-clicking or CMD+shift+C or CNTL+shift+C) </p>
+   <div id="drag_box"></div></div></notes>
+</article>         
       </section>
          <section>
             <h3>

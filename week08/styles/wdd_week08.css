@@ -39,7 +39,7 @@ section h3 {
    border-top: .2em solid var(--color_accent_2);
 }
 
-h3{
+h3 {
    font-size: 1.4em;
    font-variant-caps: petite-caps;
 }
@@ -104,6 +104,7 @@ a:hover {
    font-style: italic;
    color: var(--color_accent_1h);
 }
+
 .notes, notes {
    font-family: var(--regular-font);
    white-space: pre-wrap;
@@ -158,6 +159,7 @@ a:hover {
    /* border-top: 5px solid var(--color_accent_1); */
    border-bottom: 5px solid var(--color_accent_1);
 }
+
 .under_bar_1h {
    font-size: large;
    /* border-top: 5px solid var(--color_accent_1); */
@@ -169,11 +171,13 @@ a:hover {
    /* border-top: 5px solid var(--color_accent_2); */
    border-bottom: 5px solid var(--color_accent_2);
 }
+
 .under_bar_2h {
    font-size: large;
    /* border-top: 5px solid var(--color_accent_2); */
    border-bottom: 5px solid var(--color_accent_2h);
 }
+
 .fullbar {
    margin: 0 -9999rem;
    /* add back negative margin value */
@@ -181,29 +185,39 @@ a:hover {
    /* background: rgba(0, 0, 0, 0.5); */
 }
 
-
 .explanation {
    background-color: var(--color_bg_2);
    font-size: small;
    font-family: var(--regular-font);
 }
-.explanation>ul{
+
+.explanation>ul {
    list-style-type: none;
-   list-style-position: inside; 
+   list-style-position: inside;
    margin-left: .3rem;
 }
+
 /* from w3schools */
+
 .explanation>ul li::before {
-   content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-   color: var(--color_accent_1h); /* Change the color */
-   font-weight: bold; /* If you want it to be bold */
-   display: inline-block; /* Needed to add space between the bullet and the text */
-   width: 1em; /* Also needed for space (tweak if needed) */
-   margin-left: -1em; /* Also needed for space (tweak if needed) */
- }
+   content: "\2022";
+   /* Add content: \2022 is the CSS Code/unicode for a bullet */
+   color: var(--color_accent_1h);
+   /* Change the color */
+   font-weight: bold;
+   /* If you want it to be bold */
+   display: inline-block;
+   /* Needed to add space between the bullet and the text */
+   width: 1em;
+   /* Also needed for space (tweak if needed) */
+   margin-left: -1em;
+   /* Also needed for space (tweak if needed) */
+}
+
 pre {
    margin-top: -.9rem;
 }
+
 .btn {
    background-color: var(--color_accent_2);
    border: .1rem solid var(--color_bg_2);
@@ -226,7 +240,6 @@ pre {
    font-size: 10px;
 }
 
-
 .padded {
    padding: 1rem;
 }
@@ -239,7 +252,7 @@ pre {
    border-bottom: 5px solid var(--color_accent_1);
 }
 
-accent_1 , .accent_1 {
+accent_1, .accent_1 {
    background-color: var(--color_accent_1h);
    color: var(--color_bg_2);
 }
@@ -257,13 +270,14 @@ accent_2, .accent_2 {
    color: var(--color_bg_1);
 }
 
-.accent_1_text{
+.accent_1_text {
    color: var(--color_accent_1h);
 }
 
-select, .accent_2_text{
+select, .accent_2_text {
    color: var(--color_accent_2h);
 }
+
 body>section {
    margin: .5rem;
    padding: .5rem;
@@ -336,7 +350,27 @@ label {
    transform: rotate(.8rad) translate(15px, 15px);
    transition: .5s transform;
 }
+
 .transform_skew_90 {
    transform: skew(90deg);
    transition: .5s transform;
+}
+
+#drag_container {
+   border: solid 5px var(--color_accent_1h);
+   background-color: var(--color_text);
+   height: 8rem;
+   width: 94vw;
+}
+
+#drag_box {
+   position: absolute;
+   width: 25px;
+   height: 25px;
+   background-color: var(--color_accent_1);
+}
+
+#drag_warning {
+   color: var(--color_accent_2h);
+   /* display: none; */
 }
