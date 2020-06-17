@@ -347,7 +347,7 @@ label {
 }
 
 .transform_translate_rotate {
-   transform: rotate(.8rad) translate(15px, 15px);
+   transform: rotate(4.8rad) translate(45px, 45px);
    transition: .5s transform;
 }
 
