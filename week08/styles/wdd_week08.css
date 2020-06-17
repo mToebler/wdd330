@@ -257,7 +257,11 @@ accent_2, .accent_2 {
    color: var(--color_bg_1);
 }
 
-select {
+.accent_1_text{
+   color: var(--color_accent_1h);
+}
+
+select, .accent_2_text{
    color: var(--color_accent_2h);
 }
 body>section {
