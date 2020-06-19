@@ -1,0 +1,91 @@
+:root {
+   --color_bg_1: #303030;
+   --color_bg_2: #707070;
+   --color_text: #ededed;
+   --color_accent_1: #1f6199;
+   /* --color_accent_1: #66bae4; */
+   --color_accent_1h: #87d2f8;
+   --color_accent_2: #d3773a;
+   --color_accent_2h: #ff954f;
+}
+
+html {
+  font-size: 10px;
+  background: url(./wired.png) center right;
+    /* transform: rotate(90deg); */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: black; 
+}
+
+body,html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+
+}
+nav {
+  display: inline-block;
+}
+nav a{
+  color: var(--color_accent_2);
+  font-size: x-large;
+  /* vertical-align: auto; */
+  text-decoration: none;
+}
+
+.keys {
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.key {
+  border: .4rem solid black;
+  border-radius: .5rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem .5rem;
+  transition: all .07s ease;
+  width: 10rem;
+  text-align: center;
+  color:var(--color_text);
+  background: rgba(0,0,0,0.4);
+  text-shadow: 0 0 .5rem black;
+}
+
+.playing {
+  transform: scale(1.1);
+  border-color: var(--color_accent_2h);
+  box-shadow: 0 0 1rem var(--color_accent_2h);
+}
+
+kbd {
+  display: block;
+  font-size: 4rem;
+}
+
+.sound {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  color: var(--color_accent_2h);
+}
+
+.right_link{
+  position: absolute;
+  left: 84vw;
+  top:  2em;
+}
+.center_link {
+  position: absolute;
+  left: 38%;
+  top: 2em;
+}
+.left_link {
+  position: absolute;
+  left: 1%;
+  top:  2em;
+}

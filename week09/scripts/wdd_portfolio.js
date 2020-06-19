@@ -30,7 +30,7 @@ function swapCSSVars() {
 
 function collapse() {
    const _article = this.parentElement.querySelector('article');
-   let visibility = _article.style.display == 'none' ? 'initial' : 'none';
+   visibility = _article.style.display == 'none' ? 'initial' : 'none';
    _article.style.display = visibility;
 }
 // This generates the JUMP-TO menu
