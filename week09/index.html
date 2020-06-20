@@ -61,7 +61,69 @@ Body:
 Ex.:   
 </notes>
          </article>         
-      </section>       
+      </section>     
+      <section>
+         <h3>
+            In the Node.js
+         </h3>
+         <article>
+<div class='article_bar accent_1'>Known to Node.js</div>
+<!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+<notes>
+I'm fairly familiar with Node.js. Check out this project I did for CS241. Node.js, and CSS with some PostgreSQL.
+
+   <accent_1 class='dark big'>Real-Time News Reader: </accent_1> <a href='https://cs313-rrtnt.herokuapp.com/' target='_blank'>R-TNT</a>
+   <note>(Launches a new tab.) Depending on the last 
+    time R-TNT was loaded, it may take up to 
+    30 seconds for the Heroku hosted project to load.</note>
+
+The project isn't as mobile friendly as I would like by a long shot. Hence, here I am.
+
+</notes>
+         </article>         
+      </section>     
+      <section >
+         <h3>
+            Transform & Transition: More Fun
+         </h3>
+         <article>
+<div class='article_bar accent_1'>Transform Clock</div>
+<note>Inspired by <a href='https://javascript30.com'>Wes Bos</a></note>
+<!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+<notes>
+I wanted to combine transforms and transitions with sound after the team activity this week.
+
+This mobile friendly JS clock has some fun transition beziers. I added a tock sound file that plays with every transition, but only if the user interacts with the page (at least in Chromium browsers) due to Google's clampdown on unwanted audio. So, click if you need a little tick with your clock.
+
+In order to get the transitions not to freak out, I had to rework the way the angles were being computed. There should be no clock hand freakouts with this implementation.
+   
+<note class='accent_1 big dark'>Check out </note>: <a href="clock-js.html">the clock</a>
+
+<accent_1>CSS properties of note: </accent_1>
+<div class="code-pre">   
+transform-origin: 100%;   
+transition-timing-function: cubic-bezier(1, -1.39, 0, 3.26);
+
+</div>
+<accent_2>JS of note:</accent_2>
+<div class="code-pre"><note class='accent_1 dark'>// audioElement.play() returns a promise. 
+// This is the code that shuts off the audio message </note>
+<note class='accent_2'>// volume control!</note>
+sound.volume = .1;         
+sound.play()
+.then((res) => {
+   if(msgDiv.style.display != 'none') {
+   <note class='accent_1 dark'>// a success message is logged here, but you don't want it going off all the time, hence the style check</note> 
+      msgDiv.style.display = 'none';
+   }
+}, (res)=>{
+   <note class='accent_1 dark'>// on promise reject, turning on the audio message </note>
+   msgDiv.style.display = 'flex-box';      
+}); 
+</div></notes>
+         </article>         
+      </section>
+
       <section>
             <h3>
             Team Activity
@@ -75,8 +137,8 @@ Ex.:
 <note>Stretch Goals: a) every time a key is pressed, move it 10px down; b) on the 11th time move, reset position and start over.</note>
 
       Met as a group. Worked through the stretch 
-      challenges. Take a look at those results 
-      and the modifications I made to 
+      challenges. Take a look at the results 
+      and some modifications I made to 
       "mobilize" it. <note>works but still fiddling</note> :
 
       <a href="team/team.html">Team Activity Week 9</a>

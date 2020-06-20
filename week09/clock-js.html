@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>JS + CSS Clock</title>
+</head>
+
+<body>
+   <nav>
+      <div>
+         <div><a href="index.html" class="x-small">&laquo;Back</a></div>
+      </div>
+      <div id="sound-warning">
+         Click to un-mute. Anywhere. 
+      </div>   
+   </nav>
+
+   <div class="clock">
+      <div class="clock-face">
+         <div class="hand hour-hand"></div>
+         <div class="hand min-hand"></div>
+         <div class="hand second-hand"></div>
+      </div>
+   </div>
+   
+   <audio src="./team/sounds/owlishmedia__clock.wav"></audio>
+   <style>
+      :root {
+         --color_bg_1: #303030;
+         --color_bg_2: #707070;
+         --color_text: #ededed;
+         --color_accent_1: #1f6199;
+         /* --color_accent_1: #66bae4; */
+         --color_accent_1h: #87d2f8;
+         --color_accent_2: #d3773a;
+         --color_accent_2h: #ff954f;
+         /* fonts */
+         --regular-font: sans-serif;
+      }
+      
+      #sound-warning {
+         /* display: none; */
+         position: absolute;
+         top: 10vh;
+         /* left: 25%; */
+         /* align-self: center; */
+         width: fit-content;
+         /* border: 1px solid var(--color_accent_2); */
+         color: var(--color_bg_1);
+         transform: translate(50%, 50%);
+         /* transform-origin: 100%; */
+         font-size: 4vw;
+      }
+
+      nav {
+         display: inline-block;
+      }
+
+      nav a {
+         color: var(--color_bg_1);
+         font-size: xx-large;
+         /* vertical-align: auto; */
+         text-decoration: none;
+      }
+      nav>div {
+         position: absolute;
+         top: 1rem;
+         left: 1rem;
+      }
+      .x-small {
+         font-variant-caps: all-petite-caps;
+      }
+
+      html {
+         background: var(--color_bg_2) url(https://unsplash.it/720/1000?image=881&blur=4);
+         background-size: cover;
+         font-family: var(--regular-font);
+         /* 'helvetica neue'; */
+         text-align: center;
+         font-size: 10px;
+      }
+
+      body {
+         margin: 0;
+         font-size: 2rem;
+         display: flex;
+         flex: 1;
+         min-height: 100vh;
+         align-items: center;
+      }
+
+      .clock {
+         width: 70vw;
+         height: 70vw;
+         border: 10px solid var(--color_accent_1);
+         border-radius: 50%;
+         margin: 50px auto;
+         position: relative;
+         padding: 2rem;
+         box-shadow:
+            0 0 0 4px rgba(0, 0, 0, 0.1),
+            inset 0 0 0 3px var(--color_accent_1h),
+            inset 0 0 10px var(--color_bg_1),
+            0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .clock-face {
+         position: relative;
+         width: 100%;
+         height: 100%;
+         transform: translateY(-3px);
+         /* account for the height of the clock hands */
+      }
+
+      .hand {
+         width: 50%;
+         height: 3px;
+         background: var(--color_accent_2h);
+         position: absolute;
+         top: 50%;
+         transform: rotate(90deg);
+         transform-origin: 100%;
+         transition: all 0.5s;
+         transition-timing-function: cubic-bezier(1, -1.39, 0, 3.26);
+      }
+   </style>
+
+   <script>
+      const secondHand = document.querySelector('.second-hand');
+      const minHand = document.querySelector('.min-hand');
+      const hourHand = document.querySelector('.hour-hand');
+      const sound = document.querySelector(`audio`);   
+      let START_TIME = getNewDay();
+      
+
+
+      setInterval(() => {
+         const now = new Date();
+         if (START_TIME.getDate() != now.getDate())
+            START_TIME = getNewDay();
+         setClock(hourHand, minHand, secondHand, now, sound);
+      }, 1000);
+
+      function setClock(h, m, s, now, sound) {                        
+         // testing const seconds = parseInt((now.getTime() - START_TIME.getTime() + (60*60*24*1000)) / 1000);
+         const seconds = parseInt((now.getTime() - START_TIME.getTime()) / 1000);
+         const secondsDegrees = ((seconds / 60)) * 360 + 90;
+         // const minutes = now.getMinutes();
+         const minutes = parseInt((now.getTime() - START_TIME.getTime()) / (60 * 1000));
+         const minutesDegrees = ((minutes / 60) * 360) + 90;
+         //const hours = now.getHours();
+         const hours = parseInt((now.getTime() - START_TIME.getTime()) / (60 * 60 * 1000));
+         const hoursDegrees = ((hours / 12) * 360) + 90;
+         // console.log(seconds, secondsDegrees, `\nM:`, minutes, minutesDegrees, '\nH:', hours, hoursDegrees);
+         s.style.transform = `rotate(${secondsDegrees}deg)`;
+         m.style.transform = `rotate(${minutesDegrees}deg)`;
+         h.style.transform = `rotate(${hoursDegrees}deg)`;
+         playSound(sound);
+      }
+
+      function playSound(sound) {
+         const msgDiv = document.querySelector('#sound-warning');         
+         try {            
+            sound.currentTime = 0;
+            sound.volume = .1;         
+            sound.play()
+            .then((res) => {
+               if(msgDiv.style.display != 'none') {
+                  console.log('playSound: success, turning off message', res, msgDiv);
+                  msgDiv.style.display = 'none';
+               }
+            }, (res)=>{
+               msgDiv.style.display = 'flex-box';
+               console.log('playSound: failed, turning on message', res, msgDiv);
+            }).catch((res) => {
+               console.log('playSound: rejected(catch), turning on message', res, msgDiv);
+               msgDiv.style.display = 'flex-box';
+            });            
+         } catch (err) {
+            if (err instanceof DOMException) {
+               console.warn('playSound: caught DOMException. Need user interaction to play sound. ', err);               
+               msgDiv.style.display = 'flex-box';               
+            } else {
+               console.error('playSound: error', err);
+            }
+         } 
+      }
+
+      function getNewDay() {
+         const newDay = new Date();
+         newDay.setHours(0,0,0,0);
+         return newDay;
+      };
+
+
+   </script>
+</body>
+
+</html>

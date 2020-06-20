@@ -68,8 +68,7 @@ window.onload = () => {
             e.parentElement.classList.add('hidden');
          }
       });
-   }
-   week08Load();
+   }   
 };
 
 function isMobile() { return ('ontouchstart' in document.documentElement); }
