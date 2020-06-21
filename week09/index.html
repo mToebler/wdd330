@@ -123,6 +123,47 @@ sound.play()
 </div></notes>
          </article>         
       </section>
+      <section>
+         <h3>
+            Element by Attribute
+         </h3>
+         <article>
+<div class='article_bar dark accent_2'>Query an element by attribute state</div>
+<!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+<notes><note>This deserves special emphasis given the utility of it.</note>
+
+Select an element based on an attribute's 
+value through the NodeQuery Interface!
+
+<accent_2>Using: </accent_2> <code>document</code>
+<code class='big'>.querySelector(      
+   "CSSSelector[attribute='match']"     
+);</code> 
+  
+works with <code> querySelectorAll()</code> too.   
+
+<accent_1>For example: </accent_1>
+<code>&lt;audio data-key='keyP' src='/path/sum.wav'&gt;</code>
+
+<accent_1>Select with: </accent_1>
+<code>.querySelector(`audio[data-key='keyP']`)</code>
+
+<accent_2>With ES6 string templates </accent_2> go one step further:                  
+<div class='code-pre'><note class='x-small'>// < - scroll - ></note>   
+document
+   .querySelector(
+      `audio[data-key="${e.property}]"`
+   );
+
+<note class='accent_1 dark'>// this could be in an callback function </note>
+<note class='accent_1 dark'>// which takes an event. Pretty Cool!</note>
+<note class='accent_2'>// NOTE that the array bracket goes around </note>
+<note class='accent_2'>// the property, equality operator (=)</note> 
+<note class='accent_2'>// and template property here </note>
+<note class='accent_2'>// AND template variable needs to be within quotes.</note>
+</div></notes>
+         </article>         
+      </section>     
 
       <section>
             <h3>
