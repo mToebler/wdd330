@@ -1,5 +1,5 @@
-week08Load = () => {
-   let btn_list = document.querySelectorAll('.btn');
+const week08Load = () => {
+   const btn_list = document.querySelectorAll('.btn');
    btn_list.forEach(element => {
       element.addEventListener('click', transform);
    });
@@ -15,7 +15,7 @@ week08Load = () => {
    of touch and assign it to box */
    box.addEventListener('touchmove', (e) => {
       // grab the location of touch
-      var touchLocation = e.targetTouches[0];
+      let touchLocation = e.targetTouches[0];
       // need to preventDefault touch move scrolling behavior. Not easy. keeps throwing errors.
       window.addEventListener('touchmove', preventDefault, dragOpt); 
       // assign box new coordinates based on the touch.
@@ -29,8 +29,8 @@ week08Load = () => {
   
    box.addEventListener('touchend', (e) => {
       // current box position.
-      var x = parseInt(box.style.left);
-      var y = parseInt(box.style.top);
+      let x = parseInt(box.style.left);
+      let y = parseInt(box.style.top);
       // and remove preventDefault
       window.removeEventListener('touchmove', preventDefault, dragOpt); 
    });
@@ -42,7 +42,7 @@ week08Load = () => {
 };
 
 // using the test event on window to define a property object for passive scrolling 
-var supportsPassive = false;
+let supportsPassive = false;
 try {
   window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
     get: function () { supportsPassive = true; } 

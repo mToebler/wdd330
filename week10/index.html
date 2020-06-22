@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="author" content="Mark Tobler">
+   <meta name="description" content="Week 10 Notes for WDD330">
+   <meta title="Welcome to Mark Tobler's WDD330 Portfolio">
+   <link rel="apple-touch-icon" sizes="180x180" href="/wdd330/apple-touch-icon.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="/wdd330/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="/wdd330/favicon-16x16.png">
+   <link rel="manifest" href="/wdd330/site.webmanifest">
+   <link rel="stylesheet" href="styles/wdd_week10.css">
+   <script defer type="text/javascript" src="scripts/wdd_portfolio.js" charset="UTF-8"></script>
+   <!-- <script defer type="text/javascript" src="scripts/week10.js" charset="UTF-8"></script> -->
+</head>
+<body>
+   <nav>
+      <div><a href="../index.html" class="x-small">&laquo;Back</a></div>
+      <h1>Week 10</h1>
+      <div class="wrapper"><div class="toc" id="toc"></div>
+            <!--the toc will contain all h3's in a file. The collapsible portion of 
+         sections will be the contained article. Both (menu and collapsible 
+         functionality) need an h3 (place a '-' at the beginning of h3 innerText 
+         to exclude and section marked hidden) somewhere in the section to be
+         included. There is no restriction on the order or whether the article 
+         is a sibling or child of the h3 or vice-versa, just a h3 and an article. 
+         Clicking or tapping the h3 is the triggering event -->
+         <button class='btn_swap'>Toggle Dark/Light Modes</button>
+      </div>
+   </nav>
+   <header>
+   </header>
+   <main>
+      <section>
+         <h3>
+            -SPREAD vs DECONSTRUCTION
+         </h3>
+         <article>
+<div class='article_bar accent_1'>Spread...</div>
+<!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+<notes>
+Body:
+   <code class='big'>Try to follow the spacing</code> 
+   <code class='big'>Looks better()</code>
+
+<note class='accent_2'>HOWEVER </note>, nothing in stone!
+
+<note class='accent_1'>EXPLORE </note>: that's what this is about.
+
+<div class='code'>
+   code samples go here
+</div>
+
+</notes>
+<div class='article_bar accent_2'> Deconstruction...</div>
+<notes><note>(Inspired by <a href='https://javascript30.com/' target='_blank'>Wes Bos</a> 💪)</note>
+
+
+Ex.:   
+</notes>
+         </article>         
+      </section>     
+      <section >
+         <h3>
+            Canvas 2.0 Redux
+         </h3>
+         <article>
+<div class='article_bar accent_1'>Mobile Finger Jam w Canvas</div>
+<note>Inspired by <a href='https://javascript30.com'>Wes Bos</a></note>
+<!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+<notes>
+After diving into Canvas a bit more, I've decided it's not worthless at all. This is a Wes Bos exercise that I ran with and made mobile friendly, works on both, desktop and mobile, but reload if you switch between. I've disabled default mouseevents to prevent scrolling while finger jamming.
+
+<note class='accent_1 big dark'>Check out </note>: <a href="index-WB_JS30_mt.html">finger jam</a>
+
+
+<accent_1>Canvas, A Quick How to: </accent_1>
+<div class="code-pre">   
+<note class='accent_1 dark'>// element with explicit width and height</note>
+&lt;canvas id='draw' width='800' height='800'&gt;No C Msg&lt;/canvas&gt;
+const canvas = document.querySelector('#draw');
+<note class='accent_1 dark'>// set context by getting it (ok values: '2d', '3d')</note>
+<note class='accent_1 dark'>// context: drawing magic happens</note>
+const ctx = canvas.getContext('2d');
+<note class='accent_1 dark'>// set w/h to entire visible window</note>
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+<note class='accent_1 dark'>// set base settings:</note>
+ctx.strokeStyle = '#BADA55'; <note class='accent_1 dark'>// for 1 color</note>
+ctx.lineJoin = 'round'; <note class='accent_1 dark'>// or bevel or miter fun to leave off</note>
+ctx.lineCap = 'round';  <note class='accent_1 dark'>// perhaps same values as join ?</note>
+<note class='accent_1 dark'>// drawing flag</note>
+let isDrawing = false;
+<note class='accent_1 dark'>// starting point of line to be drawn</note>
+let lastX = 0;
+let lastY = 0;
+<note class='accent_1 dark'>//function to draw </note>
+function draw(event) {
+   if(isDrawing) {
+      console.log(event);
+      lastX = lastX === 0 ? event.offsetX : lastX;
+      lastY = lastY === 0 ? event.offsetY : lastY;
+      <note class='accent_1 dark'>// signals draw begin</note>
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(event.offsetX, event.offsetY);
+      <note class='accent_1 dark'>// ES 6 destructuring:</note>
+      [lastX, lastY] = [event.offsetX, event.offsetY];
+      <note class='accent_1 dark'>// signlas draw end</note>
+      ctx.stroke();
+   } else {
+      <note class='accent_1 dark'>// destructuring</note>
+      [lastX, lastY] = [0, 0];
+   }
+}
+
+<note class='accent_1 dark'>// event listeners to bring it all together.</note>
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mousedown', () => isDrawing=true);
+canvas.addEventListener('mouseup', ()=> isDrawing = false);
+canvas.addEventListener('mouseout', ()=> isDrawing = false);  
+<note>Adapted from <a href='https://javascript30.com'>Wes Bos</a>.</note> 
+</div></notes>
+         </article>         
+      </section>
+      
+      <section>
+            <h3>
+            Team Activity
+            </h3>
+            <article>
+               <div class='article_bar accent_1'>On it's way</div>
+               </div>
+               <notes>
+</notes>
+            </article>         
+         </section>         
+         <section >
+            <h3>
+               - Example Template
+            </h3>
+            <article>
+   <div class='article_bar accent_1'>Gray on blue for less pressing sub-topic header</div>
+   <!--notes are 'pre' white-spaced meaning spaces and CR's matter!!-->
+   <notes>
+   Body:
+      <code class='big'>Try to follow the spacing</code> 
+      <code class='big'>Looks better()</code>
+   
+   <note class='accent_2'>HOWEVER </note>, nothing in stone!
+   
+   <note class='accent_1'>EXPLORE </note>: that's what this is about.
+   
+   <div class='code'>
+      code samples go here
+   </div><button class='btn_swap'>swap background and text colors</button>
+   
+   </notes>
+   <div class='article_bar accent_2'> Pressing and relevant subtopics</div>
+   <notes><note>(Any attributions here)</note>
+   
+   Keep it to the basics. List are great.
+   1. step or 
+   2. meaty point
+      &mdash; sub meaty point 
+      &mdash; sub meaty point 
+         Ex.: <code>keep in code short</code>
+   3. and more...
+   4. listener fires a function.
+   
+   Ex.:   
+      </notes>
+   <div class="code-pre">try {
+      //to finish with a code sample
+      // keep the closing div tight after cuz
+      // of the pre white-space
+   }</div>
+            </article>         
+         </section>
+   </main>
+   <footer>
+      &copy;2020 | Mark Tobler Portfolio | WDD 330
+   </footer>
+</body>
+
+
+</html>

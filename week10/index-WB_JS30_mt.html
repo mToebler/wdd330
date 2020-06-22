@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+  <meta name="author" content="Mark Tobler">
+  <meta name="description" content="Week 10 Notes for WDD330">
+  <link rel="apple-touch-icon" sizes="180x180" href="/wdd330/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/wdd330/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/wdd330/favicon-16x16.png">
+  <link rel="manifest" href="/wdd330/site.webmanifest">
+  <link rel="style" href="styles/wdd_week10.css">
+</head>
+
+<body>
+  <nav>
+    <div>
+      <div><a href="index.html" class="bright">&laquo;Back</a></div>
+    </div>
+  </nav>
+
+  <canvas id="draw" width="800" height="800"></canvas>
+  <script>
+    // using the test event on window to define a property object for passive scrolling 
+    let supportsPassive = false;
+    try {
+      window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+        get: function () { supportsPassive = true; }
+      }));
+    } catch(e) { console.log('swallow', e); }
+
+    // prevent window from scrolling when dragging.
+    function preventDefault(e) {
+      e.preventDefault();
+    }
+
+    let dragOpt = supportsPassive ? { passive: false } : false;
+
+
+    const canvas = document.querySelector('#draw');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.strokeStyle = '#BadA55';
+    ctx.lineJoin = 'bevel'; //''round';
+    // ctx.lineCap = 'round';  // comment this out for chunky lines - great!
+    ctx.lineWidth = 50;
+
+    // drawing flag
+    let isDrawing = false;
+    // line width flag
+    let increasing = true;
+    // starting point of line to be drawn
+    let lastX = 0;
+    let lastY = 0;
+    let hue = 0;  // red
+    let width = 50;
+
+    function draw(event) {
+      if(isDrawing) {
+        // console.log(hue, width);
+        ctx.lineWidth = width;
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%, .3)`;
+        lastX = lastX === 0 ? event.offsetX : lastX;
+        lastY = lastY === 0 ? event.offsetY : lastY;
+        // signals draw begin
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(event.offsetX, event.offsetY);
+        // ES 6 destructuring:
+        [lastX, lastY] = [event.offsetX, event.offsetY];
+
+        // signlas draw end
+        ctx.stroke();
+        doWidth();
+        hue += .5;
+        // width = width > 100 ? width - 75 : width + .5;
+      } else {
+        // destructuring
+        [lastX, lastY] = [0, 0];
+      }
+    }
+
+    function doWidth() {
+      if(increasing) {
+        width++;
+        increasing = width < 100;
+      } else {
+        width--;
+        increasing = width < 15;
+      }
+    }
+
+    function drawTouch(event) {
+      if(isDrawing) {
+        // console.log(hue, width, `\nX,Y:`, [lastX,lastY], event.targetTouches[0].clientX, event.targetTouches[0].clientY, `\n`, event );
+        ctx.lineWidth = width;
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%, .3)`;
+        lastX = lastX === 0 ? event.targetTouches[0].clientX : lastX;
+        lastY = lastY === 0 ? event.targetTouches[0].clientY : lastY;
+        // signals draw begin
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(event.targetTouches[0].clientX, event.targetTouches[0].clientY);
+        // signlas draw end
+        ctx.stroke();
+        // ES 6 destructuring:
+        [lastX, lastY] = [event.targetTouches[0].clientX, event.targetTouches[0].clientY];
+        // terrible coupled code with globals ><
+        doWidth();
+        hue += .5;
+        // width = width > 100 ? width - 75 : width + .5;
+      } else {
+        // destructuring
+        [lastX, lastY] = [0, 0];
+      }
+      // console.log(event, '\n', event.targetTouches[0].clientX, event.targetTouches[0].clientY);
+      // targetTouches[0].clientX
+    }
+
+    canvas.addEventListener('touchmove', drawTouch, dragOpt);
+    canvas.addEventListener('touchstart', () => {
+      // to stop the window from scrolling moving      
+      window.addEventListener('touchmove', preventDefault, dragOpt);
+      isDrawing = true;
+      [lastX, lastY] = [0, 0];
+    }, dragOpt);
+    canvas.addEventListener('touchend', () => {
+      // to re-engage scrolling
+      window.removeEventListener('touchmove', preventDefault, dragOpt);
+      isDrawing = false;
+      // deconstruction
+      [lastX, lastY] = [0, 0];
+    }, dragOpt);
+    // canvas.addEventListener('touchout', () => isDrawing = false);
+
+
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mousedown', () => isDrawing = true);
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseout', () => isDrawing = false);
+  </script>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+    }
+
+    nav {
+      display: inline-block;
+      background-color: black;
+      width: 100%;
+    }
+
+    nav a {
+      color: hsl(30, 100%, 50%);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: x-large;
+      /* vertical-align: auto; */
+      text-decoration: none;
+    }
+  </style>
+
+</body>
+
+</html>
