@@ -69,6 +69,11 @@ a {
    color: var(--color_accent_2h);
 }
 
+nav,a {
+   font-size: smaller;
+   text-decoration: none;
+}
+
 a:hover {
    background-color: var(--color_accent_1h);
 }

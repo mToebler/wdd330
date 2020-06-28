@@ -1,0 +1,133 @@
+:root {
+   --color_bg_1: #303030;
+   --color_bg_2: #707070;
+   --color_text: #ededed;
+   --color_accent_1: #1f6199;
+   /* --color_accent_1: #66bae4; */
+   --color_accent_1h: #87d2f8;
+   --color_accent_1hd: hsl(200, 100%, 50%);
+   --color_accent_2: #d3773a;
+   --color_accent_2h: #ff954f;
+   /* fonts */
+   --regular-font: sans-serif;
+}
+
+accent_1, .accent_1 {
+   background-color: var(--color_accent_1h);
+   color: var(--color_bg_2);
+}
+
+accent_2, .accent_2 {
+   background-color: rgba(0, 0, 0, 0);
+   color: var(--color_accent_2h);
+}
+
+
+#detail {
+   display: none;
+}
+
+.reveal_overlay {
+   height: 100%;
+   width: 0;
+   position: fixed;
+   z-index: 1;
+   /* Sit on top */
+   left: 0;
+   top: 0;
+   background-color: var(--color_bg_1);
+   /* background-color: rgba(0, 0, 0, 0.9); */
+   overflow-x: hidden;
+   overflow-wrap: break-word;
+   /* Disable horizontal scroll */
+   transition: 0.1s;
+   /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+.reveal_close {
+   position: absolute;
+   top: 15px;
+   right: 32px;
+   font-size: 45px;
+}
+
+.detail_display {
+   display: inline-block !important;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   text-align: center;
+   margin-top: 0;
+   color: var(--color_accent_1hd);
+   list-style: none;
+}
+h1 {
+   color: var(--color_accent_1hd);
+}
+h3 {
+   color: var(--color_text);
+}
+main>ul>li{
+   padding: 16px;
+}
+main>ul>li::first-letter{
+   color: var(--color_accent_1hd);
+   text-transform: capitalize;
+}
+
+.prop_name {
+   color: var(--color_text);
+   font-size: small;
+   font-family: monospace;
+}
+
+#detail li, ul {
+   list-style-type: none;
+}
+#detail li {
+   font-size: smaller;
+}
+li {
+   padding-top: 2px;
+}
+
+
+/* Position the content inside the overlay */
+
+.menu_content {
+   position: relative;
+   top: 25%;
+   /* 25% from the top */
+   width: 100%;
+   /* 100% width */
+   text-align: center;
+   /* Centered text/links */
+   margin-top: 30px;
+   /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+
+.menu_overlay a {
+   padding: 8px;
+   text-decoration: none;
+   font-size: 36px;
+   color: #818181;
+   display: block;
+   /* Display block instead of inline */
+   transition: 0.3s;
+   /* Transition effects on hover (color) */
+}
+
+.menu_overlay a:hover, .menu_overlay a:focus {
+   color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+
+.menu_overlay .detail_close {
+   position: absolute;
+   top: 20px;
+   right: 45px;
+   font-size: 60px;
+}
