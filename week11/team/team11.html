@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script type="module" src="./team11.js"></script>   
+   <link rel="stylesheet"  href="./team11.css">
+   <title>Document</title>
+</head>
+<nav>
+   <div><a href='../index.html'>&laquo;Back</a></div>
+</nav>
+<body>
+   <form name="login" id="login" method="POST" action="">
+      <fieldset>
+         <div>
+            <label for="username">Email:</label>
+            <input name="username" id="username" autocomplete="email" type="email" placeholder="user1@email.com" required>
+         </div>
+         <div>
+            <label for="password">Password:</label>
+            <!-- <input name="password" id="password" autocomplete="current-password"  type="password" placeholder="8 characters with 1+ numbers" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])\w{8,32}$" required> -->
+            <input name="password" id="password" autocomplete="current-password"  type="password" placeholder="user1" pattern="^user1$" required>
+         </div>
+         <button name="loginButton" >Submit</button>
+      </fieldset>
+   </form>
+
+   <section class="hidden">      
+      <div class="circle"><div id='nameplate'>user1</div></div>
+   </section>
+
+
+</body>
+
+</html>
