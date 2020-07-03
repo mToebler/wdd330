@@ -24,14 +24,14 @@ export default class QuakesController {
       // adding this for detailed view:
       this.detailElement = null;
    }
-   async init(radius=500) {
+   async init(radius=75) {
       // use this as a place to grab the element identified by this.parent, do the initial call of this.initPos(), and display some quakes by calling this.getQuakesByRadius()
       //this.parentElement = document.querySelector(this.parent);
       this.parentElement = document.querySelector(this.parent.nodeName);
       this.detailElement = document.querySelector('#detail');
       await this.initPos();
       console.assert(this.position.lat !== 0, 'position is 0');
-      await this.getQuakesByRadius(100);
+      await this.getQuakesByRadius(radius);
       
    }
 
@@ -59,7 +59,7 @@ export default class QuakesController {
 Loading...
 `;
       // get the list of quakes in the specified radius of the location
-      const quakeList = await this.quakes.getEarthQuakesByRadius(this.position, 100);
+      const quakeList = await this.quakes.getEarthQuakesByRadius(this.position, radius);
       // render the list to html
       this.quakesView.renderQuakeList(quakeList, this.parentElement);
       

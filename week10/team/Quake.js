@@ -13,7 +13,7 @@ export default class Quake {
       this.long = 0;
       //confirm('index.js: Get Location data?') == true ? console.info(getLocation()) : console.info('get location rejected');
    }
-   async getEarthQuakesByRadius(position, radius = 100) {
+   // async getEarthQuakesByRadius(position, radius = 100) {
       // use the getJSON function and the position provided to build out the correct URL to get the data we need.  Store it into this._quakes, then return it
 
       //return await getLocation()
@@ -28,7 +28,8 @@ export default class Quake {
          //    console.log('setupInfo::getLocation: final url is:', this.baseUrl);
          //    return this.baseUrl;
          // });
-         let urlAddon = `&latitude=${position.lat}&longitude=${position.lon}&maxradiuskm=100`;
+   async getEarthQuakesByRadius(position, radius = 100) {
+         let urlAddon = `&latitude=${position.lat}&longitude=${position.lon}&maxradiuskm=${radius}`;
          this.baseUrl += urlAddon;
          console.log('setupInfo::getLocation: final url is:', this.baseUrl);
 

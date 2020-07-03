@@ -45,8 +45,8 @@ function setupControl() {
    const controls = document.querySelector('#controls');
    const rangeControl = document.createElement('input');
    rangeControl.setAttribute('type', 'range');
-   rangeControl.setAttribute('min', 5);
-   rangeControl.setAttribute('max', 1500);
+   rangeControl.setAttribute('min', 75);
+   rangeControl.setAttribute('max', 350);
    controls.appendChild(rangeControl);
    document.addEventListener('change', updateRange);
 }
