@@ -1,0 +1,386 @@
+:root {
+   --color_bg_1: #303030;
+   --color_bg_2: #707070;
+   --color_text: #ededed;
+   --color_accent_1: #1f6199;
+   /* --color_accent_1: #66bae4; */
+   --color_accent_1h: #87d2f8;
+   --color_accent_1hd: hsl(200, 100%, 50%);
+   --color_accent_2: #d3773a;
+   --color_accent_2h: #ff954f;
+   /* fonts */
+   --regular-font: sans-serif;
+}
+
+html, body {
+   overflow-x: hidden;
+}
+
+body {
+   background: var(--color_bg_1);
+   font-family: var(--regular-font);
+   color: var(--color_text);
+}
+
+* {
+   /* transition: all 0.1s ease; */
+   box-sizing: border-box;
+   margin: 0px;
+   padding: 0px;
+}
+
+section>h1 {
+   color: var(--color_accent_2);
+}
+
+section h3 {
+   margin: 0 -9999rem;
+   padding: 0.25rem 9999rem;
+   /* padding: .6em 1em 0.25em 0em; */
+   border-top: .2em solid var(--color_accent_2);
+}
+
+h3 {
+   font-size: 1.4em;
+   font-variant-caps: petite-caps;
+}
+
+main {
+   margin: 4.7em 8px 8px;
+   padding: 4px;
+}
+
+nav {
+   position: fixed;
+   overflow: hidden;
+   top: 0em;
+   width: 100%;
+   background-color: var(--color_bg_1);
+   padding-bottom: .4em;
+}
+
+footer {
+   background: var(--color_accent_2);
+   /* padding: 0.9375em; */
+   text-align: center;
+   font-size: 0.8125em;
+}
+
+a {
+   color: var(--color_accent_2h);
+}
+
+nav, a {
+   font-size: smaller;
+   text-decoration: none;
+}
+
+a:hover {
+   background-color: var(--color_accent_1h);
+}
+
+.code {
+   font-family: 'Courier New', Courier, monospace;
+   /* font-size: smaller; */
+   white-space: nowrap;
+   color: var(--color_bg_1);
+   background: var(--color_text);
+   overflow-x: auto;
+   overflow-y: auto;
+   width: 100%;
+   font-size: 1rem;
+   border-bottom: 5px solid var(--color_accent_1);
+}
+
+.code-pre {
+   font-family: 'Courier New', Courier, monospace;
+   /* font-size: smaller; */
+   white-space: pre;
+   color: var(--color_bg_1);
+   background: var(--color_text);
+   overflow-x: auto;
+   overflow-y: auto;
+   width: 100%;
+   font-size: 1rem;
+   border-bottom: 5px solid var(--color_accent_1);
+}
+
+.note, note {
+   font-size: smaller;
+   font-style: italic;
+   color: var(--color_accent_1h);
+}
+
+.notes, notes {
+   font-family: var(--regular-font);
+   white-space: pre-wrap;
+}
+
+.x-small {
+   font-size: x-small;
+}
+
+.big {
+   font-size: large;
+}
+
+.bigger {
+   font-size: x-large;
+}
+
+.center {
+   text-align: center;
+}
+
+.wide {
+   width: max-content;
+}
+
+.wide:before {
+   content: "";
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: -9999px;
+   right: 0;
+   border-left: 9999px solid var(--color_accent_2);
+   box-shadow: 9999px 0 0 var(--color_accent_2);
+}
+
+.article_bar {
+   font-size: medium;
+   font-variant: small-caps;
+}
+
+.both_bar_1 {
+   font-size: large;
+   border-top: 5px solid var(--color_accent_1);
+   border-bottom: 5px solid var(--color_accent_1);
+}
+
+.both_bar_2 {
+   font-size: large;
+   border-top: 5px solid var(--color_accent_2);
+   border-bottom: 5px solid var(--color_accent_2);
+}
+
+.under_bar_1 {
+   font-size: large;
+   /* border-top: 5px solid var(--color_accent_1); */
+   border-bottom: 5px solid var(--color_accent_1);
+}
+
+.under_bar_1h {
+   font-size: large;
+   /* border-top: 5px solid var(--color_accent_1); */
+   border-bottom: 5px solid var(--color_accent_1h);
+}
+
+.under_bar_2 {
+   font-size: large;
+   /* border-top: 5px solid var(--color_accent_2); */
+   border-bottom: 5px solid var(--color_accent_2);
+}
+
+.under_bar_2h {
+   font-size: large;
+   /* border-top: 5px solid var(--color_accent_2); */
+   border-bottom: 5px solid var(--color_accent_2h);
+}
+
+.fullbar {
+   margin: 0 -9999rem;
+   /* add back negative margin value */
+   padding: 0.25rem 9999rem;
+   /* background: rgba(0, 0, 0, 0.5); */
+}
+
+.explanation {
+   background-color: var(--color_bg_2);
+   font-size: small;
+   font-family: var(--regular-font);
+}
+
+.explanation>ul {
+   list-style-type: none;
+   list-style-position: inside;
+   margin-left: .3rem;
+}
+
+/* from w3schools */
+
+.explanation>ul li::before {
+   content: "\2022";
+   /* Add content: \2022 is the CSS Code/unicode for a bullet */
+   color: var(--color_accent_1h);
+   /* Change the color */
+   font-weight: bold;
+   /* If you want it to be bold */
+   display: inline-block;
+   /* Needed to add space between the bullet and the text */
+   width: 1em;
+   /* Also needed for space (tweak if needed) */
+   margin-left: -1em;
+   /* Also needed for space (tweak if needed) */
+}
+
+pre {
+   margin-top: -.9rem;
+}
+
+.btn {
+   background-color: var(--color_accent_2);
+   border: .1rem solid var(--color_bg_2);
+   color: var(--color_text);
+   padding: 4px 15px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 10px;
+}
+
+.btn_swap {
+   background-color: var(--color_accent_2);
+   border: .1rem solid var(--color_bg_2);
+   color: var(--color_text);
+   padding: 4px 15px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 10px;
+}
+
+.padded {
+   padding: 1rem;
+}
+
+.sidescroller {
+   overflow-x: auto;
+   overflow-y: auto;
+   width: 100%;
+   font-size: .9rem;
+   border-bottom: 5px solid var(--color_accent_1);
+}
+
+accent_1, .accent_1 {
+   background-color: var(--color_accent_1h);
+   color: var(--color_bg_2);
+}
+
+accent_2, .accent_2 {
+   background-color: var(--color_accent_2h);
+   color: var(--color_bg_1);
+}
+
+.color_bg2, .light {
+   color: var(--color_bg_2);
+}
+
+.dark {
+   color: var(--color_bg_1);
+}
+
+.accent_1_text {
+   color: var(--color_accent_1h);
+}
+
+select, .accent_2_text {
+   color: var(--color_accent_2h);
+}
+
+body>section {
+   margin: .5rem;
+   padding: .5rem;
+   border: .1rem solid var(--color_accent_1h);
+   background-color: var(--color_bg_1);
+   color: var(--color_text);
+}
+
+section>input {
+   width: 2rem;
+   font-size: .75rem;
+}
+
+#dvTotal, #dvSum {
+   margin: .4rem;
+   color: var(--color_accent_2);
+   padding: .5rem .25rem;
+   width: 4rem;
+   overflow: hidden;
+}
+
+.bordered {
+   border: .1rem solid var(--color_accent_1);
+}
+
+label {
+   margin: .25rem 0rem;
+}
+
+.wrapper {
+   display: inline-flex;
+}
+
+.hidden {
+   display: none;
+}
+
+.top_bottom {
+   margin: 0 0rem;
+   border-bottom: 5px solid var(--color_accent_1);
+   border-top: 5px solid var(--color_accent_1);
+}
+
+.transform_translate {
+   transform: translate(1rem, 1rem);
+   transition: .5s transform;
+}
+
+.transform_translate_off {
+   transform: translate(-20rem, 3rem);
+   transition: .5s transform;
+}
+
+.transform_scale {
+   transform: scale(2);
+   transition: .5s transform;
+}
+
+.transform_rotate {
+   transform: rotate(45deg);
+   transition: .5s transform;
+}
+
+.transform_skew {
+   transform: skew(5deg, 5deg);
+   transition: .5s transform;
+}
+
+.transform_translate_rotate {
+   transform: rotate(4.8rad) translate(45px, 45px);
+   transition: .5s transform;
+}
+
+.transform_skew_90 {
+   transform: skew(90deg);
+   transition: .5s transform;
+}
+
+#drag_container {
+   border: solid 5px var(--color_accent_1h);
+   background-color: var(--color_text);
+   height: 8rem;
+   width: 94vw;
+}
+
+#drag_box {
+   position: absolute;
+   width: 25px;
+   height: 25px;
+   background-color: var(--color_accent_1);
+}
+
+#drag_warning {
+   color: var(--color_accent_2h);
+   /* display: none; */
+}
