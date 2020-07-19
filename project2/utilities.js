@@ -16,7 +16,7 @@ export function getJSON(url = '') {
       return Error('utilities.js::getJSON: Invalid URL', url);
    }
 }
-// wrapping all this up in a function enclosure
+// wrapping all this up in a closure
 export const getLocation = (options = null) => {
    if(!options) {
       options = {
@@ -69,3 +69,30 @@ export function getFormattedDate(period = 'today', fromToday = 0) {
    
    return `${day.getUTCFullYear()}-${day.getMonth().toLocaleString().length > 1 ? day.getMonth().toLocaleString() : '0' + day.getMonth().toLocaleString()}-${day.getDate().toLocaleString().length > 1 ? day.getDate().toLocaleString() : '0' + day.getDate().toLocaleString()}`;
 }
+
+// currently not using this.
+function getHTML(url) {
+   if(url) {
+      return fetch(url)
+         .then(res => {
+            console.log("getHTML: result:", res);
+            if(!res.ok) {
+               throw Error(res.statusText);
+            } else {
+               return res;
+            }
+         }).catch(err => {
+            console.error('utilities.js:: getHTML: Error:', err);
+         });
+   } else {
+      return Error('utilities.js::getHTML: Invalid URL', url);
+   }
+}
+
+
+//testing 
+//console.log(getHTML("https://www.nytimes.com/2020/07/07/arts/harpers-letter.html?Content-Type=text/plain"));
+
+//console.log(getHTML("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-01-01&endtime=2019-02-02"));
+
+//console.log(getHTML("https://cs313-rrtnt.herokuapp.com/sentiment?nurl=https://www.nytimes.com/2020/07/17/nyregion/fahim-saleh-suspect-tyrese-devon-haspil.html"));

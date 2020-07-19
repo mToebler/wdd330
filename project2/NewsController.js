@@ -1,6 +1,7 @@
 import { getFormattedDate, getLocation } from './utilities.js';
+import { allowMultiTouch } from './index.js';
 import News from './News.js';
-import NewsView from './NewsView.js';
+import { NewsView } from './NewsView.js';
 
 // controller for MVC quake project
 // the glue between the model and view. Job is to 
@@ -29,9 +30,12 @@ export default class NewsController {
       //this.parentElement = document.querySelector(this.parent);
       this.parentElement = document.querySelector(this.parent.nodeName);
       this.detailElement = document.querySelector('#detail');
-      await this.initPos();
-      console.assert(this.position.lat !== 0, 'position is 0');
+      // not using position at this time
+      //await this.initPos();
+      //console.assert(this.position.lat !== 0, 'position is 0');
       await this.getNewsByRadius(radius);
+      //this.getNewsByRadius(radius)      
+      this.restoreSavedArtcles();
 
    }
 
@@ -78,18 +82,53 @@ Loading...
          else
             this.getNewsDetails(e.target.parentElement.dataset.id);
       });
+
+      // setup multitouch events
+      allowMultiTouch();
       // this.parentElement.addEventListener('click', e => {
       //    this.getNewDetails(e.target.dataset.id);
       // });
    }
+   
    async getNewsDetails(newsId) {
       // get the details for the newsId provided from the model, then send them to the view to be displayed
-      const astory = this.news.getNewsById(newsId);
+      const astory = await this.news.getNewsById(newsId);
       console.info('getNewsDetails: newsId:', newsId, astory);
 
-      this.newsView.renderNews(astory, this.detailElement);
+      this.newsView.renderNews(astory, this.detailElement); 
 
    }
 
+
+   saveNewsStory(newsId) {
+      this.news.saveById(newsId);
+      // delay
+   }
+
+   restoreSavedArtcles() {
+      // let savedArray = this.news.getSaved();
+      // this.newsView.renderSavedList(savedArray, this.parentElement);
+      
+      const openSaved = () => {
+         const newsView = new NewsView()
+         const news = new News();
+         let savedArray = news.getSaved();
+         newsView.renderSavedList(savedArray);
+         const savedOverlay = document.getElementById("saved_overlay");
+         savedOverlay.classList.add('saved_display');
+         // document.getElementById()
+         // putting this here as it wasn't firing in NewsView =(
+         document.querySelector('#close_saved').addEventListener('click', () => {
+            const savedList = document.getElementById("saved_overlay");
+            savedList.classList.remove('saved_display');            
+         });
+      };
+      // const cssvar_color_accent_1h = '#87d2f8';
+      // document.getElementById('close_saved').addEventListener('click', closeSaved);
+      document.getElementById('saved_open').addEventListener('click', openSaved);
+      
+   }
+   
+   
 
 }

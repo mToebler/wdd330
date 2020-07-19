@@ -17,3 +17,4 @@ document.getElementById('close').addEventListener('click', closeMenu);
 document.getElementById('menu_open').addEventListener('click', openMenu);
 
 document.getElementById('project1').style.color = cssvar_color_accent_1h;
+document.getElementById('project2').style.color = cssvar_color_accent_1h;

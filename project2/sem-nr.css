@@ -61,6 +61,48 @@ accent_2, .accent_2 {
    color: var(--color_accent_1hd);
    list-style: none;
 }
+
+.saved_menu {
+   color: var(--color_accent_2h);
+   font-size: 3rem;
+}
+
+.saved_overlay {      
+   height: 100%;
+   width: 0;
+   position: fixed;
+   z-index: 999;
+   /* Sit on top */
+   left: 0;
+   top: 0;
+   background-color: var(--color_bg_1);
+   /* background-color: rgba(0, 0, 0, 0.9); */
+   overflow-x: hidden;
+   overflow-wrap: break-word;
+   /* Disable horizontal scroll */
+   transition: 0.1s;
+   /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+.saved_display {
+   display: inline-block !important;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   text-align: center;
+   margin-top: 0;
+   color: var(--color_accent_1hd);
+   list-style: none;
+}
+
+#saved_overlay {
+   display: none;
+}
+
+#saved {
+   margin-top: 5rem;
+}
+
 h1 {
    color: var(--color_accent_1hd);
 }

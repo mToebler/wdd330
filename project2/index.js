@@ -1,22 +1,23 @@
 import { getJSON, getLocation, getFormattedDate } from './utilities.js';
 import NewsController from './NewsController.js';
-import { nytapi, urlStr } from './bin/bin.js';
+import { nytapi, nytUrlStr } from './bin/bin.js';
 
-let QC = null;
+let NC = null;
 window.onload = () => {
    console.info('index.js::onload: loading...');
    const storyList = document.querySelector('#storyList');
    const parent = storyList.parentElement;
    console.dir(storyList);
-   QC = new NewsController(storyList);
-   QC.init();
+   NC = new NewsController(storyList);
+   NC.init();
+   
    // setupControl();
    //setupInfo();
 };
 
 function setupInfo() {
    //let baseUrl = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${getFormattedDate('today', -15)}&endtime=${getFormattedDate('today', -1)}`;
-   let baseUrl = urlStr;
+   let baseUrl = nytUrlStr;
    let lat = 0;
    let long = 0;
    let radius = 500;
@@ -57,8 +58,69 @@ function updateRange(event) {
    const rangeValue = document.querySelector('#rangeValue');
    try {
       rangeValue.textContent = event.target.value + ' KM';
-      QC.init(event.target.value);
+      NC.init(event.target.value);
    } catch (e) {
       console.error(e);
    }
 }
+
+function getTest(data) {
+   console.log("getTest... data:",data);
+}
+
+// allows quick and long touch events for newsList
+export function allowMultiTouch() {
+   // variable holds setTimeoutID.
+   let delay;
+   // f
+   const checkSelected = (e) => {
+      const _this = e.target;
+      delay = setTimeout(check, longpress);
+      console.log('index::allowMultiTouch:checkSelected: timer started:', delay, '\ne is:', e);
+ 
+      function check() {
+         try {
+            _this.parentElement.classList.toggle('is-selected');
+            // save to localstorage!
+            console.log('index::allowMultiTouch::check: saving story of ', _this);
+            NC.saveNewsStory(_this.parentElement.dataset.id)
+            console.log(`index::allowMultiTouch::check: story id ${_this.parentElement.dataset.id} saved.`)
+         } catch (err) {
+            console.error(`Index.js::allowMultiTouch::check:Error`, err );
+         }
+         
+      }
+   };
+   const clearTimer = (e) => {
+      // On mouse up, we know it is no longer a longpress
+      clearTimeout(delay);
+      console.log('index::allowMultiTouch:clearTimer: clearing', delay);
+   };
+  
+   // Set number of milliseconds for longpress
+   const longpress = 1000;
+   const listItems = document.querySelector('#storyList').children;
+   let listItem;
+   console.log(`index::allowMultiTouch: listItems length: ${listItems.length}`);
+   for (let i = 0, j = listItems.length; i < j; i++) {
+      listItem = listItems[i];
+  
+      // bewarey of this problem!
+      listItem.addEventListener('touchstart', checkSelected, true);
+  
+      // clear the setTimeout
+      listItem.addEventListener('touchend', clearTimer);
+
+      listItem.addEventListener('touchmove', clearTimer);
+  
+   }
+}
+
+
+
+// let script = document.createElement('script');
+// script.src = `https://www.nytimes.com/2020/07/07/arts/harpers-letter.html?callback=getTest`;
+// console.log(script);
+// document.body.append(script);
+
+//https://cs313-rrtnt.herokuapp.com/sentiment?nurl=https://www.nytimes.com/2020/07/17/nyregion/fahim-saleh-suspect-tyrese-devon-haspil.html

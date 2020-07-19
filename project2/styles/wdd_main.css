@@ -284,6 +284,10 @@ accent_2, .accent_2 {
    color: var(--color_accent_1h);
 }
 
+.accent_1hd_text {
+   color: var(--color_accent_1hd);
+}
+
 select, .accent_2_text {
    color: var(--color_accent_2h);
 }
@@ -383,4 +387,11 @@ label {
 #drag_warning {
    color: var(--color_accent_2h);
    /* display: none; */
+}
+
+/*Project 2 specific stuff*/
+.is-selected { 
+   background-color: #404040;   
+   outline-color: var(--color_bg_2);
+   outline-style: auto;
 }
