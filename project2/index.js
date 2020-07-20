@@ -1,6 +1,6 @@
 import { getJSON, getLocation, getFormattedDate } from './utilities.js';
 import NewsController from './NewsController.js';
-import { nytapi, nytUrlStr } from './bin/bin.js';
+import { nytUrlStr } from './bin/bin.js';
 
 let NC = null;
 window.onload = () => {

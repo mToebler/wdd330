@@ -1,4 +1,4 @@
-import { getJSON, getLocation, getFormattedDate } from './utilities.js';
+import { getJSON, getApiObj, getLocation, getFormattedDate } from './utilities.js';
 import { nytUrlStr, storyUrl } from "./bin/bin.js";
 // Model for MVC News
 // responsible to handle all of the interactions with our data source
@@ -16,26 +16,12 @@ export default class News {
    }
    // async getEarthNewsByRadius(position, radius = 100) {
    // use the getJSON function and the position provided to build out the correct URL to get the data we need.  Store it into this._news, then return it
-
-   //return await getLocation()
-   // .then(geo => {
-   //    if (position)
-   //       this.lat = geo.coords.latitude;
-   //    this.long = geo.coords.longitude;
-   //    console.info(this.lat, this.long);
-   //    // console.log(geo.coords.latitude, geo.coords.longitude);
-   //    let urlAddon = `&latitude=${this.lat}&longitude=${this.long}&maxradiuskm=100`;
-   //    this.baseUrl += urlAddon;
-   //    console.log('setupInfo::getLocation: final url is:', this.baseUrl);
-   //    return this.baseUrl;
-   // });
    async getEarthNewsByRadius(position, radius = 100) {
-      // let urlAddon = `&latitude=${position.lat}&longitude=${position.lon}&maxradiuskm=${radius}`;
-      // this.baseUrl += urlAddon;
       console.log('setupInfo::getEarthNewsByRadius: final url is:', this.baseUrl);
 
       return getJSON(this.baseUrl)
          .then(res => {
+            // API returns an array of arrays
             let tempSet = new Set(res.results);
             // tempSet.add(res.features);
             console.log('!!!!!!!!!!', res.results);
@@ -44,7 +30,7 @@ export default class News {
             this._news.push(...tempSet.values());
             // a little spreading...
             // this._news.push(...res.features)
-            console.info('setupInfo::getJSON: results', res);
+            console.info('setupInfo::getApiObj: results', res);
             this._news.forEach(story => console.info(story));
             //return this._news.features.filter(item => item.id === id)[0];
             // console.info(`News: nn....:${this.getNewsById('nn00724973')}`);

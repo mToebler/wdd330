@@ -1,6 +1,5 @@
 // getJSON : fetches a url.
 export function getJSON(url = '') {
-   // https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-01-01&endtime=2019-02-02'
    if(url) {
       return fetch(url)
          .then(res => {
@@ -16,6 +15,26 @@ export function getJSON(url = '') {
       return Error('utilities.js::getJSON: Invalid URL', url);
    }
 }
+
+export function getApiObj(url = '') {
+   if(url) {
+      return fetch(url)
+         .then(res => {
+            if(!res.ok) {
+               throw Error(res.statusText);
+            } else {
+               console.info('utilities::getApiObj: res is ', res);
+               console.info('utilities::getApiObj: res is of type Array? ', res.isinstanceof(Array) );
+               return res.json();
+            }
+         }).catch(err => {
+            console.error('utilities.js:: getJSON: Error:', err);
+         });
+   } else {
+      return Error('utilities.js::getJSON: Invalid URL', url);
+   }
+}
+
 // wrapping all this up in a closure
 export const getLocation = (options = null) => {
    if(!options) {
