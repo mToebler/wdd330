@@ -117,9 +117,11 @@ export default class News {
       return savedArray;
    }
 
-   static deleteById(nesId) {
-
+   deleteById(newsId) {
+      console.log('News.deleteById: deleting:', newsId);
+      localStorage.removeItem(`news_${newsId}`);
    }
+   
 
    static restoreById(newsId) {
 

@@ -389,9 +389,3 @@ label {
    /* display: none; */
 }
 
-/*Project 2 specific stuff*/
-.is-selected { 
-   background-color: #404040;   
-   outline-color: var(--color_bg_2);
-   outline-style: auto;
-}

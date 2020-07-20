@@ -10,7 +10,7 @@ window.onload = () => {
    console.dir(storyList);
    NC = new NewsController(storyList);
    NC.init();
-   
+
    // setupControl();
    //setupInfo();
 };
@@ -34,7 +34,7 @@ function setupInfo() {
    //       console.log('setupInfo::getLocation: final url is:', baseUrl);
    //       return baseUrl;
    //    })
-      getJSON(baseUrl)
+   getJSON(baseUrl)
       .then(res => console.info('setupInfo::getJSON: results', res))
       .catch(err => console.error('index.js:: error:', err));
 
@@ -65,7 +65,7 @@ function updateRange(event) {
 }
 
 function getTest(data) {
-   console.log("getTest... data:",data);
+   console.log("getTest... data:", data);
 }
 
 // allows quick and long touch events for newsList
@@ -74,21 +74,36 @@ export function allowMultiTouch() {
    let delay;
    // f
    const checkSelected = (e) => {
-      const _this = e.target;
+      let _this = e.target;
+      if (!e.target.dataset.id) {
+         if (!e.target.parentElement.dataset.id)
+            _this = null;
+         else
+            _this = e.target.parentElement
+      }
+      if (_this === null)
+         return;
+      
       delay = setTimeout(check, longpress);
       console.log('index::allowMultiTouch:checkSelected: timer started:', delay, '\ne is:', e);
- 
+
       function check() {
          try {
-            _this.parentElement.classList.toggle('is-selected');
-            // save to localstorage!
-            console.log('index::allowMultiTouch::check: saving story of ', _this);
-            NC.saveNewsStory(_this.parentElement.dataset.id)
-            console.log(`index::allowMultiTouch::check: story id ${_this.parentElement.dataset.id} saved.`)
+            if (_this.classList.contains('is-selected')) {
+               //delete
+               NC.deleteNewsStory(_this.dataset.id);
+               _this.classList.remove('is-selected');
+            } else {
+               _this.classList.toggle('is-selected');
+               // save to localstorage!
+               console.log('index::allowMultiTouch::check: saving story of ', _this);
+               NC.saveNewsStory(_this.dataset.id)
+               console.log(`index::allowMultiTouch::check: story id ${_this.dataset.id} saved.`)
+            }
          } catch (err) {
-            console.error(`Index.js::allowMultiTouch::check:Error`, err );
+            console.error(`Index.js::allowMultiTouch::check:Error`, err);
          }
-         
+
       }
    };
    const clearTimer = (e) => {
@@ -96,7 +111,7 @@ export function allowMultiTouch() {
       clearTimeout(delay);
       console.log('index::allowMultiTouch:clearTimer: clearing', delay);
    };
-  
+
    // Set number of milliseconds for longpress
    const longpress = 1000;
    const listItems = document.querySelector('#storyList').children;
@@ -104,18 +119,79 @@ export function allowMultiTouch() {
    console.log(`index::allowMultiTouch: listItems length: ${listItems.length}`);
    for (let i = 0, j = listItems.length; i < j; i++) {
       listItem = listItems[i];
-  
+
       // bewarey of this problem!
       listItem.addEventListener('touchstart', checkSelected, true);
-  
+
       // clear the setTimeout
       listItem.addEventListener('touchend', clearTimer);
 
       listItem.addEventListener('touchmove', clearTimer);
-  
+
    }
 }
 
+// allows quick and long touch events for saved newsList
+export function allowMultiTouchSaved() {
+   // variable holds setTimeoutID.
+   let delay;
+   // f
+   const delSelected = (e) => {
+      let _this = e.target;
+      if (!e.target.dataset.id)
+         if (!e.target.parentElement.dataset.id)
+            _this = e.target.parentElement.parentElement;
+         else
+            _this = e.target.parentElement;
+
+      //let _this = e.target; //parentElement.parentElement.dataset.id
+      delay = setTimeout(del, longpress);
+      console.log('index::allowMultiTouchSaved:delSelected: timer started:', delay, '\ne is:', e);
+
+      function del() {
+         try {
+            _this.classList.add('is-deleted');
+            // remove from localstorage!
+            console.log('index::allowMultiTouchSaved::del: deleting story of ', _this);
+            NC.deleteNewsStory(_this.dataset.id)
+            // remove "is-selected" class if there.
+            let selected = document.querySelectorAll('.is-selected');
+            if (selected.length > 0)
+               selected.forEach(item => {
+                  if (_this.dataset.id === item.dataset.id)
+                     item.classList.remove('is-selected');
+               });
+            console.log(`index::allowMultiTouchSaved::del: story id ${_this.dataset.id} deleted.`)
+         } catch (err) {
+            console.error(`Index.js::allowMultiTouchSaved::del:Error`, err);
+         }
+
+      }
+   };
+   const clearTimer = (e) => {
+      // On mouse up, we know it is no longer a longpress
+      clearTimeout(delay);
+      console.log('index::allowMultiTouchSaved:clearTimer: clearing', delay);
+   };
+
+   // Set number of milliseconds for longpress
+   const longpress = 1000;
+   const listItems = document.querySelector('#saved').children;
+   let listItem;
+   console.log(`index::allowMultiTouchSaved: listItems length: ${listItems.length}`);
+   for (let i = 0, j = listItems.length; i < j; i++) {
+      listItem = listItems[i];
+
+      // bewarey of this problem!
+      listItem.addEventListener('touchstart', delSelected, true);
+
+      // clear the setTimeout
+      listItem.addEventListener('touchend', clearTimer);
+
+      listItem.addEventListener('touchmove', clearTimer);
+
+   }
+}
 
 
 // let script = document.createElement('script');

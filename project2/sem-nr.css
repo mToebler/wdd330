@@ -63,6 +63,10 @@ accent_2, .accent_2 {
    padding: 1rem;
 }
 
+.detail_display h3{
+   margin-top: 2.5rem;
+}
+
 #articleText {
    padding: 1rem;
    text-align: justify;
@@ -107,6 +111,19 @@ accent_2, .accent_2 {
 
 #saved {
    margin-top: 5rem;
+}
+/*Project 2 specific stuff*/
+.is-selected { 
+   background-color: #404040;   
+   outline-color: var(--color_bg_2);
+   outline-style: auto;
+}
+
+/*Project 2 specific stuff*/
+.is-deleted { 
+   text-decoration: line-through;
+   text-decoration-color: var(--color_bg_1);
+   display: none;
 }
 
 h1 {

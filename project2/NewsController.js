@@ -1,5 +1,5 @@
 import { getFormattedDate, getLocation } from './utilities.js';
-import { allowMultiTouch } from './index.js';
+import { allowMultiTouch, allowMultiTouchSaved } from './index.js';
 import News from './News.js';
 import { NewsView } from './NewsView.js';
 
@@ -66,7 +66,7 @@ Loading...
       const storyList = await this.news.getEarthNewsByRadius(this.position, radius);
       // render the list to html
       this.newsView.renderNewsList(storyList, this.parentElement);
-
+      this.newsView.selectSaved(this.news.getSaved());
       // remove any eventlisteners on parentElement set by this method
       this.parentElement.removeEventListener('touchend', e => {
          if(Object.keys(e.target.dataset).length > 0)
@@ -105,6 +105,10 @@ Loading...
       // delay
    }
 
+   deleteNewsStory(newsId) {
+      this.news.deleteById(newsId);
+   }
+
    restoreSavedArtcles() {
       // let savedArray = this.news.getSaved();
       // this.newsView.renderSavedList(savedArray, this.parentElement);
@@ -122,6 +126,8 @@ Loading...
             const savedList = document.getElementById("saved_overlay");
             savedList.classList.remove('saved_display');            
          });
+         console.log('prepping for remove saved list');
+         allowMultiTouchSaved();
       };
       // const cssvar_color_accent_1h = '#87d2f8';
       // document.getElementById('close_saved').addEventListener('click', closeSaved);

@@ -20,6 +20,16 @@ class NewsView {
       console.info('renderNewsList:listElement:', listElement.innerHTML);
    }
 
+   selectSaved(savedArray) {
+      savedArray.forEach(saved => {
+         let renderedStory = document.querySelector(`li[data-id="${saved.id}"]`);
+         if (renderedStory)
+            renderedStory.classList.add('is-selected');
+         
+      });
+      // document.querySelector(`li[data-id="${saved.id}"]`);
+   }
+
    // detailed view
    renderNews(news, element) {
       const newsProperties = Object.entries(news);
@@ -87,11 +97,15 @@ class NewsView {
       //this.does nothing.
       closex.addEventListener('touchend', closeSaved);
       savedElement.appendChild(closex);
-      
-      savedElement.innerHTML += savedArray.map(news => {
-         let liItem = `<li data-id="${news.id}"><div><a href="${news.url}">${news.title}</a></div></li>`;
-         return liItem;
-      }).join('');
+      if (savedArray.length > 0) {
+         savedElement.innerHTML += savedArray.map(news => {
+            let liItem = `<li data-id="${news.id}"><div><a href="${news.url}">${news.title}</a></div></li>`;
+            return liItem;
+         }).join('');
+         savedElement.innerHTML += `<br><span style="color:var(--color_text)">Long-press saved title to delete<span><br>Clicking saved story visits NYT source.`;
+      } else {
+         savedElement.innerHTML += `<br><span style="color:var(--color_text)">No Saved Articles<br>Long-press article title to save<span>`;
+      }
       // let's add some styling for images      
 
 
