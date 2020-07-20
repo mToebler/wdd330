@@ -60,6 +60,12 @@ accent_2, .accent_2 {
    margin-top: 0;
    color: var(--color_accent_1hd);
    list-style: none;
+   padding: 1rem;
+}
+
+#articleText {
+   padding: 1rem;
+   text-align: justify;
 }
 
 .saved_menu {
@@ -133,6 +139,10 @@ li {
    padding-top: 2px;
 }
 
+.detail_refer {
+   color: var(--color_text);
+   padding-top: 1rem;
+}
 
 /* Position the content inside the overlay */
 

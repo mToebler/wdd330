@@ -48,7 +48,7 @@ class NewsView {
       element.appendChild(detailByline);
       const detailText = document.createElement('div');
       detailText.setAttribute('id', 'articleText');
-      detailText.innerHTML = `${news.text} <br>Read the entire article at <a href="${news.url}" target="_blank">${news.source}</a>`;
+      detailText.innerHTML = `${news.text} <br><span class="detail_refer">Read the entire article at: </span> <a href="${news.url}" target="_blank">${news.source}</a>`;
       // adding detailText below media pic.
       console.log('NewsView::renderNews: media object', news.media);
       if (news.media !== null || news.media !== undefined)
