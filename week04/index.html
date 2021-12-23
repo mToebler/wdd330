@@ -333,6 +333,9 @@ const SimpleClass = (function() {
      <code class="accent_2"> (11).toString(2); </code> 
      '1011'  <note class="accent_1 small"> It's the 2. </note> <note class="accent small"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString">more info</a> </note>
 
+     <div class='article_bar accent_1'>The win algorithm: (select text to reveal)
+     <div class="explanation">a bit binary, a bit regex. Each turn the board is converted to a binary representation: the first cell, if occupied by current player is a 1, 0 otherwise, down to last cell. A win across the top row contains this binary series: 0 0000 0111, or a decimal 7. The winning combos are {7, 56, 81, 273, 448}. Turn the board into a binary string, search for the 5 patterns. Match = win. A simple bitwise & by current player by turn. (We had an hour total). </div>
+</div>   
 </notes>
             </article>         
          </section>         
